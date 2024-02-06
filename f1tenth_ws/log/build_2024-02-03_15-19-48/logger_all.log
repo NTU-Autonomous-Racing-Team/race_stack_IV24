@@ -1,0 +1,888 @@
+[12.675s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[12.675s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff8370d670>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=6, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff8370d670>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff834ce7c0>)
+[13.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[13.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[13.370s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[13.370s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[13.370s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[13.370s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[13.371s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/deepspeed/ICRA2024/f1tenth_ws'
+[13.371s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[13.372s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[13.372s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[13.372s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[13.372s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[13.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[13.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[13.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[13.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[13.428s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[13.429s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[13.429s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[13.429s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[13.429s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[13.430s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[13.431s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[13.431s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[13.431s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[13.432s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[13.432s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[13.433s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[13.433s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[13.434s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[13.434s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[13.435s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[13.435s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[13.435s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[13.435s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[13.436s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[13.436s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[13.436s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[13.436s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[13.437s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[13.437s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[13.437s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[13.437s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[13.438s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[13.438s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extensions ['ignore', 'ignore_ament_install']
+[13.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extension 'ignore'
+[13.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extension 'ignore_ament_install'
+[13.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extensions ['colcon_pkg']
+[13.439s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extension 'colcon_pkg'
+[13.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extensions ['colcon_meta']
+[13.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extension 'colcon_meta'
+[13.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extensions ['ros']
+[13.440s] Level 1:colcon.colcon_core.package_identification:_identify(src/automatic_emergency_braking) by extension 'ros'
+[13.453s] DEBUG:colcon.colcon_core.package_identification:Package 'src/automatic_emergency_braking' with type 'ros.ament_python' and name 'automatic_emergency_braking'
+[13.453s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extensions ['ignore', 'ignore_ament_install']
+[13.454s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'ignore'
+[13.454s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'ignore_ament_install'
+[13.454s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extensions ['colcon_pkg']
+[13.455s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'colcon_pkg'
+[13.455s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extensions ['colcon_meta']
+[13.455s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'colcon_meta'
+[13.455s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extensions ['ros']
+[13.455s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'ros'
+[13.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extensions ['cmake', 'python']
+[13.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'cmake'
+[13.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'python'
+[13.457s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extensions ['python_setup_py']
+[13.457s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system) by extension 'python_setup_py'
+[13.457s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extensions ['ignore', 'ignore_ament_install']
+[13.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extension 'ignore'
+[13.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extension 'ignore_ament_install'
+[13.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extensions ['colcon_pkg']
+[13.459s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extension 'colcon_pkg'
+[13.459s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extensions ['colcon_meta']
+[13.459s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extension 'colcon_meta'
+[13.459s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extensions ['ros']
+[13.459s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/ackermann_mux) by extension 'ros'
+[13.464s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/ackermann_mux' with type 'ros.ament_cmake' and name 'ackermann_mux'
+[13.464s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extensions ['ignore', 'ignore_ament_install']
+[13.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extension 'ignore'
+[13.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extension 'ignore_ament_install'
+[13.465s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extensions ['colcon_pkg']
+[13.466s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extension 'colcon_pkg'
+[13.466s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extensions ['colcon_meta']
+[13.466s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extension 'colcon_meta'
+[13.466s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extensions ['ros']
+[13.467s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/f1tenth_stack) by extension 'ros'
+[13.471s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/f1tenth_stack' with type 'ros.ament_python' and name 'f1tenth_stack'
+[13.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extensions ['ignore', 'ignore_ament_install']
+[13.472s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'ignore'
+[13.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'ignore_ament_install'
+[13.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extensions ['colcon_pkg']
+[13.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'colcon_pkg'
+[13.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extensions ['colcon_meta']
+[13.473s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'colcon_meta'
+[13.474s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extensions ['ros']
+[13.474s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'ros'
+[13.475s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extensions ['cmake', 'python']
+[13.475s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'cmake'
+[13.475s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'python'
+[13.475s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extensions ['python_setup_py']
+[13.475s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/scripts) by extension 'python_setup_py'
+[13.476s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extensions ['ignore', 'ignore_ament_install']
+[13.476s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'ignore'
+[13.477s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'ignore_ament_install'
+[13.477s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extensions ['colcon_pkg']
+[13.477s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'colcon_pkg'
+[13.477s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extensions ['colcon_meta']
+[13.478s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'colcon_meta'
+[13.478s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extensions ['ros']
+[13.478s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'ros'
+[13.478s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extensions ['cmake', 'python']
+[13.479s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'cmake'
+[13.479s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'python'
+[13.479s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extensions ['python_setup_py']
+[13.479s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools) by extension 'python_setup_py'
+[13.480s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extensions ['ignore', 'ignore_ament_install']
+[13.480s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extension 'ignore'
+[13.481s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extension 'ignore_ament_install'
+[13.481s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extensions ['colcon_pkg']
+[13.481s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extension 'colcon_pkg'
+[13.481s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extensions ['colcon_meta']
+[13.481s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extension 'colcon_meta'
+[13.482s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extensions ['ros']
+[13.482s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/joy_teleop) by extension 'ros'
+[13.485s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/teleop_tools/joy_teleop' with type 'ros.ament_python' and name 'joy_teleop'
+[13.486s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extensions ['ignore', 'ignore_ament_install']
+[13.486s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extension 'ignore'
+[13.486s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extension 'ignore_ament_install'
+[13.487s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extensions ['colcon_pkg']
+[13.487s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extension 'colcon_pkg'
+[13.487s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extensions ['colcon_meta']
+[13.487s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extension 'colcon_meta'
+[13.488s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extensions ['ros']
+[13.488s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/key_teleop) by extension 'ros'
+[13.491s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/teleop_tools/key_teleop' with type 'ros.ament_python' and name 'key_teleop'
+[13.491s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extensions ['ignore', 'ignore_ament_install']
+[13.492s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extension 'ignore'
+[13.492s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extension 'ignore_ament_install'
+[13.492s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extensions ['colcon_pkg']
+[13.492s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extension 'colcon_pkg'
+[13.493s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extensions ['colcon_meta']
+[13.493s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extension 'colcon_meta'
+[13.493s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extensions ['ros']
+[13.493s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/mouse_teleop) by extension 'ros'
+[13.495s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/teleop_tools/mouse_teleop' with type 'ros.ament_python' and name 'mouse_teleop'
+[13.496s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extensions ['ignore', 'ignore_ament_install']
+[13.496s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extension 'ignore'
+[13.497s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extension 'ignore_ament_install'
+[13.497s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extensions ['colcon_pkg']
+[13.497s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extension 'colcon_pkg'
+[13.497s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extensions ['colcon_meta']
+[13.498s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extension 'colcon_meta'
+[13.498s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extensions ['ros']
+[13.498s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools) by extension 'ros'
+[13.500s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/teleop_tools/teleop_tools' with type 'ros.ament_cmake' and name 'teleop_tools'
+[13.501s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extensions ['ignore', 'ignore_ament_install']
+[13.501s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extension 'ignore'
+[13.501s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extension 'ignore_ament_install'
+[13.502s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extensions ['colcon_pkg']
+[13.502s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extension 'colcon_pkg'
+[13.502s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extensions ['colcon_meta']
+[13.502s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extension 'colcon_meta'
+[13.503s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extensions ['ros']
+[13.503s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/teleop_tools/teleop_tools_msgs) by extension 'ros'
+[13.505s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/teleop_tools/teleop_tools_msgs' with type 'ros.ament_cmake' and name 'teleop_tools_msgs'
+[13.506s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extensions ['ignore', 'ignore_ament_install']
+[13.506s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'ignore'
+[13.507s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'ignore_ament_install'
+[13.507s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extensions ['colcon_pkg']
+[13.507s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'colcon_pkg'
+[13.507s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extensions ['colcon_meta']
+[13.508s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'colcon_meta'
+[13.508s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extensions ['ros']
+[13.508s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'ros'
+[13.509s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extensions ['cmake', 'python']
+[13.509s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'cmake'
+[13.509s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'python'
+[13.509s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extensions ['python_setup_py']
+[13.509s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc) by extension 'python_setup_py'
+[13.510s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extensions ['ignore', 'ignore_ament_install']
+[13.510s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extension 'ignore'
+[13.511s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extension 'ignore_ament_install'
+[13.511s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extensions ['colcon_pkg']
+[13.511s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extension 'colcon_pkg'
+[13.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extensions ['colcon_meta']
+[13.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extension 'colcon_meta'
+[13.512s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extensions ['ros']
+[13.513s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc) by extension 'ros'
+[13.516s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/vesc/vesc' with type 'ros.ament_cmake' and name 'vesc'
+[13.517s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extensions ['ignore', 'ignore_ament_install']
+[13.517s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extension 'ignore'
+[13.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extension 'ignore_ament_install'
+[13.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extensions ['colcon_pkg']
+[13.518s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extension 'colcon_pkg'
+[13.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extensions ['colcon_meta']
+[13.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extension 'colcon_meta'
+[13.519s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extensions ['ros']
+[13.520s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_ackermann) by extension 'ros'
+[13.526s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/vesc/vesc_ackermann' with type 'ros.ament_cmake' and name 'vesc_ackermann'
+[13.526s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extensions ['ignore', 'ignore_ament_install']
+[13.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extension 'ignore'
+[13.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extension 'ignore_ament_install'
+[13.527s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extensions ['colcon_pkg']
+[13.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extension 'colcon_pkg'
+[13.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extensions ['colcon_meta']
+[13.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extension 'colcon_meta'
+[13.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extensions ['ros']
+[13.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_driver) by extension 'ros'
+[13.533s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/vesc/vesc_driver' with type 'ros.ament_cmake' and name 'vesc_driver'
+[13.534s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extensions ['ignore', 'ignore_ament_install']
+[13.534s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extension 'ignore'
+[13.534s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extension 'ignore_ament_install'
+[13.535s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extensions ['colcon_pkg']
+[13.535s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extension 'colcon_pkg'
+[13.535s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extensions ['colcon_meta']
+[13.535s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extension 'colcon_meta'
+[13.536s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extensions ['ros']
+[13.536s] Level 1:colcon.colcon_core.package_identification:_identify(src/f1tenth_system/vesc/vesc_msgs) by extension 'ros'
+[13.539s] DEBUG:colcon.colcon_core.package_identification:Package 'src/f1tenth_system/vesc/vesc_msgs' with type 'ros.ament_cmake' and name 'vesc_msgs'
+[13.540s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[13.540s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[13.540s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[13.540s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[13.541s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[14.560s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[14.560s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[14.867s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 272 installed packages in /opt/ros/foxy
+[14.875s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[15.552s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'cmake_args' from command line to 'None'
+[15.552s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'cmake_target' from command line to 'None'
+[15.553s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[15.553s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'cmake_clean_cache' from command line to 'False'
+[15.553s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'cmake_clean_first' from command line to 'False'
+[15.553s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'cmake_force_configure' from command line to 'False'
+[15.553s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'ament_cmake_args' from command line to 'None'
+[15.553s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'catkin_cmake_args' from command line to 'None'
+[15.554s] Level 5:colcon.colcon_core.verb:set package 'ackermann_mux' build argument 'catkin_skip_building_tests' from command line to 'False'
+[15.554s] DEBUG:colcon.colcon_core.verb:Building package 'ackermann_mux' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux', 'symlink_install': False, 'test_result_base': None}
+[15.699s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'cmake_args' from command line to 'None'
+[15.700s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'cmake_target' from command line to 'None'
+[15.700s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[15.700s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'cmake_clean_cache' from command line to 'False'
+[15.700s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'cmake_clean_first' from command line to 'False'
+[15.701s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'cmake_force_configure' from command line to 'False'
+[15.701s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'ament_cmake_args' from command line to 'None'
+[15.701s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'catkin_cmake_args' from command line to 'None'
+[15.701s] Level 5:colcon.colcon_core.verb:set package 'automatic_emergency_braking' build argument 'catkin_skip_building_tests' from command line to 'False'
+[15.701s] DEBUG:colcon.colcon_core.verb:Building package 'automatic_emergency_braking' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking', 'symlink_install': False, 'test_result_base': None}
+[15.844s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'cmake_args' from command line to 'None'
+[15.844s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'cmake_target' from command line to 'None'
+[15.844s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[15.845s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'cmake_clean_cache' from command line to 'False'
+[15.845s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'cmake_clean_first' from command line to 'False'
+[15.845s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'cmake_force_configure' from command line to 'False'
+[15.845s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'ament_cmake_args' from command line to 'None'
+[15.845s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'catkin_cmake_args' from command line to 'None'
+[15.845s] Level 5:colcon.colcon_core.verb:set package 'key_teleop' build argument 'catkin_skip_building_tests' from command line to 'False'
+[15.846s] DEBUG:colcon.colcon_core.verb:Building package 'key_teleop' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop', 'symlink_install': False, 'test_result_base': None}
+[15.994s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'cmake_args' from command line to 'None'
+[15.995s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'cmake_target' from command line to 'None'
+[15.995s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[15.995s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'cmake_clean_cache' from command line to 'False'
+[15.995s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'cmake_clean_first' from command line to 'False'
+[15.995s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'cmake_force_configure' from command line to 'False'
+[15.996s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'ament_cmake_args' from command line to 'None'
+[15.996s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'catkin_cmake_args' from command line to 'None'
+[15.996s] Level 5:colcon.colcon_core.verb:set package 'mouse_teleop' build argument 'catkin_skip_building_tests' from command line to 'False'
+[15.996s] DEBUG:colcon.colcon_core.verb:Building package 'mouse_teleop' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop', 'symlink_install': False, 'test_result_base': None}
+[16.143s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'cmake_args' from command line to 'None'
+[16.143s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'cmake_target' from command line to 'None'
+[16.144s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.144s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[16.144s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[16.144s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[16.144s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[16.144s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[16.145s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.145s] DEBUG:colcon.colcon_core.verb:Building package 'teleop_tools_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools_msgs', 'symlink_install': False, 'test_result_base': None}
+[16.291s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'cmake_args' from command line to 'None'
+[16.291s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'cmake_target' from command line to 'None'
+[16.291s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.292s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[16.292s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[16.292s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[16.292s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[16.292s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[16.292s] Level 5:colcon.colcon_core.verb:set package 'vesc_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.293s] DEBUG:colcon.colcon_core.verb:Building package 'vesc_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_msgs', 'symlink_install': False, 'test_result_base': None}
+[16.436s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'cmake_args' from command line to 'None'
+[16.437s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'cmake_target' from command line to 'None'
+[16.437s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.437s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'cmake_clean_cache' from command line to 'False'
+[16.437s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'cmake_clean_first' from command line to 'False'
+[16.437s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'cmake_force_configure' from command line to 'False'
+[16.438s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'ament_cmake_args' from command line to 'None'
+[16.438s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'catkin_cmake_args' from command line to 'None'
+[16.438s] Level 5:colcon.colcon_core.verb:set package 'joy_teleop' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.438s] DEBUG:colcon.colcon_core.verb:Building package 'joy_teleop' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop', 'symlink_install': False, 'test_result_base': None}
+[16.622s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'cmake_args' from command line to 'None'
+[16.622s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'cmake_target' from command line to 'None'
+[16.622s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.622s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'cmake_clean_cache' from command line to 'False'
+[16.623s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'cmake_clean_first' from command line to 'False'
+[16.623s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'cmake_force_configure' from command line to 'False'
+[16.623s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'ament_cmake_args' from command line to 'None'
+[16.623s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'catkin_cmake_args' from command line to 'None'
+[16.623s] Level 5:colcon.colcon_core.verb:set package 'vesc_ackermann' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.623s] DEBUG:colcon.colcon_core.verb:Building package 'vesc_ackermann' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_ackermann', 'symlink_install': False, 'test_result_base': None}
+[16.769s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'cmake_args' from command line to 'None'
+[16.770s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'cmake_target' from command line to 'None'
+[16.770s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.770s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'cmake_clean_cache' from command line to 'False'
+[16.770s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'cmake_clean_first' from command line to 'False'
+[16.770s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'cmake_force_configure' from command line to 'False'
+[16.770s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'ament_cmake_args' from command line to 'None'
+[16.771s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'catkin_cmake_args' from command line to 'None'
+[16.771s] Level 5:colcon.colcon_core.verb:set package 'vesc_driver' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.771s] DEBUG:colcon.colcon_core.verb:Building package 'vesc_driver' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_driver', 'symlink_install': False, 'test_result_base': None}
+[16.919s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'cmake_args' from command line to 'None'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'cmake_target' from command line to 'None'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'cmake_clean_cache' from command line to 'False'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'cmake_clean_first' from command line to 'False'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'cmake_force_configure' from command line to 'False'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'ament_cmake_args' from command line to 'None'
+[16.920s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'catkin_cmake_args' from command line to 'None'
+[16.921s] Level 5:colcon.colcon_core.verb:set package 'teleop_tools' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.921s] DEBUG:colcon.colcon_core.verb:Building package 'teleop_tools' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools', 'symlink_install': False, 'test_result_base': None}
+[17.065s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'cmake_args' from command line to 'None'
+[17.065s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'cmake_target' from command line to 'None'
+[17.066s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[17.066s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'cmake_clean_cache' from command line to 'False'
+[17.066s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'cmake_clean_first' from command line to 'False'
+[17.066s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'cmake_force_configure' from command line to 'False'
+[17.066s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'ament_cmake_args' from command line to 'None'
+[17.066s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'catkin_cmake_args' from command line to 'None'
+[17.067s] Level 5:colcon.colcon_core.verb:set package 'vesc' build argument 'catkin_skip_building_tests' from command line to 'False'
+[17.067s] DEBUG:colcon.colcon_core.verb:Building package 'vesc' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc', 'symlink_install': False, 'test_result_base': None}
+[17.213s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'cmake_args' from command line to 'None'
+[17.213s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'cmake_target' from command line to 'None'
+[17.213s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[17.213s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'cmake_clean_cache' from command line to 'False'
+[17.213s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'cmake_clean_first' from command line to 'False'
+[17.214s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'cmake_force_configure' from command line to 'False'
+[17.214s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'ament_cmake_args' from command line to 'None'
+[17.214s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'catkin_cmake_args' from command line to 'None'
+[17.214s] Level 5:colcon.colcon_core.verb:set package 'f1tenth_stack' build argument 'catkin_skip_building_tests' from command line to 'False'
+[17.214s] DEBUG:colcon.colcon_core.verb:Building package 'f1tenth_stack' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack', 'merge_install': False, 'path': '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack', 'symlink_install': False, 'test_result_base': None}
+[17.358s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[17.507s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[17.509s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_msgs' with build type 'ament_cmake'
+[17.510s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_msgs'
+[17.673s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[17.675s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[17.675s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[18.001s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools_msgs' with build type 'ament_cmake'
+[18.004s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools_msgs'
+[18.183s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[18.183s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[18.510s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux' with build type 'ament_cmake'
+[18.513s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux'
+[18.683s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[18.683s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[19.013s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop' with build type 'ament_python'
+[19.017s] Level 1:colcon.colcon_core.shell:create_environment_hook('key_teleop', 'ament_prefix_path')
+[19.187s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/hook/ament_prefix_path.ps1'
+[19.192s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/hook/ament_prefix_path.dsv'
+[19.194s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/hook/ament_prefix_path.sh'
+[19.352s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[19.352s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[19.677s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking' with build type 'ament_python'
+[19.682s] Level 1:colcon.colcon_core.shell:create_environment_hook('automatic_emergency_braking', 'ament_prefix_path')
+[19.851s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/hook/ament_prefix_path.ps1'
+[19.855s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/hook/ament_prefix_path.dsv'
+[19.857s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/hook/ament_prefix_path.sh'
+[20.010s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[20.011s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[20.342s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop' with build type 'ament_python'
+[20.345s] Level 1:colcon.colcon_core.shell:create_environment_hook('mouse_teleop', 'ament_prefix_path')
+[20.511s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/hook/ament_prefix_path.ps1'
+[20.515s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/hook/ament_prefix_path.dsv'
+[20.517s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/hook/ament_prefix_path.sh'
+[20.671s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[20.672s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[21.059s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_msgs -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs
+[21.092s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools_msgs -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs
+[21.110s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux
+[22.288s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop'
+[22.463s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[22.463s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[24.034s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking'
+[24.217s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[24.218s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[25.953s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop'
+[26.159s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[26.159s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[30.147s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/mouse_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/install.log --install-scripts $base/lib/mouse_teleop --single-version-externally-managed
+[30.221s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/key_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/install.log --install-scripts $base/lib/key_teleop --single-version-externally-managed
+[30.243s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/automatic_emergency_braking build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/install.log --install-scripts $base/lib/automatic_emergency_braking --single-version-externally-managed
+[32.123s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop' returned '0': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/mouse_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/install.log --install-scripts $base/lib/mouse_teleop --single-version-externally-managed
+[32.342s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop' for CMake module files
+[32.345s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop' for CMake config files
+[32.351s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib'
+[32.352s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/bin'
+[32.352s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/pkgconfig/mouse_teleop.pc'
+[32.354s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages'
+[32.355s] Level 1:colcon.colcon_core.shell:create_environment_hook('mouse_teleop', 'pythonpath')
+[32.549s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/hook/pythonpath.ps1'
+[32.552s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/hook/pythonpath.dsv'
+[32.554s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/hook/pythonpath.sh'
+[32.557s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/bin'
+[32.557s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mouse_teleop)
+[32.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/package.ps1'
+[32.754s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/package.dsv'
+[32.757s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/package.sh'
+[32.761s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/package.bash'
+[32.768s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/package.zsh'
+[32.771s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/colcon-core/packages/mouse_teleop)
+[32.782s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking' returned '0': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/automatic_emergency_braking build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/install.log --install-scripts $base/lib/automatic_emergency_braking --single-version-externally-managed
+[32.986s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking' for CMake module files
+[32.989s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking' for CMake config files
+[32.992s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib'
+[32.993s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/bin'
+[32.993s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/pkgconfig/automatic_emergency_braking.pc'
+[32.994s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages'
+[32.995s] Level 1:colcon.colcon_core.shell:create_environment_hook('automatic_emergency_braking', 'pythonpath')
+[33.187s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/hook/pythonpath.ps1'
+[33.190s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/hook/pythonpath.dsv'
+[33.191s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/hook/pythonpath.sh'
+[33.194s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/bin'
+[33.194s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(automatic_emergency_braking)
+[33.377s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/package.ps1'
+[33.380s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/package.dsv'
+[33.383s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/package.sh'
+[33.385s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/package.bash'
+[33.387s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking/package.zsh'
+[33.389s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/colcon-core/packages/automatic_emergency_braking)
+[33.396s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop' returned '0': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/key_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/install.log --install-scripts $base/lib/key_teleop --single-version-externally-managed
+[33.571s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop' for CMake module files
+[33.573s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop' for CMake config files
+[33.577s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib'
+[33.578s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/bin'
+[33.578s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/pkgconfig/key_teleop.pc'
+[33.579s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages'
+[33.579s] Level 1:colcon.colcon_core.shell:create_environment_hook('key_teleop', 'pythonpath')
+[33.761s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/hook/pythonpath.ps1'
+[33.764s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/hook/pythonpath.dsv'
+[33.765s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/hook/pythonpath.sh'
+[33.768s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/bin'
+[33.768s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(key_teleop)
+[33.964s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/package.ps1'
+[33.967s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/package.dsv'
+[33.970s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/package.sh'
+[33.972s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/package.bash'
+[33.974s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/key_teleop/package.zsh'
+[33.976s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/share/colcon-core/packages/key_teleop)
+[33.986s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools_msgs -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs
+[34.006s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs -- -j6 -l6
+[35.382s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_msgs -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs
+[35.390s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs -- -j6 -l6
+[35.592s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux
+[35.598s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux -- -j6 -l6
+[67.417s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs -- -j6 -l6
+[67.826s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs
+[68.478s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(teleop_tools_msgs)
+[68.481s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs
+[68.707s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs' for CMake module files
+[68.711s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs' for CMake config files
+[68.713s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools_msgs', 'cmake_prefix_path')
+[68.950s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/cmake_prefix_path.ps1'
+[68.953s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/cmake_prefix_path.dsv'
+[68.955s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/cmake_prefix_path.sh'
+[68.959s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib'
+[68.959s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools_msgs', 'ld_library_path_lib')
+[69.154s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/ld_library_path_lib.ps1'
+[69.157s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/ld_library_path_lib.dsv'
+[69.160s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/ld_library_path_lib.sh'
+[69.161s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/bin'
+[69.162s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/pkgconfig/teleop_tools_msgs.pc'
+[69.164s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages'
+[69.164s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools_msgs', 'pythonpath')
+[69.366s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/pythonpath.ps1'
+[69.368s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/pythonpath.dsv'
+[69.370s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/pythonpath.sh'
+[69.372s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/bin'
+[69.567s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.ps1'
+[69.571s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.dsv'
+[69.574s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.sh'
+[69.585s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.bash'
+[69.587s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.zsh'
+[69.590s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/colcon-core/packages/teleop_tools_msgs)
+[70.257s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(teleop_tools_msgs)
+[70.470s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs' for CMake module files
+[70.475s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs' for CMake config files
+[70.479s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools_msgs', 'cmake_prefix_path')
+[70.702s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/cmake_prefix_path.ps1'
+[70.706s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/cmake_prefix_path.dsv'
+[70.709s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/cmake_prefix_path.sh'
+[70.713s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib'
+[70.714s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools_msgs', 'ld_library_path_lib')
+[70.944s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/ld_library_path_lib.ps1'
+[70.948s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/ld_library_path_lib.dsv'
+[70.957s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/ld_library_path_lib.sh'
+[70.959s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/bin'
+[70.960s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/pkgconfig/teleop_tools_msgs.pc'
+[70.961s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages'
+[70.962s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools_msgs', 'pythonpath')
+[71.140s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/pythonpath.ps1'
+[71.143s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/pythonpath.dsv'
+[71.234s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/hook/pythonpath.sh'
+[71.238s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/bin'
+[71.463s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.ps1'
+[71.467s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.dsv'
+[71.471s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.sh'
+[71.474s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.bash'
+[71.478s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.zsh'
+[71.481s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/colcon-core/packages/teleop_tools_msgs)
+[71.489s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop' with build type 'ament_python'
+[71.490s] Level 1:colcon.colcon_core.shell:create_environment_hook('joy_teleop', 'ament_prefix_path')
+[71.674s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/hook/ament_prefix_path.ps1'
+[71.677s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/hook/ament_prefix_path.dsv'
+[71.679s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/hook/ament_prefix_path.sh'
+[71.855s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[71.855s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[72.242s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs -- -j6 -l6
+[73.573s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop'
+[73.830s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[73.831s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[74.246s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs
+[74.764s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc_msgs)
+[74.769s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs
+[74.974s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs' for CMake module files
+[74.979s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs' for CMake config files
+[74.981s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_msgs', 'cmake_prefix_path')
+[75.171s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/cmake_prefix_path.ps1'
+[75.175s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/cmake_prefix_path.dsv'
+[75.177s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/cmake_prefix_path.sh'
+[75.182s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib'
+[75.182s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_msgs', 'ld_library_path_lib')
+[75.373s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/ld_library_path_lib.ps1'
+[75.375s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/ld_library_path_lib.dsv'
+[75.377s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/ld_library_path_lib.sh'
+[75.379s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/bin'
+[75.380s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/pkgconfig/vesc_msgs.pc'
+[75.382s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages'
+[75.382s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_msgs', 'pythonpath')
+[75.567s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/pythonpath.ps1'
+[75.570s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/pythonpath.dsv'
+[75.572s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/pythonpath.sh'
+[75.574s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/bin'
+[75.755s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.ps1'
+[75.758s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.dsv'
+[75.761s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.sh'
+[75.764s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.bash'
+[75.766s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.zsh'
+[75.768s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/colcon-core/packages/vesc_msgs)
+[76.569s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc_msgs)
+[76.755s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs' for CMake module files
+[76.759s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs' for CMake config files
+[76.761s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_msgs', 'cmake_prefix_path')
+[76.933s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/cmake_prefix_path.ps1'
+[76.937s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/cmake_prefix_path.dsv'
+[76.943s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/cmake_prefix_path.sh'
+[76.947s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib'
+[76.947s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_msgs', 'ld_library_path_lib')
+[77.129s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/ld_library_path_lib.ps1'
+[77.131s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/ld_library_path_lib.dsv'
+[77.140s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/ld_library_path_lib.sh'
+[77.143s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/bin'
+[77.143s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/pkgconfig/vesc_msgs.pc'
+[77.145s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages'
+[77.145s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_msgs', 'pythonpath')
+[77.311s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/pythonpath.ps1'
+[77.314s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/pythonpath.dsv'
+[77.318s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/hook/pythonpath.sh'
+[77.321s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/bin'
+[77.509s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.ps1'
+[77.518s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.dsv'
+[77.529s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.sh'
+[77.532s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.bash'
+[77.535s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.zsh'
+[77.537s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/colcon-core/packages/vesc_msgs)
+[77.544s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_ackermann' with build type 'ament_cmake'
+[77.546s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_ackermann'
+[77.722s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[77.723s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[78.073s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_driver' with build type 'ament_cmake'
+[78.077s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_driver'
+[78.262s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[78.262s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[78.669s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/joy_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/install.log --install-scripts $base/lib/joy_teleop --single-version-externally-managed
+[78.722s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_ackermann -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann
+[78.735s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_driver -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver
+[80.442s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/joy_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/install.log --install-scripts $base/lib/joy_teleop --single-version-externally-managed
+[80.659s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop' for CMake module files
+[80.662s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop' for CMake config files
+[80.667s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib'
+[80.667s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/bin'
+[80.668s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/pkgconfig/joy_teleop.pc'
+[80.670s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages'
+[80.670s] Level 1:colcon.colcon_core.shell:create_environment_hook('joy_teleop', 'pythonpath')
+[80.867s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/hook/pythonpath.ps1'
+[80.870s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/hook/pythonpath.dsv'
+[80.872s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/hook/pythonpath.sh'
+[80.875s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/bin'
+[80.875s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(joy_teleop)
+[81.057s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/package.ps1'
+[81.060s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/package.dsv'
+[81.063s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/package.sh'
+[81.066s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/package.bash'
+[81.068s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/package.zsh'
+[81.069s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/colcon-core/packages/joy_teleop)
+[81.075s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools' with build type 'ament_cmake'
+[81.077s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools'
+[81.265s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[81.265s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[81.733s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools
+[83.487s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/teleop_tools -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools
+[83.492s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools -- -j6 -l6
+[83.743s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools -- -j6 -l6
+[83.865s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools
+[83.941s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(teleop_tools)
+[83.946s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools
+[84.183s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools' for CMake module files
+[84.187s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools' for CMake config files
+[84.189s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools', 'cmake_prefix_path')
+[84.376s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/hook/cmake_prefix_path.ps1'
+[84.379s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/hook/cmake_prefix_path.dsv'
+[84.381s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/hook/cmake_prefix_path.sh'
+[84.385s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/bin'
+[84.385s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/lib/pkgconfig/teleop_tools.pc'
+[84.387s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/lib/python3.8/site-packages'
+[84.388s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/bin'
+[84.564s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.ps1'
+[84.568s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.dsv'
+[84.571s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.sh'
+[84.573s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.bash'
+[84.575s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.zsh'
+[84.577s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/colcon-core/packages/teleop_tools)
+[84.934s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(teleop_tools)
+[85.119s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools' for CMake module files
+[85.122s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools' for CMake config files
+[85.124s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_tools', 'cmake_prefix_path')
+[85.297s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/hook/cmake_prefix_path.ps1'
+[85.300s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/hook/cmake_prefix_path.dsv'
+[85.308s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/hook/cmake_prefix_path.sh'
+[85.312s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/bin'
+[85.316s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/lib/pkgconfig/teleop_tools.pc'
+[85.318s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/lib/python3.8/site-packages'
+[85.319s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/bin'
+[85.578s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.ps1'
+[85.581s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.dsv'
+[85.595s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.sh'
+[85.597s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.bash'
+[85.600s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.zsh'
+[85.602s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/colcon-core/packages/teleop_tools)
+[89.758s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux -- -j6 -l6
+[89.915s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux
+[90.043s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ackermann_mux)
+[90.048s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux
+[90.240s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux' for CMake module files
+[90.245s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux' for CMake config files
+[90.247s] Level 1:colcon.colcon_core.shell:create_environment_hook('ackermann_mux', 'cmake_prefix_path')
+[90.409s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/hook/cmake_prefix_path.ps1'
+[90.412s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/hook/cmake_prefix_path.dsv'
+[90.414s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/hook/cmake_prefix_path.sh'
+[90.418s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib'
+[90.418s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/bin'
+[90.419s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/pkgconfig/ackermann_mux.pc'
+[90.420s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/python3.8/site-packages'
+[90.421s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/bin'
+[90.582s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.ps1'
+[90.585s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.dsv'
+[90.587s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.sh'
+[90.594s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.bash'
+[90.597s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.zsh'
+[90.599s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/colcon-core/packages/ackermann_mux)
+[90.948s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ackermann_mux)
+[91.109s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux' for CMake module files
+[91.184s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux' for CMake config files
+[91.187s] Level 1:colcon.colcon_core.shell:create_environment_hook('ackermann_mux', 'cmake_prefix_path')
+[91.352s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/hook/cmake_prefix_path.ps1'
+[91.355s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/hook/cmake_prefix_path.dsv'
+[91.358s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/hook/cmake_prefix_path.sh'
+[91.365s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib'
+[91.366s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/bin'
+[91.366s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/pkgconfig/ackermann_mux.pc'
+[91.368s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/python3.8/site-packages'
+[91.369s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/bin'
+[91.574s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.ps1'
+[91.578s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.dsv'
+[91.587s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.sh'
+[91.590s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.bash'
+[91.592s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.zsh'
+[91.595s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/colcon-core/packages/ackermann_mux)
+[91.659s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_ackermann -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann
+[91.677s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann -- -j6 -l6
+[92.277s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc_driver -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver
+[92.282s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver -- -j6 -l6
+[135.541s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann -- -j6 -l6
+[135.735s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann
+[135.891s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc_ackermann)
+[135.894s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_ackermann
+[136.075s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann' for CMake module files
+[136.079s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann' for CMake config files
+[136.081s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_ackermann', 'cmake_prefix_path')
+[136.240s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/cmake_prefix_path.ps1'
+[136.243s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/cmake_prefix_path.dsv'
+[136.245s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/cmake_prefix_path.sh'
+[136.248s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib'
+[136.249s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_ackermann', 'ld_library_path_lib')
+[136.413s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/ld_library_path_lib.ps1'
+[136.437s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/ld_library_path_lib.dsv'
+[136.440s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/ld_library_path_lib.sh'
+[136.442s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/bin'
+[136.443s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib/pkgconfig/vesc_ackermann.pc'
+[136.445s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib/python3.8/site-packages'
+[136.446s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/bin'
+[136.627s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.ps1'
+[136.630s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.dsv'
+[136.633s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.sh'
+[136.640s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.bash'
+[136.643s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.zsh'
+[136.645s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/colcon-core/packages/vesc_ackermann)
+[137.006s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc_ackermann)
+[137.171s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann' for CMake module files
+[137.175s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann' for CMake config files
+[137.177s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_ackermann', 'cmake_prefix_path')
+[137.336s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/cmake_prefix_path.ps1'
+[137.339s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/cmake_prefix_path.dsv'
+[137.342s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/cmake_prefix_path.sh'
+[137.350s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib'
+[137.350s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_ackermann', 'ld_library_path_lib')
+[137.512s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/ld_library_path_lib.ps1'
+[137.515s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/ld_library_path_lib.dsv'
+[137.518s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/hook/ld_library_path_lib.sh'
+[137.523s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/bin'
+[137.523s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib/pkgconfig/vesc_ackermann.pc'
+[137.526s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib/python3.8/site-packages'
+[137.527s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/bin'
+[137.694s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.ps1'
+[137.699s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.dsv'
+[137.704s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.sh'
+[137.707s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.bash'
+[137.709s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/vesc_ackermann/package.zsh'
+[137.711s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/share/colcon-core/packages/vesc_ackermann)
+[137.720s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver -- -j6 -l6
+[137.933s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver
+[138.079s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc_driver)
+[138.083s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_driver
+[138.243s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver' for CMake module files
+[138.246s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver' for CMake config files
+[138.248s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_driver', 'cmake_prefix_path')
+[138.400s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/cmake_prefix_path.ps1'
+[138.404s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/cmake_prefix_path.dsv'
+[138.405s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/cmake_prefix_path.sh'
+[138.408s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib'
+[138.409s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_driver', 'ld_library_path_lib')
+[138.562s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/ld_library_path_lib.ps1'
+[138.564s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/ld_library_path_lib.dsv'
+[138.566s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/ld_library_path_lib.sh'
+[138.567s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/bin'
+[138.568s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib/pkgconfig/vesc_driver.pc'
+[138.569s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib/python3.8/site-packages'
+[138.570s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/bin'
+[138.719s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.ps1'
+[138.722s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.dsv'
+[138.725s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.sh'
+[138.730s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.bash'
+[138.732s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.zsh'
+[138.734s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/colcon-core/packages/vesc_driver)
+[139.094s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc_driver)
+[139.248s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver' for CMake module files
+[139.251s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver' for CMake config files
+[139.253s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_driver', 'cmake_prefix_path')
+[139.409s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/cmake_prefix_path.ps1'
+[139.412s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/cmake_prefix_path.dsv'
+[139.415s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/cmake_prefix_path.sh'
+[139.421s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib'
+[139.422s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc_driver', 'ld_library_path_lib')
+[139.579s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/ld_library_path_lib.ps1'
+[139.581s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/ld_library_path_lib.dsv'
+[139.584s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/hook/ld_library_path_lib.sh'
+[139.588s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/bin'
+[139.589s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib/pkgconfig/vesc_driver.pc'
+[139.590s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib/python3.8/site-packages'
+[139.591s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/bin'
+[139.752s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.ps1'
+[139.755s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.dsv'
+[139.763s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.sh'
+[139.766s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.bash'
+[139.768s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/vesc_driver/package.zsh'
+[139.770s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/share/colcon-core/packages/vesc_driver)
+[139.773s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc' with build type 'ament_cmake'
+[139.774s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc'
+[139.943s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[139.943s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[140.377s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc
+[144.629s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc
+[144.645s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc -- -j6 -l6
+[144.862s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc -- -j6 -l6
+[144.996s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc
+[145.063s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc)
+[145.066s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc
+[145.251s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc' for CMake module files
+[145.257s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc' for CMake config files
+[145.259s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc', 'cmake_prefix_path')
+[145.438s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/hook/cmake_prefix_path.ps1'
+[145.441s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/hook/cmake_prefix_path.dsv'
+[145.443s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/hook/cmake_prefix_path.sh'
+[145.446s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/bin'
+[145.446s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/lib/pkgconfig/vesc.pc'
+[145.448s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/lib/python3.8/site-packages'
+[145.448s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/bin'
+[145.625s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.ps1'
+[145.628s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.dsv'
+[145.630s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.sh'
+[145.634s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.bash'
+[145.636s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.zsh'
+[145.637s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/colcon-core/packages/vesc)
+[145.918s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vesc)
+[146.074s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc' for CMake module files
+[146.077s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc' for CMake config files
+[146.078s] Level 1:colcon.colcon_core.shell:create_environment_hook('vesc', 'cmake_prefix_path')
+[146.233s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/hook/cmake_prefix_path.ps1'
+[146.237s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/hook/cmake_prefix_path.dsv'
+[146.239s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/hook/cmake_prefix_path.sh'
+[146.244s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/bin'
+[146.245s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/lib/pkgconfig/vesc.pc'
+[146.246s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/lib/python3.8/site-packages'
+[146.247s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/bin'
+[146.407s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.ps1'
+[146.553s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.dsv'
+[146.556s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.sh'
+[146.558s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.bash'
+[146.561s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.zsh'
+[146.563s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/colcon-core/packages/vesc)
+[146.566s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack' with build type 'ament_python'
+[146.567s] Level 1:colcon.colcon_core.shell:create_environment_hook('f1tenth_stack', 'ament_prefix_path')
+[146.785s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/hook/ament_prefix_path.ps1'
+[146.788s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/hook/ament_prefix_path.dsv'
+[146.790s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/hook/ament_prefix_path.sh'
+[146.966s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[146.967s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[148.497s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack'
+[148.668s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[148.668s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[151.092s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/f1tenth_stack build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/install.log --install-scripts $base/lib/f1tenth_stack --single-version-externally-managed
+[152.667s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/f1tenth_stack build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/install.log --install-scripts $base/lib/f1tenth_stack --single-version-externally-managed
+[152.833s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack' for CMake module files
+[152.836s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack' for CMake config files
+[152.840s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib'
+[152.841s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/bin'
+[152.841s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/pkgconfig/f1tenth_stack.pc'
+[152.843s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages'
+[152.843s] Level 1:colcon.colcon_core.shell:create_environment_hook('f1tenth_stack', 'pythonpath')
+[153.005s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/hook/pythonpath.ps1'
+[153.009s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/hook/pythonpath.dsv'
+[153.011s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/hook/pythonpath.sh'
+[153.014s] Level 1:colcon.colcon_core.environment:checking '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/bin'
+[153.015s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(f1tenth_stack)
+[153.187s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/package.ps1'
+[153.192s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/package.dsv'
+[153.194s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/package.sh'
+[153.196s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/package.bash'
+[153.199s] INFO:colcon.colcon_core.shell:Creating package script '/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/package.zsh'
+[153.200s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/colcon-core/packages/f1tenth_stack)
+[153.203s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[153.205s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[153.206s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[153.206s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[153.466s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[153.467s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[153.467s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[153.706s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[153.874s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/deepspeed/ICRA2024/f1tenth_ws/install/local_setup.ps1'
+[153.878s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/deepspeed/ICRA2024/f1tenth_ws/install/_local_setup_util_ps1.py'
+[153.884s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/deepspeed/ICRA2024/f1tenth_ws/install/setup.ps1'
+[154.049s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/deepspeed/ICRA2024/f1tenth_ws/install/local_setup.sh'
+[154.059s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/deepspeed/ICRA2024/f1tenth_ws/install/_local_setup_util_sh.py'
+[154.061s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/deepspeed/ICRA2024/f1tenth_ws/install/setup.sh'
+[154.217s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/deepspeed/ICRA2024/f1tenth_ws/install/local_setup.bash'
+[154.223s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/deepspeed/ICRA2024/f1tenth_ws/install/setup.bash'
+[154.394s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/deepspeed/ICRA2024/f1tenth_ws/install/local_setup.zsh'
+[154.399s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/deepspeed/ICRA2024/f1tenth_ws/install/setup.zsh'

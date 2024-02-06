@@ -1,0 +1,41 @@
+[9.799s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/mouse_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/install.log --install-scripts $base/lib/mouse_teleop --single-version-externally-managed
+[11.126s] running egg_info
+[11.128s] creating ../../../../build/mouse_teleop/mouse_teleop.egg-info
+[11.129s] writing ../../../../build/mouse_teleop/mouse_teleop.egg-info/PKG-INFO
+[11.131s] writing dependency_links to ../../../../build/mouse_teleop/mouse_teleop.egg-info/dependency_links.txt
+[11.132s] writing entry points to ../../../../build/mouse_teleop/mouse_teleop.egg-info/entry_points.txt
+[11.133s] writing requirements to ../../../../build/mouse_teleop/mouse_teleop.egg-info/requires.txt
+[11.134s] writing top-level names to ../../../../build/mouse_teleop/mouse_teleop.egg-info/top_level.txt
+[11.144s] writing manifest file '../../../../build/mouse_teleop/mouse_teleop.egg-info/SOURCES.txt'
+[11.341s] reading manifest file '../../../../build/mouse_teleop/mouse_teleop.egg-info/SOURCES.txt'
+[11.346s] writing manifest file '../../../../build/mouse_teleop/mouse_teleop.egg-info/SOURCES.txt'
+[11.347s] running build
+[11.347s] running build_py
+[11.348s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build
+[11.349s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build/lib
+[11.349s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build/lib/mouse_teleop
+[11.372s] copying mouse_teleop/mouse_teleop.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build/lib/mouse_teleop
+[11.372s] copying mouse_teleop/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build/lib/mouse_teleop
+[11.374s] running install
+[11.378s] running install_lib
+[11.390s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages/mouse_teleop
+[11.391s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build/lib/mouse_teleop/mouse_teleop.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages/mouse_teleop
+[11.403s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build/lib/mouse_teleop/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages/mouse_teleop
+[11.406s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages/mouse_teleop/mouse_teleop.py to mouse_teleop.cpython-38.pyc
+[11.493s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages/mouse_teleop/__init__.py to __init__.cpython-38.pyc
+[11.493s] running install_data
+[11.496s] copying package.xml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop
+[11.497s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/config
+[11.497s] copying config/mouse_teleop.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/config
+[11.498s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/launch
+[11.498s] copying launch/mouse_teleop.launch.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/mouse_teleop/launch
+[11.499s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/ament_index
+[11.500s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/ament_index/resource_index
+[11.500s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/ament_index/resource_index/packages
+[11.501s] copying resource/mouse_teleop -> /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/share/ament_index/resource_index/packages
+[11.501s] running install_egg_info
+[11.508s] Copying ../../../../build/mouse_teleop/mouse_teleop.egg-info to /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages/mouse_teleop-0.3.0-py3.8.egg-info
+[11.515s] running install_scripts
+[11.653s] Installing mouse_teleop script to /home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/mouse_teleop
+[11.668s] writing list of installed files to '/home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/install.log'
+[11.775s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/mouse_teleop' returned '0': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/mouse_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/mouse_teleop/install.log --install-scripts $base/lib/mouse_teleop --single-version-externally-managed

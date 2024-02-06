@@ -1,0 +1,38 @@
+[4.353s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux -- -j6 -l6
+[11.084s] [100%] Built target ackermann_mux
+[11.093s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux -- -j6 -l6
+[11.624s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux
+[11.631s] -- Install configuration: ""
+[11.633s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/ackermann_mux/ackermann_mux
+[11.637s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/launch
+[11.798s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/launch/ackermann_mux_launch.py
+[11.799s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config
+[11.809s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config/ackermann_mux_topics.yaml
+[11.810s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config/joystick.yaml
+[11.811s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config/ackermann_mux_locks.yaml
+[11.811s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include
+[11.812s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux
+[11.813s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/utils.hpp
+[11.813s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/ackermann_mux.hpp
+[11.814s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/ackermann_mux_diagnostics_status.hpp
+[11.814s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/ackermann_mux_diagnostics.hpp
+[11.814s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/topic_handle.hpp
+[11.815s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/params_helpers.hpp
+[11.816s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ament_index/resource_index/package_run_dependencies/ackermann_mux
+[11.816s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ament_index/resource_index/parent_prefix_path/ackermann_mux
+[11.817s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/ament_prefix_path.sh
+[11.817s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/ament_prefix_path.dsv
+[11.817s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/path.sh
+[11.818s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/path.dsv
+[11.819s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.bash
+[11.819s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.sh
+[11.827s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.zsh
+[11.829s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.dsv
+[11.830s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.dsv
+[11.831s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ament_index/resource_index/packages/ackermann_mux
+[11.831s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ament_cmake_export_include_directories-extras.cmake
+[11.832s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ament_cmake_export_dependencies-extras.cmake
+[11.833s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ackermann_muxConfig.cmake
+[11.834s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ackermann_muxConfig-version.cmake
+[11.834s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.xml
+[11.891s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux

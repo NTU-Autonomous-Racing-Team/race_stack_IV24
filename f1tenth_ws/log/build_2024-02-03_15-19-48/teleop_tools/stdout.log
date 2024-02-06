@@ -1,0 +1,22 @@
+-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools
+-- Install configuration: ""
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/ament_index/resource_index/package_run_dependencies/teleop_tools
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/ament_index/resource_index/parent_prefix_path/teleop_tools
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/environment/ament_prefix_path.sh
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/environment/ament_prefix_path.dsv
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/environment/path.sh
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/environment/path.dsv
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/local_setup.bash
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/local_setup.sh
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/local_setup.zsh
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/local_setup.dsv
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.dsv
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/ament_index/resource_index/packages/teleop_tools
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/cmake/teleop_toolsConfig.cmake
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/cmake/teleop_toolsConfig-version.cmake
+-- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools/share/teleop_tools/package.xml

@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info
+writing ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/PKG-INFO
+writing dependency_links to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/dependency_links.txt
+writing entry points to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/entry_points.txt
+writing requirements to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/requires.txt
+writing top-level names to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/top_level.txt
+writing manifest file '../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/SOURCES.txt'
+reading manifest file '../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/SOURCES.txt'
+writing manifest file '../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build
+creating /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build/lib
+creating /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build/lib/automatic_emergency_braking
+copying automatic_emergency_braking/automatic_emergency_braking.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build/lib/automatic_emergency_braking
+copying automatic_emergency_braking/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build/lib/automatic_emergency_braking
+running install
+running install_lib
+creating /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking
+copying /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build/lib/automatic_emergency_braking/automatic_emergency_braking.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking
+copying /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build/lib/automatic_emergency_braking/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking
+byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking/automatic_emergency_braking.py to automatic_emergency_braking.cpython-38.pyc
+byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/ament_index
+creating /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/ament_index/resource_index
+creating /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/ament_index/resource_index/packages
+copying resource/automatic_emergency_braking -> /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/ament_index/resource_index/packages
+copying package.xml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/share/automatic_emergency_braking
+running install_egg_info
+Copying ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info to /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking-0.0.0-py3.8.egg-info
+running install_scripts
+Installing AEB script to /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/automatic_emergency_braking
+writing list of installed files to '/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/install.log'

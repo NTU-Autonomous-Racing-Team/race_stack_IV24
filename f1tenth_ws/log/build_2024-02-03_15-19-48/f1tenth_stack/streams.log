@@ -1,0 +1,49 @@
+[4.521s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/f1tenth_stack build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/install.log --install-scripts $base/lib/f1tenth_stack --single-version-externally-managed
+[5.587s] running egg_info
+[5.589s] creating ../../../build/f1tenth_stack/f1tenth_stack.egg-info
+[5.589s] writing ../../../build/f1tenth_stack/f1tenth_stack.egg-info/PKG-INFO
+[5.591s] writing dependency_links to ../../../build/f1tenth_stack/f1tenth_stack.egg-info/dependency_links.txt
+[5.592s] writing entry points to ../../../build/f1tenth_stack/f1tenth_stack.egg-info/entry_points.txt
+[5.592s] writing requirements to ../../../build/f1tenth_stack/f1tenth_stack.egg-info/requires.txt
+[5.593s] writing top-level names to ../../../build/f1tenth_stack/f1tenth_stack.egg-info/top_level.txt
+[5.600s] writing manifest file '../../../build/f1tenth_stack/f1tenth_stack.egg-info/SOURCES.txt'
+[5.763s] reading manifest file '../../../build/f1tenth_stack/f1tenth_stack.egg-info/SOURCES.txt'
+[5.766s] writing manifest file '../../../build/f1tenth_stack/f1tenth_stack.egg-info/SOURCES.txt'
+[5.767s] running build
+[5.767s] running build_py
+[5.769s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build
+[5.770s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib
+[5.770s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack
+[5.771s] copying f1tenth_stack/tf_publisher.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack
+[5.772s] copying f1tenth_stack/throttle_interpolator.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack
+[5.773s] copying f1tenth_stack/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack
+[5.774s] running install
+[5.778s] running install_lib
+[5.782s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack
+[5.783s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack/tf_publisher.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack
+[5.784s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack/throttle_interpolator.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack
+[5.785s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build/lib/f1tenth_stack/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack
+[5.788s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack/tf_publisher.py to tf_publisher.cpython-38.pyc
+[5.795s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack/throttle_interpolator.py to throttle_interpolator.cpython-38.pyc
+[5.799s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack/__init__.py to __init__.cpython-38.pyc
+[5.800s] running install_data
+[5.802s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/ament_index
+[5.803s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/ament_index/resource_index
+[5.803s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/ament_index/resource_index/packages
+[5.804s] copying resource/f1tenth_stack -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/ament_index/resource_index/packages
+[5.805s] copying package.xml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack
+[5.806s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/launch
+[5.806s] copying launch/bringup_launch.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/launch
+[5.911s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/config
+[5.911s] copying config/f1tenth_online_async.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/config
+[5.912s] copying config/mux.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/config
+[5.912s] copying config/joy_teleop.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/config
+[5.913s] copying config/sensors.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/config
+[5.914s] copying config/vesc.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/share/f1tenth_stack/config
+[5.914s] running install_egg_info
+[5.921s] Copying ../../../build/f1tenth_stack/f1tenth_stack.egg-info to /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages/f1tenth_stack-0.0.1-py3.8.egg-info
+[5.927s] running install_scripts
+[6.003s] Installing tf_publisher script to /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/f1tenth_stack
+[6.004s] Installing throttle_interpolator script to /home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/f1tenth_stack
+[6.006s] writing list of installed files to '/home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/install.log'
+[6.097s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/f1tenth_stack' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/f1tenth_stack build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/f1tenth_stack/install.log --install-scripts $base/lib/f1tenth_stack --single-version-externally-managed

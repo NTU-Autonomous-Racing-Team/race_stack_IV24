@@ -1,0 +1,45 @@
+[7.172s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/joy_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/install.log --install-scripts $base/lib/joy_teleop --single-version-externally-managed
+[8.442s] running egg_info
+[8.444s] creating ../../../../build/joy_teleop/joy_teleop.egg-info
+[8.446s] writing ../../../../build/joy_teleop/joy_teleop.egg-info/PKG-INFO
+[8.447s] writing dependency_links to ../../../../build/joy_teleop/joy_teleop.egg-info/dependency_links.txt
+[8.448s] writing entry points to ../../../../build/joy_teleop/joy_teleop.egg-info/entry_points.txt
+[8.448s] writing requirements to ../../../../build/joy_teleop/joy_teleop.egg-info/requires.txt
+[8.449s] writing top-level names to ../../../../build/joy_teleop/joy_teleop.egg-info/top_level.txt
+[8.457s] writing manifest file '../../../../build/joy_teleop/joy_teleop.egg-info/SOURCES.txt'
+[8.650s] reading manifest file '../../../../build/joy_teleop/joy_teleop.egg-info/SOURCES.txt'
+[8.657s] writing manifest file '../../../../build/joy_teleop/joy_teleop.egg-info/SOURCES.txt'
+[8.658s] running build
+[8.660s] running build_py
+[8.661s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build
+[8.662s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib
+[8.663s] creating /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop
+[8.664s] copying joy_teleop/joy_teleop.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop
+[8.665s] copying joy_teleop/incrementer_server.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop
+[8.666s] copying joy_teleop/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop
+[8.667s] running install
+[8.668s] running install_lib
+[8.673s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop
+[8.683s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop/joy_teleop.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop
+[8.685s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop/incrementer_server.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop
+[8.685s] copying /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build/lib/joy_teleop/__init__.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop
+[8.686s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop/joy_teleop.py to joy_teleop.cpython-38.pyc
+[8.694s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop/incrementer_server.py to incrementer_server.cpython-38.pyc
+[8.697s] byte-compiling /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop/__init__.py to __init__.cpython-38.pyc
+[8.700s] running install_data
+[8.702s] copying package.xml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop
+[8.703s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/config
+[8.704s] copying config/joy_teleop_example.yaml -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/config
+[8.705s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/launch
+[8.705s] copying launch/example.launch.py -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/joy_teleop/launch
+[8.707s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/ament_index
+[8.707s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/ament_index/resource_index
+[8.708s] creating /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/ament_index/resource_index/packages
+[8.708s] copying resource/joy_teleop -> /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/share/ament_index/resource_index/packages
+[8.709s] running install_egg_info
+[8.716s] Copying ../../../../build/joy_teleop/joy_teleop.egg-info to /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages/joy_teleop-0.3.0-py3.8.egg-info
+[8.724s] running install_scripts
+[8.822s] Installing incrementer_server script to /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/joy_teleop
+[8.823s] Installing joy_teleop script to /home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/joy_teleop
+[8.825s] writing list of installed files to '/home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/install.log'
+[8.950s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/joy_teleop' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop/lib/python3.8/site-packages:/home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/joy_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/joy_teleop/install.log --install-scripts $base/lib/joy_teleop --single-version-externally-managed

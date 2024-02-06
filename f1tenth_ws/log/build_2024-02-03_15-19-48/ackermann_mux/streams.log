@@ -1,0 +1,105 @@
+[2.596s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux
+[8.083s] -- The C compiler identification is GNU 9.4.0
+[8.083s] -- The CXX compiler identification is GNU 9.4.0
+[8.084s] -- Check for working C compiler: /usr/bin/cc
+[8.084s] -- Check for working C compiler: /usr/bin/cc -- works
+[8.084s] -- Detecting C compiler ABI info
+[8.085s] -- Detecting C compiler ABI info - done
+[8.085s] -- Detecting C compile features
+[8.085s] -- Detecting C compile features - done
+[8.086s] -- Check for working CXX compiler: /usr/bin/c++
+[8.086s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[8.087s] -- Detecting CXX compiler ABI info
+[8.087s] -- Detecting CXX compiler ABI info - done
+[8.087s] -- Detecting CXX compile features
+[8.088s] -- Detecting CXX compile features - done
+[8.088s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[8.088s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[8.090s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[9.139s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[9.524s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[9.569s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[10.259s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[10.433s] -- Found FastRTPS: /opt/ros/foxy/include  
+[10.917s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[11.318s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[11.328s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[11.335s] -- Looking for pthread.h
+[12.574s] -- Looking for pthread.h - found
+[12.576s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[13.502s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[13.502s] -- Looking for pthread_create in pthreads
+[14.055s] -- Looking for pthread_create in pthreads - not found
+[14.056s] -- Looking for pthread_create in pthread
+[14.530s] -- Looking for pthread_create in pthread - found
+[14.541s] -- Found Threads: TRUE  
+[15.423s] -- Found ackermann_msgs: 2.0.2 (/opt/ros/foxy/share/ackermann_msgs/cmake)
+[15.615s] -- Found diagnostic_updater: 3.1.2 (/opt/ros/foxy/share/diagnostic_updater/cmake)
+[15.933s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[16.424s] -- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)
+[16.549s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") 
+[16.580s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") 
+[16.580s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[16.581s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8
+[16.581s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.8.so
+[16.708s] -- Found PythonExtra: .so  
+[16.786s] -- Added test 'xmllint' to check XML markup files
+[16.791s] -- Added test 'copyright' to check source files copyright and LICENSE
+[16.808s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[16.811s] -- Configured cppcheck include dirs: /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux/include
+[16.813s] -- Configured cppcheck exclude dirs and/or files: 
+[16.831s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[16.832s] -- Configured cpplint exclude dirs and/or files: 
+[16.838s] -- Added test 'flake8' to check Python code syntax and style conventions
+[16.847s] -- Added test 'lint_cmake' to check CMake code style
+[16.880s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[16.881s] -- Added test 'uncrustify' to check C / C++ code style
+[16.881s] -- Configured uncrustify additional arguments: 
+[16.908s] -- Configuring done
+[16.966s] -- Generating done
+[16.976s] -- Build files have been written to: /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux
+[17.077s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/ackermann_mux -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux
+[17.084s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux -- -j6 -l6
+[17.534s] [35m[1mScanning dependencies of target ackermann_mux[0m
+[18.014s] [ 25%] [32mBuilding CXX object CMakeFiles/ackermann_mux.dir/src/ackermann_mux.cpp.o[0m
+[18.015s] [ 50%] [32mBuilding CXX object CMakeFiles/ackermann_mux.dir/src/ackermann_mux_node.cpp.o[0m
+[18.030s] [ 75%] [32mBuilding CXX object CMakeFiles/ackermann_mux.dir/src/ackermann_mux_diagnostics.cpp.o[0m
+[69.052s] [100%] [32m[1mLinking CXX executable ackermann_mux[0m
+[71.089s] [100%] Built target ackermann_mux
+[71.243s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux -- -j6 -l6
+[71.401s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux
+[71.457s] -- Install configuration: ""
+[71.459s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/ackermann_mux/ackermann_mux
+[71.490s] -- Set runtime path of "/home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/lib/ackermann_mux/ackermann_mux" to ""
+[71.491s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/launch
+[71.491s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/launch/ackermann_mux_launch.py
+[71.492s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config
+[71.493s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config/ackermann_mux_topics.yaml
+[71.494s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config/joystick.yaml
+[71.494s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/config/ackermann_mux_locks.yaml
+[71.495s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include
+[71.497s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux
+[71.498s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/utils.hpp
+[71.498s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/ackermann_mux.hpp
+[71.499s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/ackermann_mux_diagnostics_status.hpp
+[71.499s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/ackermann_mux_diagnostics.hpp
+[71.500s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/topic_handle.hpp
+[71.500s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/include/ackermann_mux/params_helpers.hpp
+[71.501s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ament_index/resource_index/package_run_dependencies/ackermann_mux
+[71.503s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ament_index/resource_index/parent_prefix_path/ackermann_mux
+[71.504s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/ament_prefix_path.sh
+[71.505s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/ament_prefix_path.dsv
+[71.506s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/path.sh
+[71.508s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/environment/path.dsv
+[71.509s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.bash
+[71.510s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.sh
+[71.511s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.zsh
+[71.512s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/local_setup.dsv
+[71.513s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.dsv
+[71.514s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ament_index/resource_index/packages/ackermann_mux
+[71.515s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ament_cmake_export_include_directories-extras.cmake
+[71.516s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ament_cmake_export_dependencies-extras.cmake
+[71.517s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ackermann_muxConfig.cmake
+[71.518s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/cmake/ackermann_muxConfig-version.cmake
+[71.519s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/ackermann_mux/share/ackermann_mux/package.xml
+[71.533s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/ackermann_mux

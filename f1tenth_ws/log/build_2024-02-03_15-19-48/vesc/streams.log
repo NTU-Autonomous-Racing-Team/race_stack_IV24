@@ -1,0 +1,42 @@
+[0.598s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc
+[0.944s] -- The C compiler identification is GNU 9.4.0
+[1.267s] -- The CXX compiler identification is GNU 9.4.0
+[1.292s] -- Check for working C compiler: /usr/bin/cc
+[1.823s] -- Check for working C compiler: /usr/bin/cc -- works
+[1.827s] -- Detecting C compiler ABI info
+[2.251s] -- Detecting C compiler ABI info - done
+[2.307s] -- Detecting C compile features
+[2.308s] -- Detecting C compile features - done
+[2.321s] -- Check for working CXX compiler: /usr/bin/c++
+[2.795s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[2.800s] -- Detecting CXX compiler ABI info
+[3.258s] -- Detecting CXX compiler ABI info - done
+[3.317s] -- Detecting CXX compile features
+[3.319s] -- Detecting CXX compile features - done
+[3.330s] -- Found ament_cmake_auto: 0.9.12 (/opt/ros/foxy/share/ament_cmake_auto/cmake)
+[3.464s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[3.464s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[4.807s] -- Configuring done
+[4.819s] -- Generating done
+[4.824s] -- Build files have been written to: /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc
+[4.850s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/vesc/vesc -DCMAKE_INSTALL_PREFIX=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc
+[4.866s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc -- -j6 -l6
+[5.084s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc -- -j6 -l6
+[5.217s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc
+[5.259s] -- Install configuration: ""
+[5.260s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/ament_index/resource_index/package_run_dependencies/vesc
+[5.261s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/ament_index/resource_index/parent_prefix_path/vesc
+[5.263s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/environment/ament_prefix_path.sh
+[5.264s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/environment/ament_prefix_path.dsv
+[5.265s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/environment/path.sh
+[5.266s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/environment/path.dsv
+[5.267s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/local_setup.bash
+[5.268s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/local_setup.sh
+[5.270s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/local_setup.zsh
+[5.270s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/local_setup.dsv
+[5.271s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.dsv
+[5.273s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/ament_index/resource_index/packages/vesc
+[5.274s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/cmake/vescConfig.cmake
+[5.275s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/cmake/vescConfig-version.cmake
+[5.275s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc/share/vesc/package.xml
+[5.288s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc' returned '0': AMENT_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs:/opt/ros/foxy LD_LIBRARY_PATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_driver/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_ackermann/lib:/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc
