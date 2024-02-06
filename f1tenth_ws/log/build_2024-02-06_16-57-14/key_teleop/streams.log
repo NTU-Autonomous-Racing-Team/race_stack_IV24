@@ -1,0 +1,21 @@
+[12.728s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/key_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/install.log --install-scripts $base/lib/key_teleop --single-version-externally-managed
+[13.914s] running egg_info
+[13.916s] writing ../../../../build/key_teleop/key_teleop.egg-info/PKG-INFO
+[13.918s] writing dependency_links to ../../../../build/key_teleop/key_teleop.egg-info/dependency_links.txt
+[13.920s] writing entry points to ../../../../build/key_teleop/key_teleop.egg-info/entry_points.txt
+[13.920s] writing requirements to ../../../../build/key_teleop/key_teleop.egg-info/requires.txt
+[13.921s] writing top-level names to ../../../../build/key_teleop/key_teleop.egg-info/top_level.txt
+[14.100s] reading manifest file '../../../../build/key_teleop/key_teleop.egg-info/SOURCES.txt'
+[14.104s] writing manifest file '../../../../build/key_teleop/key_teleop.egg-info/SOURCES.txt'
+[14.105s] running build
+[14.106s] running build_py
+[14.106s] running install
+[14.112s] running install_lib
+[14.117s] running install_data
+[14.123s] running install_egg_info
+[14.130s] removing '/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages/key_teleop-0.3.0-py3.8.egg-info' (and everything under it)
+[14.131s] Copying ../../../../build/key_teleop/key_teleop.egg-info to /home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages/key_teleop-0.3.0-py3.8.egg-info
+[14.137s] running install_scripts
+[14.220s] Installing key_teleop script to /home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/key_teleop
+[14.223s] writing list of installed files to '/home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/install.log'
+[17.420s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/f1tenth_system/teleop_tools/key_teleop' returned '0': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../../build/key_teleop build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/key_teleop/install.log --install-scripts $base/lib/key_teleop --single-version-externally-managed

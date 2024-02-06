@@ -1,0 +1,175 @@
+[4.631s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs -- -j6 -l6
+[10.380s] [  1%] Built target vesc_msgs__cpp
+[10.384s] [ 12%] Built target vesc_msgs__rosidl_generator_c
+[10.387s] [ 23%] Built target vesc_msgs__rosidl_typesupport_cpp
+[10.390s] [ 34%] Built target vesc_msgs__rosidl_typesupport_introspection_cpp
+[10.391s] [ 45%] Built target vesc_msgs__rosidl_typesupport_introspection_c
+[10.393s] [ 56%] Built target vesc_msgs__rosidl_typesupport_c
+[10.394s] [ 67%] Built target vesc_msgs__rosidl_typesupport_fastrtps_cpp
+[10.402s] [ 78%] Built target vesc_msgs__rosidl_typesupport_fastrtps_c
+[10.408s] [ 78%] Built target vesc_msgs
+[10.411s] [ 80%] Built target vesc_msgs__py
+[10.418s] [ 89%] Built target vesc_msgs__python
+[10.424s] [ 92%] Built target vesc_msgs__rosidl_typesupport_c__pyext
+[10.424s] [ 96%] Built target vesc_msgs__rosidl_typesupport_introspection_c__pyext
+[10.425s] [100%] Built target vesc_msgs__rosidl_typesupport_fastrtps_c__pyext
+[10.455s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs -- -j6 -l6
+[11.824s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs
+[11.914s] -- Install configuration: ""
+[11.915s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/ament_index/resource_index/rosidl_interfaces/vesc_msgs
+[11.916s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs
+[11.917s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg
+[11.917s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_state.h
+[11.918s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail
+[11.918s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__type_support.h
+[11.919s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__struct.h
+[11.920s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__struct.h
+[11.927s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__struct.h
+[11.928s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__functions.c
+[11.929s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__type_support.h
+[11.929s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__functions.c
+[11.930s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__functions.h
+[11.930s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__functions.c
+[11.935s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__functions.c
+[11.936s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__struct.h
+[11.944s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__functions.h
+[11.946s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__type_support.h
+[11.947s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__type_support.h
+[11.948s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__functions.h
+[11.954s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__functions.h
+[11.955s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_state_stamped.h
+[11.956s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/rosidl_generator_c__visibility_control.h
+[11.956s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_imu_stamped.h
+[11.957s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_imu.h
+[11.965s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/library_path.sh
+[11.966s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/library_path.dsv
+[11.966s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_generator_c.so
+[11.968s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs
+[11.968s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg
+[11.969s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail
+[11.969s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__rosidl_typesupport_fastrtps_c.h
+[11.970s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__rosidl_typesupport_fastrtps_c.h
+[11.970s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__rosidl_typesupport_fastrtps_c.h
+[11.970s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__rosidl_typesupport_fastrtps_c.h
+[11.971s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[11.972s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_typesupport_fastrtps_c.so
+[11.972s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs
+[11.973s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg
+[11.973s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail
+[11.984s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__rosidl_typesupport_fastrtps_cpp.hpp
+[11.984s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__rosidl_typesupport_fastrtps_cpp.hpp
+[11.985s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/dds_fastrtps
+[11.985s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__rosidl_typesupport_fastrtps_cpp.hpp
+[11.986s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__rosidl_typesupport_fastrtps_cpp.hpp
+[11.986s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[11.987s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_typesupport_fastrtps_cpp.so
+[11.987s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs
+[11.988s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg
+[11.989s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[11.989s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail
+[11.990s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__rosidl_typesupport_introspection_c.h
+[11.990s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__rosidl_typesupport_introspection_c.h
+[11.991s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__type_support.c
+[11.991s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__rosidl_typesupport_introspection_c.h
+[11.992s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__type_support.c
+[11.992s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__type_support.c
+[11.992s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__rosidl_typesupport_introspection_c.h
+[11.993s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__type_support.c
+[11.993s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_typesupport_introspection_c.so
+[11.994s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_typesupport_c.so
+[11.994s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs
+[11.994s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg
+[11.995s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail
+[11.996s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__type_support.hpp
+[11.996s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__builder.hpp
+[11.997s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__struct.hpp
+[11.997s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__traits.hpp
+[11.998s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__type_support.hpp
+[11.998s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__builder.hpp
+[12.001s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__traits.hpp
+[12.001s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__type_support.hpp
+[12.002s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__struct.hpp
+[12.002s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__traits.hpp
+[12.003s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__builder.hpp
+[12.004s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__struct.hpp
+[12.016s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__type_support.hpp
+[12.017s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__struct.hpp
+[12.017s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__traits.hpp
+[12.018s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__builder.hpp
+[12.019s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_imu.hpp
+[12.020s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_imu_stamped.hpp
+[12.020s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_state_stamped.hpp
+[12.021s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[12.021s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/vesc_state.hpp
+[12.021s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs
+[12.022s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg
+[12.022s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail
+[12.027s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__type_support.cpp
+[12.028s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__rosidl_typesupport_introspection_cpp.hpp
+[12.028s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__type_support.cpp
+[12.029s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu_stamped__type_support.cpp
+[12.029s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state_stamped__rosidl_typesupport_introspection_cpp.hpp
+[12.030s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_imu__rosidl_typesupport_introspection_cpp.hpp
+[12.030s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__type_support.cpp
+[12.031s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/include/vesc_msgs/msg/detail/vesc_state__rosidl_typesupport_introspection_cpp.hpp
+[12.032s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_typesupport_introspection_cpp.so
+[12.032s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__rosidl_typesupport_cpp.so
+[12.033s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/pythonpath.sh
+[12.033s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/pythonpath.dsv
+[12.033s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/__init__.py
+[12.164s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg
+[12.165s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_state.py
+[12.165s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_state_stamped_s.c
+[12.165s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_imu_s.c
+[12.166s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_imu.py
+[12.168s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_imu_stamped.py
+[12.169s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_state_s.c
+[12.170s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_imu_stamped_s.c
+[12.170s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/_vesc_state_stamped.py
+[12.171s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/msg/__init__.py
+[12.171s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/vesc_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so
+[12.173s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/vesc_msgs_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so
+[12.177s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/python3.8/site-packages/vesc_msgs/vesc_msgs_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so
+[12.180s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/lib/libvesc_msgs__python.so
+[12.181s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescState.idl
+[12.184s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescStateStamped.idl
+[12.185s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescImu.idl
+[12.186s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescImuStamped.idl
+[12.187s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescState.msg
+[12.188s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescStateStamped.msg
+[12.189s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescImu.msg
+[12.189s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/msg/VescImuStamped.msg
+[12.190s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/ament_index/resource_index/package_run_dependencies/vesc_msgs
+[12.190s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/ament_index/resource_index/parent_prefix_path/vesc_msgs
+[12.191s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/ament_prefix_path.sh
+[12.191s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/ament_prefix_path.dsv
+[12.192s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/path.sh
+[12.192s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/environment/path.dsv
+[12.198s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/local_setup.bash
+[12.201s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/local_setup.sh
+[12.202s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/local_setup.zsh
+[12.203s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/local_setup.dsv
+[12.204s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.dsv
+[12.205s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/ament_index/resource_index/packages/vesc_msgs
+[12.209s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_generator_cExport.cmake
+[12.210s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_generator_cExport-noconfig.cmake
+[12.210s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_introspection_cExport.cmake
+[12.211s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[12.212s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_cExport.cmake
+[12.212s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[12.213s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_generator_cppExport.cmake
+[12.214s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[12.215s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[12.215s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_cppExport.cmake
+[12.216s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[12.216s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/rosidl_cmake-extras.cmake
+[12.216s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[12.217s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[12.217s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[12.218s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[12.218s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[12.220s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[12.220s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgsConfig.cmake
+[12.221s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/cmake/vesc_msgsConfig-version.cmake
+[12.221s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/vesc_msgs/share/vesc_msgs/package.xml
+[13.057s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs

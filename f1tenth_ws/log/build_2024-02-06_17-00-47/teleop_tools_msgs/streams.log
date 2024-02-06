@@ -1,0 +1,120 @@
+[3.996s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs -- -j6 -l6
+[10.107s] [  3%] Built target teleop_tools_msgs__cpp
+[10.108s] [ 12%] Built target teleop_tools_msgs__rosidl_generator_c
+[10.111s] [ 22%] Built target teleop_tools_msgs__rosidl_typesupport_introspection_cpp
+[10.119s] [ 32%] Built target teleop_tools_msgs__rosidl_typesupport_cpp
+[10.124s] [ 41%] Built target teleop_tools_msgs__rosidl_typesupport_c
+[10.125s] [ 51%] Built target teleop_tools_msgs__rosidl_typesupport_fastrtps_cpp
+[10.125s] [ 61%] Built target teleop_tools_msgs__rosidl_typesupport_introspection_c
+[10.126s] [ 70%] Built target teleop_tools_msgs__rosidl_typesupport_fastrtps_c
+[10.126s] [ 70%] Built target teleop_tools_msgs
+[10.127s] [ 74%] Built target teleop_tools_msgs__py
+[10.127s] [ 80%] Built target teleop_tools_msgs__python
+[10.128s] [ 87%] Built target teleop_tools_msgs__rosidl_typesupport_c__pyext
+[10.128s] [ 93%] Built target teleop_tools_msgs__rosidl_typesupport_introspection_c__pyext
+[10.139s] [100%] Built target teleop_tools_msgs__rosidl_typesupport_fastrtps_c__pyext
+[10.146s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --build /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs -- -j6 -l6
+[10.553s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs
+[10.662s] -- Install configuration: ""
+[10.664s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/ament_index/resource_index/rosidl_interfaces/teleop_tools_msgs
+[10.667s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs
+[10.668s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg
+[10.670s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg/rosidl_generator_c__visibility_control.h
+[10.671s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action
+[10.674s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail
+[10.676s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__functions.c
+[10.677s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__struct.h
+[10.678s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__functions.h
+[10.680s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__type_support.h
+[10.681s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/increment.h
+[10.683s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/library_path.sh
+[10.684s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/library_path.dsv
+[10.688s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_generator_c.so
+[10.691s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs
+[10.692s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg
+[10.693s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[10.694s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action
+[10.696s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail
+[10.697s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__rosidl_typesupport_fastrtps_c.h
+[10.700s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_typesupport_fastrtps_c.so
+[10.705s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs
+[10.707s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg
+[10.710s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[10.710s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action
+[10.711s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail
+[10.712s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/dds_fastrtps
+[10.712s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__rosidl_typesupport_fastrtps_cpp.hpp
+[10.713s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_typesupport_fastrtps_cpp.so
+[10.723s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs
+[10.723s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg
+[10.726s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[10.727s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action
+[10.728s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail
+[10.731s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__type_support.c
+[10.731s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__rosidl_typesupport_introspection_c.h
+[10.737s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_typesupport_introspection_c.so
+[10.737s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_typesupport_c.so
+[10.749s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs
+[10.750s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg
+[10.750s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[10.751s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action
+[10.751s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail
+[10.752s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__struct.hpp
+[10.752s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__type_support.hpp
+[10.753s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__traits.hpp
+[10.753s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__builder.hpp
+[10.754s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/increment.hpp
+[10.760s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs
+[10.761s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action
+[10.761s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail
+[10.762s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__rosidl_typesupport_introspection_cpp.hpp
+[10.762s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/include/teleop_tools_msgs/action/detail/increment__type_support.cpp
+[10.763s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_typesupport_introspection_cpp.so
+[10.763s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__rosidl_typesupport_cpp.so
+[10.769s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/pythonpath.sh
+[10.770s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/pythonpath.dsv
+[10.770s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/__init__.py
+[10.959s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/action
+[10.959s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/action/_increment.py
+[10.960s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/action/_increment_s.c
+[10.961s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/action/__init__.py
+[10.963s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/teleop_tools_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so
+[10.967s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/teleop_tools_msgs_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so
+[10.972s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/python3.8/site-packages/teleop_tools_msgs/teleop_tools_msgs_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so
+[10.974s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/lib/libteleop_tools_msgs__python.so
+[10.976s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/action/Increment.idl
+[10.977s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/action/Increment.action
+[10.978s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/ament_index/resource_index/package_run_dependencies/teleop_tools_msgs
+[10.979s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/ament_index/resource_index/parent_prefix_path/teleop_tools_msgs
+[10.980s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/ament_prefix_path.sh
+[10.981s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/ament_prefix_path.dsv
+[10.981s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/path.sh
+[10.984s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/environment/path.dsv
+[10.985s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/local_setup.bash
+[10.987s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/local_setup.sh
+[10.988s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/local_setup.zsh
+[10.991s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/local_setup.dsv
+[10.992s] -- Installing: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.dsv
+[10.993s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/ament_index/resource_index/packages/teleop_tools_msgs
+[10.993s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_generator_cExport.cmake
+[10.997s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_generator_cExport-noconfig.cmake
+[11.006s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_introspection_cExport.cmake
+[11.007s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[11.007s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_cExport.cmake
+[11.007s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[11.009s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_generator_cppExport.cmake
+[11.010s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[11.010s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[11.011s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_cppExport.cmake
+[11.011s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[11.011s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/rosidl_cmake-extras.cmake
+[11.012s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[11.012s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[11.013s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[11.013s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[11.014s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[11.014s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[11.015s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgsConfig.cmake
+[11.015s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/cmake/teleop_tools_msgsConfig-version.cmake
+[11.015s] -- Up-to-date: /home/deepspeed/ICRA2024/f1tenth_ws/install/teleop_tools_msgs/share/teleop_tools_msgs/package.xml
+[11.508s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/deepspeed/ICRA2024/f1tenth_ws/install/f1tenth_stack:/home/deepspeed/ICRA2024/f1tenth_ws/install/joy_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/mouse_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/key_teleop:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking:/opt/ros/foxy /usr/bin/cmake --install /home/deepspeed/ICRA2024/f1tenth_ws/build/teleop_tools_msgs

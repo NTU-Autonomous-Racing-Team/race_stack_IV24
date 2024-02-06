@@ -1,0 +1,21 @@
+[11.917s] Invoking command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/automatic_emergency_braking build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/install.log --install-scripts $base/lib/automatic_emergency_braking --single-version-externally-managed
+[13.146s] running egg_info
+[13.156s] writing ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/PKG-INFO
+[13.156s] writing dependency_links to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/dependency_links.txt
+[13.157s] writing entry points to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/entry_points.txt
+[13.157s] writing requirements to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/requires.txt
+[13.158s] writing top-level names to ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/top_level.txt
+[13.360s] reading manifest file '../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/SOURCES.txt'
+[13.366s] writing manifest file '../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info/SOURCES.txt'
+[13.367s] running build
+[13.367s] running build_py
+[13.368s] running install
+[13.377s] running install_lib
+[13.386s] running install_data
+[13.388s] running install_egg_info
+[13.401s] removing '/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking-0.0.0-py3.8.egg-info' (and everything under it)
+[13.402s] Copying ../../build/automatic_emergency_braking/automatic_emergency_braking.egg-info to /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages/automatic_emergency_braking-0.0.0-py3.8.egg-info
+[13.408s] running install_scripts
+[13.501s] Installing AEB script to /home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/automatic_emergency_braking
+[13.503s] writing list of installed files to '/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/install.log'
+[17.098s] Invoked command in '/home/deepspeed/ICRA2024/f1tenth_ws/src/automatic_emergency_braking' returned '0': PYTHONPATH=/home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/prefix_override:/home/deepspeed/ICRA2024/f1tenth_ws/install/automatic_emergency_braking/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/automatic_emergency_braking build --build-base /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/build install --record /home/deepspeed/ICRA2024/f1tenth_ws/build/automatic_emergency_braking/install.log --install-scripts $base/lib/automatic_emergency_braking --single-version-externally-managed
