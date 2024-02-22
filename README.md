@@ -25,9 +25,10 @@ docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 The F1tenth simulator. Docker image created from the official simulator. Please don't touch.
 
 ### `f1tenth_ws/`
-` /` f1tenth official pacakge.
-` /` f1tenth official pacakge.
-
+`f1tenth_system/` f1tenth official pacakge.
+`` 
+``
+``
 
 
 
