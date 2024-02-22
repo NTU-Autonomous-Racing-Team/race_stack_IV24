@@ -6,10 +6,10 @@ Requirements: ROS 2 Foxy, Ubuntu 20.04.
 
 
 ## Setup
-## Script: Simulation
-- [Install docker](https://docs.docker.com/engine/install/ubuntu/)
-- [Add Docker into sudo group ](https://docs.docker.com/engine/install/linux-postinstall/)
-
+### Script: Simulation
+1. [Install docker](https://docs.docker.com/engine/install/ubuntu/)
+2 [Add Docker into sudo group ](https://docs.docker.com/engine/install/linux-postinstall/)
+3. Run script below:
 ```
 cd simulator
 docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
