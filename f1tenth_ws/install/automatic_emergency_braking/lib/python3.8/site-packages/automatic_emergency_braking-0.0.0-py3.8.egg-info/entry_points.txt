@@ -1,3 +1,0 @@
-[console_scripts]
-AEB = automatic_emergency_braking.AEB:main
-

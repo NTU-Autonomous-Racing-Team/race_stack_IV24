@@ -1,4 +1,0 @@
-/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs/rosidl_adapter/vesc_msgs:msg/VescState.idl
-/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs/rosidl_adapter/vesc_msgs:msg/VescStateStamped.idl
-/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs/rosidl_adapter/vesc_msgs:msg/VescImu.idl
-/home/deepspeed/ICRA2024/f1tenth_ws/build/vesc_msgs/rosidl_adapter/vesc_msgs:msg/VescImuStamped.idl
