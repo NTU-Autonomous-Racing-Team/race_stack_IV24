@@ -1,15 +1,14 @@
-# ICRA2024
+# F1Tenth ICRA 2024
+![CleanShot 2024-02-22 at 16 05 55@2x](https://github.com/NTU-Autonomous-Racing-Team/f1tenth_icra2024/assets/65676392/a6afb82f-6c65-4a38-b296-90daf8975e67)
 
-This repo contains the f1tenth system made by the F1Tenth 2023 team
+## Installation
+Requirements: ROS 2 Foxy, Ubuntu 20.04.
+
 
 ## Setup
+## Script: Simulation
 
-```
-git clone https://github.com/NTU-Autonomous-Racing-Team/ICRA2024.git
-cd ./ICRA2024/f1tenth_ws
-colcon build
-```
+## Script: Car
+
 
 ## System Architecture
-
-![docs/images/system_architecture.png](./docs/images/system_architecture.png)
