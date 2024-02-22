@@ -6,7 +6,9 @@ Requirements: ROS 2 Foxy, Ubuntu 20.04.
 
 
 ## Setup
+## Script: Simulation
 
+## Script: Car
 
 
 ## System Architecture
