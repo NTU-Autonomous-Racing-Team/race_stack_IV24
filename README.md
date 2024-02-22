@@ -3,9 +3,7 @@
 
 ## Installation
 Requirements: ROS 2 Foxy, Ubuntu 20.04.
-```
-git clone https://github.com/NTU-Autonomous-Racing-Team/ICRA2024.git
-```
+
 
 ## Setup
 
