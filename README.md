@@ -8,7 +8,7 @@ Requirements: ROS 2 Foxy, Ubuntu 20.04, Docker.
 3. [Install docker](https://docs.docker.com/engine/install/ubuntu/)
 4. [Add Docker into sudo group ](https://docs.docker.com/engine/install/linux-postinstall/)
 
-## Setup
+## Run
 ### Simulation
 ```
 cd simulator
