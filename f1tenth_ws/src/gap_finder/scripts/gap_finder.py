@@ -26,7 +26,7 @@ class GapFinderAlgorithm:
         arc_increment = float(self.min_range * self.scan_angle_increment)
         radius_count = int(self.safety_bubble_diameter / 2 / arc_increment)
         for i in range(
-            self.min_range_index - radius_count, self.index_min + radius_count + 1
+            self.min_range_index - radius_count, self.min_range_index + radius_count + 1
         ):
             self.ranges[i] = 0.0
 
@@ -77,7 +77,7 @@ class GapFinderNode(Node):
         # change in such a way that the first index is the most left range
         self.angle_min = scan_msg.angle_min
         self.angle_max = scan_msg.angle_max
-        self.anfle_increment = scan_msg.angle_increment
+        self.gapFinderAlgorithm.scan_angle_increment = scan_msg.angle_increment
         self.ranges = scan_msg.ranges
 
     def odom_callback(self, odom_msg):
