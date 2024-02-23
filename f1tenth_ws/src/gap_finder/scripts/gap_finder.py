@@ -78,8 +78,6 @@ class GapFinderNode(Node):
         self.angle_min = scan_msg.angle_min
         self.angle_max = scan_msg.angle_max
         self.anfle_increment = scan_msg.angle_increment
-        self.min_range_limit = scan_msg.range_min_limit
-        self.max_range_limit = scan_msg.range_max_limit
         self.ranges = scan_msg.ranges
 
     def odom_callback(self, odom_msg):
