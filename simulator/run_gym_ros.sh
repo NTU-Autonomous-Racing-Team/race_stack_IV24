@@ -8,6 +8,7 @@ create_container (){
 	--env DISPLAY=$DISPLAY\
         --privileged \
         --net=host \
+        -v $(pwd)/../f1tenth_ws:/root/f1tenth_ws \
         f1tenth:gym_ros_foxy \
         run_sim.sh
 }
