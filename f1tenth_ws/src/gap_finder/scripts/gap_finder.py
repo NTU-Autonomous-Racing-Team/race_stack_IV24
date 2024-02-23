@@ -45,7 +45,7 @@ class GapFinderAlgorithm:
         linX = self.min_range
         self.twist = [linX, angZ]
 
-    def update(self, ranges : list[float]):
+    def update(self, ranges):
         self.ranges = ranges
         self.find_min_range()
         self.generate_safety_bubble()
@@ -58,10 +58,10 @@ class GapFinderNode(Node):
     def __init__(self, pub_rate=20):
         super().__init__("gap_finder")
         # Scan Subscriber
-        self.scan_subscriber = self.create_subscription(LaserScan, "/gap_finder_scan", self.scan_callback, 10)
+        self.scan_subscriber = self.create_subscription(LaserScan, "scan", self.scan_callback, 10)
         self.scan_subscriber  # prevent unused variable warning
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "gap_finder/odom", self.odom_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, "/ego_racecar/odom", self.odom_callback, 10)
         self.odom_subscriber
         # Drive Publisher
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 10)
@@ -71,6 +71,7 @@ class GapFinderNode(Node):
         # Memory
         self.last_linX = 0.0
         self.last_angZ = 0.0
+        self.ranges = []
 
     def scan_callback(self, scan_msg):
         # change in such a way that the first index is the most left range
@@ -86,7 +87,8 @@ class GapFinderNode(Node):
         self.angZ = odom_msg.twist.twist.angular.z
 
     def timer_callback(self):
-        self.run()
+        if len(self.ranges) != 0:
+            self.run()
 
     def apply_filter(self):
         filter_factor = 0.5
@@ -102,7 +104,7 @@ class GapFinderNode(Node):
         self.drive_publisher.publish(drive_msg)
 
     def run(self):
-        self.twist = gapFinderAlgorithm.update(self.ranges)
+        self.twist = self.gapFinderAlgorithm.update(self.ranges)
         self.apply_filter()
         self.publish_drive_msg()
 
