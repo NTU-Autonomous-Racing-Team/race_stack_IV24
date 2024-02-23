@@ -33,10 +33,10 @@ class GapFinderAlgorithm:
     def find_max_gap(self):
         # if the closest point is on the left side of the car, then the max gap is on the right side of the car.
         # find the index of the max range in the ranges
-        if self.index_min < len(self.ranges) // 2:
-            self.max_gap_index = self.ranges.index(max(self.ranges[self.index_min :]))
+        if self.min_range_index < len(self.ranges) // 2:
+            self.max_gap_index = self.ranges.index(max(self.ranges[self.min_range_index :]))
         else:
-            self.max_gap_index = self.ranges.index(max(self.ranges[: self.index_min]))
+            self.max_gap_index = self.ranges.index(max(self.ranges[: self.min_range_index]))
 
     def find_twist(self):
         # find the twist required to go to the max range in the max gap
