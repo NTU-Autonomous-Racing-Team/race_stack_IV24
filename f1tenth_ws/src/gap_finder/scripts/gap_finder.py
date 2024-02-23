@@ -19,7 +19,8 @@ class GapFinderAlgorithm:
 
     def find_min_range(self):
         self.min_range = min(self.ranges)
-        self.min_range_index = int(min(range(len(self.ranges)), key=self.ranges.__getitem__))
+        self.min_range_index = int(self.ranges.index(self.min_range))
+        # self.min_range_index = int(min(range(len(self.ranges)), key=self.ranges.__getitem__))
 
     def generate_safety_bubble(self):
         # set the ranges of the safety bubble to 0
