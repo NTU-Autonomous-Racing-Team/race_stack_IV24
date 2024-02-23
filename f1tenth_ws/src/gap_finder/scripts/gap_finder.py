@@ -40,7 +40,7 @@ class GapFinderAlgorithm:
 
     def find_twist(self):
         # find the twist required to go to the max range in the max gap
-        angZ = self.scan_angle_increment * (len(self.range) // 2 - self.max_gap_index)
+        angZ = self.scan_angle_increment * (len(self.ranges) // 2 - self.max_gap_index)
         # linear velocity is proportional to the min range
         linX = self.min_range
         self.twist = [linX, angZ]
