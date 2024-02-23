@@ -58,7 +58,7 @@ class GapFinderNode(Node):
     def __init__(self, pub_rate=20):
         super().__init__("gap_finder")
         # Scan Subscriber
-        self.scan_subscriber = self.create_subscription(LaserScan, "scan", self.scan_callback, 10)
+        self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         self.scan_subscriber  # prevent unused variable warning
         # Odom Subscriber
         self.odom_subscriber = self.create_subscription(Odometry, "/ego_racecar/odom", self.odom_callback, 10)
