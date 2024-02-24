@@ -22,7 +22,7 @@ class GapFinderAlgorithm:
         self.speed_pid = PID(Kp=-1., Ki=0.0, Kd=0.05)
         self.steering_pid = PID(Kp=-1, Ki=0.0, Kd=0.05)
 
-    def limit_search(self):
+    def limit_field_of_view(self):
         view_angle_count = self.view_angle//self.scan_angle_increment
         lower_bound = int((len(self.ranges)- view_angle_count)/2)
         upper_bound = int(lower_bound + view_angle_count)
