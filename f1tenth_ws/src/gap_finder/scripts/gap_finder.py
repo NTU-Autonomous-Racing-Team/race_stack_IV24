@@ -8,6 +8,8 @@ from sensor_msgs.msg import LaserScan
 from ackermann_msgs.msg import AckermannDriveStamped
 from nav_msgs.msg import Odometry
 
+from pid import PID
+
 # reference: https://github.com/f1tenth/f1tenth_labs_openrepo/blob/main/f1tenth_lab4/README.md
 # TODO-make unique topic name for mux
 
@@ -22,6 +24,8 @@ class GapFinderAlgorithm:
         left_bound = int((len(self.ranges)- self.view_angle//self.scan_angle_increment)/2)
         right_bound = int(left_bound + self.view_angle//self.scan_angle_increment)
         self.ranges = self.ranges[left_bound:right_bound]
+        self.speed_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
+        self.steering_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
 
     def find_min_range(self):
         self.min_range = min(self.ranges)
@@ -49,14 +53,16 @@ class GapFinderAlgorithm:
         turning_factor = 0.6
         speed_factor = 0.2
         # find the twist required to go to the max range in the max gap
-        angZ = self.scan_angle_increment * (self.max_gap_index - len(self.ranges) // 2 )
-        angZ *= turning_factor
-        # linear velocity is proportional to the min range
-        linX = self.ranges[int(len(self.ranges)//2)] * speed_factor #abs(1+angZ) * speed_factor
+        angZ = self.scan_angle_increment * (len(self.ranges) // 2 - self.max_gap_index)
+        angZ = self.steering_pid.update(angZ, self.dt)
+        # linear velocity is proportional to the max range
+        linX = self.min_range
+        linX = self.speed_pid.update(linX, self.dt)
         self.twist = [linX, angZ]
 
-    def update(self, ranges):
+    def update(self, ranges, dt = 0.05):
         self.ranges = ranges
+        self.dt = dt
         self.limit_search()
         self.find_min_range()
         self.generate_safety_bubble()
@@ -66,7 +72,7 @@ class GapFinderAlgorithm:
 
 
 class GapFinderNode(Node):
-    def __init__(self, pub_rate=20):
+    def __init__(self, period=20):
         super().__init__("gap_finder")
         # Scan Subscriber
         self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
@@ -76,10 +82,11 @@ class GapFinderNode(Node):
         self.odom_subscriber
         # Drive Publisher
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 10)
-        self.timer = self.create_timer(1 / pub_rate, self.timer_callback)
+        self.timer = self.create_timer(period , self.timer_callback)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm()
         # Memory
+        self.period = period
         self.last_linX = 0.0
         self.last_angZ = 0.0
         self.ranges = []
@@ -113,8 +120,8 @@ class GapFinderNode(Node):
         self.drive_publisher.publish(drive_msg)
 
     def run(self):
-        self.twist = self.gapFinderAlgorithm.update(self.ranges)
-        self.apply_filter()
+        self.twist = self.gapFinderAlgorithm.update(self.ranges, self.period)
+        # self.apply_filter()
         self.publish_drive_msg()
 
 
