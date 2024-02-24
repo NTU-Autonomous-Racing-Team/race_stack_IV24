@@ -9,9 +9,8 @@ create_container (){
 	--env="QT_X11_NO_MITSHM=1" \
     	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--volume="${XAUTHORITY}:/root/.Xauthority" \
-	--ipc=host \
         --privileged \
-        --net=host \
+        --net=f1tenth_net \
         -v $(pwd)/../f1tenth_ws:/root/f1tenth_ws \
         f1tenth:gym_ros_foxy \
         run_sim.sh
