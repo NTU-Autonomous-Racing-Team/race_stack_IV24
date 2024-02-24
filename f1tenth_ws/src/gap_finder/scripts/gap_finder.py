@@ -18,14 +18,14 @@ class GapFinderAlgorithm:
     def __init__(self, safety_bubble_diameter: float = 1.6, scan_angle_increment: float = 0.00435):
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.scan_angle_increment = scan_angle_increment  # [rad]
-        self.view_angle = 0.7  # [rad]
+        self.view_angle = 1.4  # [rad]
+        self.speed_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
+        self.steering_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
 
     def limit_search(self):
         left_bound = int((len(self.ranges)- self.view_angle//self.scan_angle_increment)/2)
         right_bound = int(left_bound + self.view_angle//self.scan_angle_increment)
         self.ranges = self.ranges[left_bound:right_bound]
-        self.speed_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
-        self.steering_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
 
     def find_min_range(self):
         self.min_range = min(self.ranges)
@@ -72,7 +72,7 @@ class GapFinderAlgorithm:
 
 
 class GapFinderNode(Node):
-    def __init__(self, period=20):
+    def __init__(self, period=0.05):
         super().__init__("gap_finder")
         # Scan Subscriber
         self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
