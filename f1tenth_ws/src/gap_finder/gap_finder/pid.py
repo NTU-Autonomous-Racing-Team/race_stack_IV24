@@ -28,7 +28,7 @@ class PID:
                 self.dt = dt
                 self.prev_dt = dt
 
-        self.P_term = self.Kp * error + self.bias
+        self.P_term = self.Kp * error
 
         self.integral += error * self.dt
         self.apply_integral_cutoff()
@@ -37,7 +37,7 @@ class PID:
         d_error = error - self.prev_error
         self.D_term = self.Kd * d_error/self.dt
 
-        control_signal = self.P_term + self.I_term + self.D_term
+        control_signal = self.P_term + self.I_term + self.D_term + self.bias
 
         return control_signal 
     
