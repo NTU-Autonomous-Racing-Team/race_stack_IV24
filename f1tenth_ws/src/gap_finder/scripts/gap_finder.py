@@ -15,17 +15,18 @@ from pid import PID
 
 
 class GapFinderAlgorithm:
-    def __init__(self, safety_bubble_diameter: float = 0.4, scan_angle_increment: float = 0.00435):
+    def __init__(self, safety_bubble_diameter: float = 2, scan_angle_increment: float = 0.00435):
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.scan_angle_increment = scan_angle_increment  # [rad]
         self.view_angle = 1.4  # [rad]
-        self.speed_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
-        self.steering_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
+        self.speed_pid = PID(Kp=-1., Ki=0.0, Kd=0.05)
+        self.steering_pid = PID(Kp=-1, Ki=0.0, Kd=0.05)
 
-    def limit_field_of_view(self):
-        left_bound = int((len(self.ranges)- self.view_angle//self.scan_angle_increment)/2)
-        right_bound = int(left_bound + self.view_angle//self.scan_angle_increment)
-        self.ranges = self.ranges[left_bound:right_bound]
+    def limit_search(self):
+        view_angle_count = self.view_angle//self.scan_angle_increment
+        lower_bound = int((len(self.ranges)- view_angle_count)/2)
+        upper_bound = int(lower_bound + view_angle_count)
+        self.ranges = self.ranges[lower_bound:upper_bound]
 
     def find_min_range(self):
         self.min_range = min(self.ranges)
@@ -34,6 +35,7 @@ class GapFinderAlgorithm:
 
     def generate_safety_bubble(self):
         # set the ranges of the safety bubble to 0
+        self.front_range = self.ranges[int(len(self.ranges) // 2)]
         arc_increment = float(self.min_range * self.scan_angle_increment)
         radius_count = int(self.safety_bubble_diameter / 2 / arc_increment)
         for i in range(
@@ -45,19 +47,21 @@ class GapFinderAlgorithm:
         # if the closest point is on the left side of the car, then the max gap is on the right side of the car.
         # find the index of the max range in the ranges
         if self.min_range_index < len(self.ranges) // 2:
+            # min is on right, turn left
             self.max_gap_index = self.ranges.index(max(self.ranges[self.min_range_index :]))
         else:
+            # min is on left, turn right
             self.max_gap_index = self.ranges.index(max(self.ranges[: self.min_range_index]))
+        self.max_range = self.ranges[self.max_gap_index]
 
     def find_twist(self):
-        turning_factor = 0.6
-        speed_factor = 0.2
         # find the twist required to go to the max range in the max gap
-        angZ = self.scan_angle_increment * (len(self.ranges) // 2 - self.max_gap_index)
-        angZ = self.steering_pid.update(angZ, self.dt)
+        init_angZ = self.scan_angle_increment * (self.max_gap_index - len(self.ranges) // 2)
+        angZ = self.steering_pid.update(init_angZ, self.dt)
         # linear velocity is proportional to the max range
-        linX = self.min_range
-        linX = self.speed_pid.update(linX, self.dt)
+        init_linX = self.front_range
+        linX = self.speed_pid.update(init_linX, self.dt)
+        print(linX)
         self.twist = [linX, angZ]
 
     def update(self, ranges = [], dt = 0.05):
@@ -72,7 +76,7 @@ class GapFinderAlgorithm:
 
 
 class GapFinderNode(Node):
-    def __init__(self, period=0.05):
+    def __init__(self, period=0.1):
         super().__init__("gap_finder")
         # Scan Subscriber
         self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
@@ -107,9 +111,15 @@ class GapFinderNode(Node):
             self.run()
 
     def apply_filter(self):
-        filter_factor = 0.7
-        self.twist[0] = self.twist[0] * filter_factor + self.last_linX * (1 - filter_factor)
-        self.twist[1] = self.twist[1] * filter_factor + self.last_angZ * (1 - filter_factor)
+        # steering
+        if self.twist[1] > 0:
+            self.twist[1] = min(self.twist[1], 0.35)
+        else: 
+            self.twist[1] = max(self.twist[1], -0.35)
+        # speed
+        self.twist[0] = max(self.twist[0], 0)
+        self.twist[0] = min(self.twist[0], 5.0)
+
         self.last_linX = self.twist[0]
         self.last_angZ = self.twist[1]
 
@@ -121,7 +131,7 @@ class GapFinderNode(Node):
 
     def run(self):
         self.twist = self.gapFinderAlgorithm.update(self.ranges, self.period)
-        # self.apply_filter()
+        self.apply_filter()
         self.publish_drive_msg()
 
 
