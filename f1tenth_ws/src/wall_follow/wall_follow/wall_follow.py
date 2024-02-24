@@ -127,7 +127,7 @@ class WallFollow(Node):
             # if self.front_dist < 2.5:
             #     self.drive_msg.drive.speed = 2.0
             # else:
-            self.drive_msg.drive.speed = -0.05 * (1 / 1.2)**(steering_angle_degrees - 15)
+            self.drive_msg.drive.speed = -1 * float(min(0.5 * (1 / 1.2)**(steering_angle_degrees - 15), 10))
 
             self.pub_drive.publish(self.drive_msg)
             self.get_logger().info(f"steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f} | {actual_distance:.2f} | {lookahead_distance:.2f}")

@@ -82,10 +82,10 @@ class GapFinderNode(Node):
         self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         self.scan_subscriber  # prevent unused variable warning
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "/ego_racecar/odom", self.odom_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, "/odom", self.odom_callback, 10)
         self.odom_subscriber
         # Drive Publisher
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 10)
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/nav/drive", 10)
         self.timer = self.create_timer(period , self.timer_callback)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm()
@@ -118,14 +118,15 @@ class GapFinderNode(Node):
             self.twist[1] = max(self.twist[1], -0.35)
         # speed
         self.twist[0] = max(self.twist[0], 0)
-        self.twist[0] = min(self.twist[0], 5.0)
+        self.twist[0] = min(self.twist[0], 2.0)
+        self.twist[0] *= -1
 
         self.last_linX = self.twist[0]
         self.last_angZ = self.twist[1]
 
     def publish_drive_msg(self):
         drive_msg = AckermannDriveStamped()
-        drive_msg.drive.speed = self.twist[0]
+        drive_msg.drive.speed = float(self.twist[0])
         drive_msg.drive.steering_angle = self.twist[1]
         self.drive_publisher.publish(drive_msg)
 
