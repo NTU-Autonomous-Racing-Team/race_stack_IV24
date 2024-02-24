@@ -26,7 +26,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  scripts/gap_finder_01.py
+  scripts/gap_finder_base.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
