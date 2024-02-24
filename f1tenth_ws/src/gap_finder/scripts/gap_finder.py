@@ -13,9 +13,15 @@ from nav_msgs.msg import Odometry
 
 
 class GapFinderAlgorithm:
-    def __init__(self, safety_bubble_diameter: float = 0.4, scan_angle_increment: float = 0.00435):
+    def __init__(self, safety_bubble_diameter: float = 1.6, scan_angle_increment: float = 0.00435):
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.scan_angle_increment = scan_angle_increment  # [rad]
+        self.view_angle = 0.7  # [rad]
+
+    def limit_search(self):
+        left_bound = int((len(self.ranges)- self.view_angle//self.scan_angle_increment)/2)
+        right_bound = int(left_bound + self.view_angle//self.scan_angle_increment)
+        self.ranges = self.ranges[left_bound:right_bound]
 
     def find_min_range(self):
         self.min_range = min(self.ranges)
@@ -40,14 +46,18 @@ class GapFinderAlgorithm:
             self.max_gap_index = self.ranges.index(max(self.ranges[: self.min_range_index]))
 
     def find_twist(self):
+        turning_factor = 0.6
+        speed_factor = 0.2
         # find the twist required to go to the max range in the max gap
-        angZ = self.scan_angle_increment * (len(self.ranges) // 2 - self.max_gap_index)
+        angZ = self.scan_angle_increment * (self.max_gap_index - len(self.ranges) // 2 )
+        angZ *= turning_factor
         # linear velocity is proportional to the min range
-        linX = self.min_range
+        linX = self.ranges[int(len(self.ranges)//2)] * speed_factor #abs(1+angZ) * speed_factor
         self.twist = [linX, angZ]
 
     def update(self, ranges):
         self.ranges = ranges
+        self.limit_search()
         self.find_min_range()
         self.generate_safety_bubble()
         self.find_max_gap()
@@ -90,7 +100,7 @@ class GapFinderNode(Node):
             self.run()
 
     def apply_filter(self):
-        filter_factor = 0.5
+        filter_factor = 0.7
         self.twist[0] = self.twist[0] * filter_factor + self.last_linX * (1 - filter_factor)
         self.twist[1] = self.twist[1] * filter_factor + self.last_angZ * (1 - filter_factor)
         self.last_linX = self.twist[0]
