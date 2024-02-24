@@ -15,14 +15,14 @@ from pid import PID
 
 
 class GapFinderAlgorithm:
-    def __init__(self, safety_bubble_diameter: float = 1.6, scan_angle_increment: float = 0.00435):
+    def __init__(self, safety_bubble_diameter: float = 0.4, scan_angle_increment: float = 0.00435):
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.scan_angle_increment = scan_angle_increment  # [rad]
         self.view_angle = 1.4  # [rad]
         self.speed_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
         self.steering_pid = PID(Kp=0.5, Ki=0.0, Kd=0.0)
 
-    def limit_search(self):
+    def limit_field_of_view(self):
         left_bound = int((len(self.ranges)- self.view_angle//self.scan_angle_increment)/2)
         right_bound = int(left_bound + self.view_angle//self.scan_angle_increment)
         self.ranges = self.ranges[left_bound:right_bound]
@@ -60,10 +60,10 @@ class GapFinderAlgorithm:
         linX = self.speed_pid.update(linX, self.dt)
         self.twist = [linX, angZ]
 
-    def update(self, ranges, dt = 0.05):
+    def update(self, ranges = [], dt = 0.05):
         self.ranges = ranges
         self.dt = dt
-        self.limit_search()
+        self.limit_field_of_view()
         self.find_min_range()
         self.generate_safety_bubble()
         self.find_max_gap()
