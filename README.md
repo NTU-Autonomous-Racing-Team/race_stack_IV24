@@ -16,6 +16,7 @@ ROS 2 Foxy, Ubuntu 20.04, Docker.
 ### Simulation
 ```
 cd simulator
+docker network create f1tenth_net
 sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 ./run_gym_ros.sh
 ```
