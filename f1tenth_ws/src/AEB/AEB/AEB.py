@@ -1,28 +1,28 @@
-#TODO - Add config file to change TTC params (self.ttc_threshold)
-
 import math
-
 import rclpy
 from rclpy.node import Node
-
 from sensor_msgs.msg import LaserScan
 from ackermann_msgs.msg import AckermannDriveStamped
 from nav_msgs.msg import Odometry
-from std_msgs.msg import String
 
-class AutomaticEmergencyBraking(Node):
+class AEB(Node):
     def __init__(self):
         super().__init__('AEB')
-        self.time2collision = 5 
-        # Laser Scan
-        self.scan_subscriber = self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)
-        self.scan_subscriber
+
+        self.time2collision = 5
+
+        # ===[ subscribers ]=== #
+        # laser Scan
+        self.sub_scan = self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)
+        self.sub_scan
         self.scan_init = False
         self.ranges = []
-        # Odometry
-        self.odom_subscriber = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
-        self.odom_subscriber
+
+        # odmetry
+        self.sub_odom = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
+        self.sub_odom
         self.odom = []
+
         # Drive
         self.pub_rate = 20
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, '/aeb/drive', 10)
@@ -68,7 +68,7 @@ class AutomaticEmergencyBraking(Node):
 
 def main(args = None):
     rclpy.init(args=args)
-    auto_e_braking = AutomaticEmergencyBraking()
+    auto_e_braking = AEB()
     rclpy.spin(auto_e_braking)
     auto_e_braking.destroy_node()
     rclpy.shutdown()

@@ -16,7 +16,7 @@ setup(
     maintainer='Luthov',
     maintainer_email='lukettl15@gmail.com',
     description='Wall Following Node for F1Tenth',
-    license='GNU General Public License',
+    license='',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

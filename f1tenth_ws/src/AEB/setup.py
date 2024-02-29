@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'automatic_emergency_braking'
+package_name = 'AEB'
 
 setup(
     name=package_name,
@@ -16,11 +16,11 @@ setup(
     maintainer='bentjh01',
     maintainer_email='benjamintehjh01@gmail.com',
     description='Automatic Emergency Braking node using time to collision',
-    license='GNU General Public License',
+    license='None',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'AEB = automatic_emergency_braking.AEB:main'
+            'AEB = AEB.AEB:main'
         ],
     },
 )

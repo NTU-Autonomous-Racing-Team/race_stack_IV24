@@ -2,15 +2,13 @@
 # 1. Take average points to calc distance from the wall
 # 2. Check if obstacle/wall is a below a certain distance in front of the car
 
+import math
 import rclpy
-
 from rclpy.node import Node
-
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry
 from ackermann_msgs.msg import AckermannDriveStamped
 
-import math
 
 class WallFollow(Node):
 
@@ -152,5 +150,4 @@ def main(args=None):
 
 
 if __name__ == '__main__':
-
     main()
