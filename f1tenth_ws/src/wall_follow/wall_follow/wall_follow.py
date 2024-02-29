@@ -133,16 +133,10 @@ class WallFollow(Node):
             # self.log["speed"].append(self.longitudinal_vel)
             # self.log["actual_distance"].append(actual_distance)
 
-
-
 def main(args=None):
-
     rclpy.init(args=args)
-
     wall_follow = WallFollow()
-
     rclpy.spin(wall_follow)
-
     wall_follow.destroy_node()
     rclpy.shutdown()
 

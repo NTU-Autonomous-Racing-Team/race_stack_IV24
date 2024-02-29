@@ -23,7 +23,7 @@ class AEB(Node):
         self.sub_odom
         self.odom = []
 
-        # Drive
+
         self.pub_rate = 20
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, '/aeb/drive', 10)
         self.timer = self.create_timer(1/self.pub_rate, self.timer_callback)
