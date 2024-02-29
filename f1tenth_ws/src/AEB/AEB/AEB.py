@@ -19,7 +19,7 @@ class AEB(Node):
         self.ranges = []
 
         # odmetry
-        self.sub_odom = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
+        self.sub_odom = self.create_subscription(Odometry, 'ego_racecar/odom', self.odom_callback, 10) # FIXME: For simulation ego_racecar
         self.sub_odom
         self.odom = []
 
