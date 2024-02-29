@@ -41,6 +41,8 @@ source /opt/ros/foxy/setup.zsh
 ### `simulator/`
 
 The F1tenth simulator. Docker image created from the official simulator. Please don't touch.
+## Debug
+Sometimes after running the container, the `topics` dont show up with `ros2 topic list`. Try publishing directly to the a topic to see if it is actually there using `ros2 topic pub -r 10 /drive ackermann__msgs/msg/AckermannDriveStamped "{drive: {speed: 0.1}}"`. The car should move
 
 ### `f1tenth_ws/`
 
