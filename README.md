@@ -48,3 +48,8 @@ The F1tenth simulator. Docker image created from the official simulator. Please 
 ` 
 `
 ``
+
+### hardware
+1. VESC Setup
+  1. Refer to [f1tenth build](https://f1tenth.org/build.html)
+  2. Upload Motor Configuration and App Configuration
