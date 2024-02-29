@@ -13,21 +13,27 @@ ROS 2 Foxy, Ubuntu 20.04, Docker.
 
 ## Run
 
-
 ### Simulation
-
 ```
 cd simulator
 sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 ./run_gym_ros.sh
 ```
-
-### Change Map
-
+To change map:
 1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
 2. rebuild docker image
 
-### Car
+### Control Car
+To control the car by keyboard, run ```source /opt/ros/foxy/setup.bash
+ros2 run demo_nodes_cpp talker```
+
+
+```
+source /opt/ros/foxy/setup.zsh
+
+
+
+```
 
 ## Documentation
 
