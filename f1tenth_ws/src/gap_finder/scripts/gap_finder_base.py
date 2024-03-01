@@ -11,9 +11,6 @@ from nav_msgs.msg import Odometry
 from gap_finder.pid import PID
 
 # reference: https://github.com/f1tenth/f1tenth_labs_openrepo/blob/main/f1tenth_lab4/README.md
-# TODO-make unique topic name for mux
-
-
 class GapFinderAlgorithm:
     def __init__(self, safety_bubble_diameter = 1, scan_angle_increment: float = 0.00435):
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
