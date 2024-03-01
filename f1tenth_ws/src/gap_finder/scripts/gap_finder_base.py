@@ -85,10 +85,10 @@ class GapFinderNode(Node):
         self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         self.scan_subscriber  # prevent unused variable warning
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "/ego_racecar/odom", self.odom_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, "/odom", self.odom_callback, 10)
         self.odom_subscriber
         # Drive Publisher
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/gap_finder/drive", 10)
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/nav/drive", 10)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm()
