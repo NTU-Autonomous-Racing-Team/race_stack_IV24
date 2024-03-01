@@ -10,7 +10,7 @@ create_container (){
     	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--volume="${XAUTHORITY}:/root/.Xauthority" \
         --privileged \
-        --net=f1tenth_net \
+        --net=host \
         -v $(pwd)/../f1tenth_ws:/root/f1tenth_ws \
         f1tenth:gym_ros_foxy \
         run_sim.sh
