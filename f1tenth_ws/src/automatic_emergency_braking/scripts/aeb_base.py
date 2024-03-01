@@ -18,6 +18,12 @@ class AutomaticEmergencyBraking_Algorithm():
         self.speed_gain = 1
         self.view_angle = view_angle 
 
+    def calculate_speed_gain(self, ttc):
+        if ttc <= self.time2collision_threshold_0:
+            self.speed_gain = 0
+        else:
+            self.speed_gain = 1
+
     def calculate_time2collision(self):
         for i, radius in enumerate(self.ranges):
             # angle = self.angle_increment * len(self.ranges)//2 - i * self.angle_increment
@@ -30,15 +36,7 @@ class AutomaticEmergencyBraking_Algorithm():
                 ttc = radius / r_dot
             else:
                 ttc = float('inf')
-            if ttc <= self.time2collision_threshold_0:
-                self.speed_gain = 0
-            else:
-                self.speed_gain = 1
-    
-    # def set_field_of_vision(self):
-    #     lower_bound_index = len(self.ranges)//2 - self.field_of_view//self.angle_increment//2
-    #     upper_bound_index = lower_bound_index + self.field_of_view//self.angle_increment
-    #     self.ranges = self.ranges[lower_bound_index:upper_bound_index]
+            self.ttc = ttc
 
     def limit_field_of_view(self):
         view_angle_count = self.view_angle//self.angle_increment
@@ -52,6 +50,7 @@ class AutomaticEmergencyBraking_Algorithm():
         # self.angle_max = self.angle_increment * len(ranges)
         self.limit_field_of_view()
         self.calculate_time2collision()
+        self.calculate_speed_gain(self.ttc)
         return self.speed_gain
 
 class AutomaticEmergencyBrakingNode(Node):
@@ -99,7 +98,6 @@ class AutomaticEmergencyBrakingNode(Node):
             self.run()
 
     def run(self):
-        self.odom = [0,0,0,self.set_drive.drive.speed,0]
         speed_gain = self.aeb.update(self.ranges, self.odom)
         self.cmd_twist = self.set_drive
         self.cmd_twist.drive.speed *= speed_gain
