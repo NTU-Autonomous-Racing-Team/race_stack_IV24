@@ -20,9 +20,9 @@ class GapFinderAlgorithm:
         self.scan_angle_increment = scan_angle_increment  # [rad]
         self.view_angle = 1.4  # [rad]
 
-        self.speed_pid = PID(Kp=-1., Ki=0.0, Kd=0.05)
+        self.speed_pid = PID(Kp=-1., Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
-        self.steering_pid = PID(Kp=-1, Ki=0.0, Kd=0.05)
+        self.steering_pid = PID(Kp=-1, Ki=0.0, Kd=0.005)
         self.steering_pid.set_point = 0.0
 
     def limit_field_of_view(self):
@@ -64,7 +64,6 @@ class GapFinderAlgorithm:
         # linear velocity is proportional to the max range
         init_linX = self.front_range
         linX = self.speed_pid.update(init_linX, self.dt)
-        print(linX)
         self.twist = [linX, angZ]
 
     def update(self, ranges = [], dt = 0.02):
@@ -88,7 +87,7 @@ class GapFinderNode(Node):
         self.odom_subscriber = self.create_subscription(Odometry, "/ego_racecar/odom", self.odom_callback, 10)
         self.odom_subscriber
         # Drive Publisher
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 10)
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/gap_finder/drive", 10)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm()
@@ -104,7 +103,6 @@ class GapFinderNode(Node):
         return self.get_clock().now().to_msg().sec + self.get_clock().now().to_msg().nanosec * 1e-9
 
     def scan_callback(self, scan_msg):
-        # change in such a way that the first index is the most left range
         self.ready = True
         self.angle_min = scan_msg.angle_min
         self.angle_max = scan_msg.angle_max
