@@ -7,20 +7,20 @@ from rclpy.node import Node
 from std_msgs.msg import Int16
 
 class NetworkChecker():
-	def __init__(self):
-		self.cmd = "arp -an"
-		self.status = 1
-		self.regex = '^[\w\?\.]+|(?<=\s)\([\d\.]+\)|(?<=at\s)+|(?<=on\s)[\w\:]+'
-		self.device = 'wlan0'
+    def __init__(self):
+        self.cmd = "arp -an"
+        self.status = 1
+        self.regex = '^[\w\?\.]+|(?<=\s)\([\d\.]+\)|(?<=at\s)[\w\:]+|(?<=at\s)+|(?<=on\s)[\w\:]+'
+        self.device = 'wlan0'
 
-	def check_connection(self):
-		results = [re.findall(self.regex, i) for i in os.popen(self.cmd)]
-		results = [dict(zip(['IP', 'LAN_IP', 'MAC_ADDRESS', 'DEVICE'], i)) for i in results]
-		status = 0
-		for connection in results:
-			if connection['DEVICE'] == self.device and connection['MAC_ADDRESS'] == '':
-				status = 1
-		return status
+    def check_connection(self):
+        results = [re.findall(self.regex, i) for i in os.popen(self.cmd)]
+        results = [dict(zip(['IP', 'LAN_IP', 'MAC_ADDRESS', 'DEVICE'], i)) for i in results]
+        status = 0
+        for connection in results:
+            if connection['DEVICE'] == self.device and connection['MAC_ADDRESS'] != '':
+                status = 1
+        return status
 	
 class DeadManSwitch(Node):
 	def __init__(self):
