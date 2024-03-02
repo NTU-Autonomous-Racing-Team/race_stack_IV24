@@ -1,37 +1,31 @@
 #!/usr/bin/env python3
 
-import os
+import os, re
 import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import Int16
 
 class NetworkChecker():
-	def __init__(self), client_mac_address_list=None):
-		self.client_mac_address_list = client_mac_address_list
+	def __init__(self):
 		self.cmd = "arp -an"
 		self.status = 1
-        self.regex = '^[\w\?\.]+|(?<=\s)\([\d\.]+\)|(?<=at\s)+|(?<=on\s)[\w\:]+'
+		self.regex = '^[\w\?\.]+|(?<=\s)\([\d\.]+\)|(?<=at\s)+|(?<=on\s)[\w\:]+'
+		self.device = 'wlan0'
 
 	def check_connection(self):
-		results = os.popen(self.cmd)
-
-		for mac_address in self.client_mac_address_list:
-			if mac_address in
-				
-        results = [re.findall(self.regex, i) for i in os.popen(self.cmd)]
-        results = [dict(zip(['IP', 'LAN_IP', 'MAC_ADDRESS', 'TYPE'], i)) for i in results]
-        for connection in results:
-            if connection['TYPE'] == 'wlan0':
-                if connection['MAC_ADDRESS'] == '':
-                    self.status = 0
-                    
-		
-
+		results = [re.findall(self.regex, i) for i in os.popen(self.cmd)]
+		results = [dict(zip(['IP', 'LAN_IP', 'MAC_ADDRESS', 'DEVICE'], i)) for i in results]
+		status = 0
+		for connection in results:
+			if connection['DEVICE'] == self.device and connection['MAC_ADDRESS'] == '':
+				status = 1
+		return status
+	
 class DeadManSwitch(Node):
 	def __init__(self):
-		self.networkChecker = NetworkChecker(
-		super().__init__('dead_man_swtich')
+		self.networkChecker = NetworkChecker()
+		super().__init__('dead_man_switch')
 		self.publisher_ = self.create_publisher(Int16, 'ssh_status', 10)
 		timer_period = 0.1 # [s]
 		self.timer = self.create_timer(timer_period, self.timer_callback)
@@ -50,7 +44,7 @@ def main(args=None):
 	rclpy.spin(deadManSwitch)
 
 	deadManSwitch.destroy_node()
-    rclpy.shutdown()
+	rclpy.shutdown()
 
 if __name__ == '__main__':
-    main()
+	main()
