@@ -11,6 +11,7 @@ class NetworkChecker():
         self.cmd = "arp -an"
         self.status = 1
         self.regex = '^[\w\?\.]+|(?<=\s)\([\d\.]+\)|(?<=at\s)[\w\:]+|(?<=at\s)+|(?<=on\s)[\w\:]+'
+        # needs to be configured to the correct device
         self.device = 'wlan0'
 
     def check_connection(self):
