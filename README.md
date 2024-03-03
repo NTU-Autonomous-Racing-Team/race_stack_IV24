@@ -26,15 +26,7 @@ To change map:
 
 ### Control Car
 To control the car by keyboard, run ```source /opt/ros/foxy/setup.bash
-ros2 run demo_nodes_cpp talker```
-
-
-```
-source /opt/ros/foxy/setup.zsh
-
-
-
-```
+ros2 run demo_nodes_cpp talker```.
 
 ## Documentation
 
