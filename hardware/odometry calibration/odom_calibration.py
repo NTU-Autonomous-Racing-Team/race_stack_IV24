@@ -8,14 +8,14 @@ class TestSpeed2ErpmGain(Node):
     def __init__(self):
         super().__init__('odom_calibration')
         self.publish_period = 0.05  # [s]
-        self.max_time = 5 # [s]
-        self.max_linX = 1 # [m/s]
-        self.acceleration = 0.5 # [m/s^2]
+        self.max_time = 4 # [s]
+        self.max_linX = 0.5 # [m/s]
+        self.acceleration = 1.5 # [m/s^2]
         self.displacement = 0 # [m]
         self.last_linX = 0 # [m/s]
         self.last_time = 0 # [s]
 
-        self.publisher_ = self.create_publisher(AckermannDriveStamped, '/drive', 10)
+        self.publisher_ = self.create_publisher(AckermannDriveStamped, '/aeb/drive', 10)
         self.timer = self.create_timer(self.publish_period, self.timer_callback)
         self.start_time = self.get_clock().now().nanoseconds
 
@@ -40,7 +40,8 @@ class TestSpeed2ErpmGain(Node):
       else:
         linX = 0
       twist = AckermannDriveStamped()
-      twist.drive.speed = linX
+      twist.drive.speed = -1 * linX
+      print(f"speed = {linX}")
       self.displacement += linX * (current_time - self.last_time)
       self.last_time = current_time
       self.last_linX = linX

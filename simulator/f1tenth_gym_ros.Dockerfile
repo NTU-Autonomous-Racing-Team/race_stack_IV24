@@ -72,7 +72,10 @@ ros2 launch f1tenth_gym_ros gym_bridge_launch.py" \
 >> run_sim.sh
 
 #change map
-RUN sed -i 's/levine/Spielberg_map/g' /sim_ws/src/f1tenth_gym_ros/config/sim.yaml
+RUN cd /sim_ws && \
+sed -i 's/levine/Spielberg_map/g' /sim_ws/src/f1tenth_gym_ros/config/sim.yaml && \
+colcon build
+
 
 ENTRYPOINT ["/bin/bash"]
 

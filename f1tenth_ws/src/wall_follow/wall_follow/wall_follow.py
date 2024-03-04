@@ -26,13 +26,13 @@ class WallFollow(Node):
         
         self.sub_odom = self.create_subscription(
             Odometry,
-            'ego_racecar/odom',
+            '/odom',
             self.odom_callback,
             10)
 
         self.pub_drive = self.create_publisher(
             AckermannDriveStamped,
-            'drive',
+            'nav/drive',
             10)
 
         self.sub_scan
@@ -127,7 +127,7 @@ class WallFollow(Node):
             # if self.front_dist < 2.5:
             #     self.drive_msg.drive.speed = 2.0
             # else:
-            self.drive_msg.drive.speed = (1 / 1.2)**(steering_angle_degrees - 15)
+            self.drive_msg.drive.speed = -1 * float(min(0.5 * (1 / 1.2)**(steering_angle_degrees - 15), 10))
 
             self.pub_drive.publish(self.drive_msg)
             self.get_logger().info(f"steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f} | {actual_distance:.2f} | {lookahead_distance:.2f}")
