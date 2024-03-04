@@ -61,15 +61,15 @@ class AutomaticEmergencyBrakingNode(Node):
         self.scan_subscriber
         self.scan_init = False
         # Odometry
-        self.odom_subscriber = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, '/ego_racecar/odom', self.odom_callback, 10)
         self.odom_subscriber
         # WallFollower Subscriber
         self.drive_subscriber = self.create_subscription(AckermannDriveStamped, '/gap_finder/drive', self.drive_callback, 10)
         self.drive_subscriber
         self.set_drive = AckermannDriveStamped()
         # Drive Publisher
-        self.pub_rate = 50
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, '/aeb/drive', 10)
+        self.pub_rate = 20
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, '/drive', 10)
         self.timer = self.create_timer(1/self.pub_rate, self.timer_callback)
         # AEB Algorithm
         self.aeb = AutomaticEmergencyBraking_Algorithm()
@@ -99,15 +99,12 @@ class AutomaticEmergencyBrakingNode(Node):
 
     def run(self):
         speed_gain = self.aeb.update(self.ranges, self.odom)
-        self.cmd_twist = AckermannDriveStamped()
-        if speed_gain == 0:
-            
-            self.drive_publisher.publish(self.cmd_twist)
+        self.cmd_twist = self.set_drive
+        self.cmd_twist.drive.speed *= speed_gain
+        self.drive_publisher.publish(self.cmd_twist)
 
     def timer_callback(self):
-        if self.ready:
-
-            self.run()
+        pass
 
 def main(args = None):
     rclpy.init(args=args)
