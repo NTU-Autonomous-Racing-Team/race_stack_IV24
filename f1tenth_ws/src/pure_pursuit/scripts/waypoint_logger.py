@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
 
@@ -18,20 +19,30 @@ class WaypointLogger(Node):
         super().__init__('waypoint_logger')
         self.odom_sub = self.create_subscription(
             Odometry,
-            'ego_racecar/odom',
+            '/odom',
             self.odom_callback,
             10)
+        
+        timer_period = 0.1
+        self.ready = False
+        self.timer = self.create_timer(timer_period, self.timer_callback)
         
         self.odom_arr = np.array([[0.0, 0.0, 0.0, 0.0]])
         self.odom_sub
         
+    def timer_callback(self):    
+        self.ready = True
+
     def odom_callback(self, odom_data):
         x = odom_data.pose.pose.position.x
         y = odom_data.pose.pose.position.y
         vel_x = odom_data.twist.twist.linear.x
         vel_y = odom_data.twist.twist.linear.y
-        self.curr_odom_arr = np.array([[x, y, vel_x, vel_y]])
-        self.odom_arr = np.vstack((self.odom_arr, self.curr_odom_arr))
+        
+        if self.ready:
+            self.curr_odom_arr = np.array([[x, y, vel_x, vel_y]])
+            self.odom_arr = np.vstack((self.odom_arr, self.curr_odom_arr))
+            self.ready = False
 
 def main(args=None):
     rclpy.init(args=args)
