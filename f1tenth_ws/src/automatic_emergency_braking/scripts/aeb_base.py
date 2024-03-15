@@ -14,23 +14,23 @@ import numpy as np
 # source 
 
 class TimeToCollision_Algorithm():
-    def __init__(self, time2collision_threshold_0 = 0.1, view_angle = 0.7):
+    def __init__(self, view_angle = 1):
         self.ttc = 0 # [s]
         self.angle_increment = None # [radians]
         self.view_angle = view_angle # [radians]
 
     def calculate_time2collision(self):
         view = np.array(self.limited_ranges)
-        angles = np.linspace(-self.view_angle/2, self.view_angle/2, self.view_angle_count)
+        angles = np.linspace(start=-self.view_angle/2, stop=self.view_angle/2, num = self.view_angle_count)
         r_dot = self.linX * np.cos(angles)
-        ttc = np.select([view / r_dot] > 0, [view / r_dot], default = float('inf'))
+        ttc = np.select([view / r_dot > 0], [view / r_dot], default = float('inf'))
         self.ttc = np.min(ttc)
 
     def limit_field_of_view(self):
-        self.view_angle_count = self.view_angle//self.angle_increment
-        self.lower_bound = int((len(self.ranges)- self.view_angle_count)/2)
-        self.upper_bound = int(self.lower_bound + self.view_angle_count)
-        self.limited_ranges = self.ranges[self.lower_bound:self.upper_bound]
+        self.view_angle_count = int(self.view_angle//self.angle_increment)
+        self.lower_bound_index = int((len(self.ranges) - self.view_angle_count)/2)
+        self.upper_bound_index = int(self.lower_bound_index + self.view_angle_count)
+        self.limited_ranges = self.ranges[self.lower_bound_index:self.upper_bound_index]
 
     def update(self, ranges, odom):
         self.ranges = ranges
@@ -47,14 +47,15 @@ class AutomaticEmergencyBrakingNode(Node):
         self.scan_subscriber
         self.scan_init = False
         # Odometry
-        self.odom_subscriber = self.create_subscription(Odometry, '/ego_racecar/odom', self.odom_callback, 10)
+        # self.odom_subscriber = self.create_subscription(Odometry, '/ego_racecar/odom', self.odom_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
         self.odom_subscriber
         # AEB Algorithm
         self.aeb = TimeToCollision_Algorithm()
         self.cmd_drive = AckermannDriveStamped()
         # TTC Publisher
-        self.ttc_publisher = self.create_publisher(Float32, 'ttc', 10)
-        self.timer = self.create_timer(1/20, self.timer_callback)
+        self.ttc_publisher = self.create_publisher(Float32, 'ttc', 1)
+        self.timer = self.create_timer(1/10, self.timer_callback)
 
         self.ready = False
 
