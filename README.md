@@ -1,6 +1,6 @@
 # F1Tenth ICRA 2024
 
-![CleanShot 2024-02-22 at 16 05 55@2x](https://github.com/NTU-Autonomous-Racing-Team/f1tenth_icra2024/assets/65676392/a6afb82f-6c65-4a38-b296-90daf8975e67)
+![CleanShot 2024-03-14 at 16 42 18@2x](https://github.com/NTU-Autonomous-Racing-Team/f1tenth_icra2024/assets/65676392/44360186-bb67-4fd0-8ce3-2cb304b6a80f)
 
 ## Requirements
 
@@ -26,15 +26,7 @@ To change map:
 
 ### Control Car
 To control the car by keyboard, run ```source /opt/ros/foxy/setup.bash
-ros2 run demo_nodes_cpp talker```
-
-
-```
-source /opt/ros/foxy/setup.zsh
-
-
-
-```
+ros2 run demo_nodes_cpp talker```.
 
 ## Documentation
 
