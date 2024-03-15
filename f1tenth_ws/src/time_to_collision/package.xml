@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>automatic_emergency_braking</name>
+  <name>time_to_collision</name>
   <version>0.0.0</version>
-  <description>Automatic Emergency Braking Node using time to collision</description>
+  <description>Time to collision</description>
   <maintainer email="lukettl15@gmail.com">luthov15</maintainer>
   <maintainer email="benjamintehjh01@gmail.com">bentjh01</maintainer>
   <license>GNU General Public License</license>

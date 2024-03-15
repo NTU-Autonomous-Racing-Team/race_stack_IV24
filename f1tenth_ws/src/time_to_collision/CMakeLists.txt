@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(automatic_emergency_braking)
+project(time_to_collision)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -34,7 +34,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  scripts/aeb_base.py
+  scripts/ttc_base.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
