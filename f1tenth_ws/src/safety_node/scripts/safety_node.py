@@ -13,6 +13,9 @@ class SafetyNode(Node):
         self.drive_subscription = self.create_subscription(AckermannDriveStamped, 'nav/drive', self.drive_callback, 10)
         self.drive_subscription 
 
+        self.teleop_subscription = self.create_subscription(AckermannDriveStamped, 'teleop', self.drive_callback, 10)
+        self.teleop_subscription 
+
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, 'drive', 10)
         
         # Managed Sources
@@ -38,7 +41,8 @@ class SafetyNode(Node):
 
     def joy_callback(self, msg):
         buttons_list = msg.buttons
-        dead_man_switch = buttons_list[4] # DualShock4 L1
+        # dead_man_switch = buttons_list[4] # DualShock4 L1
+        dead_man_switch = buttons_list[5] # DualShock4 R1
         if dead_man_switch:
             self.joy_gain = 1.0
         else:
