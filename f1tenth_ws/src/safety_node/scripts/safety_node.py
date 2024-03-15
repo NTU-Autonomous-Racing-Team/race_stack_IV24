@@ -10,7 +10,7 @@ class SafetyNode(Node):
     def __init__(self):
         super().__init__('safety_node')
         # Drive Pass Through 
-        self.drive_subscription = self.create_subscription(AckermannDriveStamped, 'safety/drive', self.drive_callback, 10)
+        self.drive_subscription = self.create_subscription(AckermannDriveStamped, 'nav/drive', self.drive_callback, 10)
         self.drive_subscription 
 
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, 'drive', 10)
