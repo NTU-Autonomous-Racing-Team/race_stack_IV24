@@ -35,7 +35,7 @@ class SafetyNode(Node):
         self.drive_publisher.publish(self.drive_msg)
 
     def ttc_callback(self, msg):
-        if msg.data < 5:
+        if msg.data < 0.5:
             self.get_logger().info('TTC = "%s"' % msg)
             self.ttc_gain = 0.0
 
