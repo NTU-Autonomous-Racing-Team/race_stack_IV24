@@ -7,6 +7,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from ackermann_msgs.msg import AckermannDriveStamped
 from nav_msgs.msg import Odometry
+from std_msgs.msg import Float32
 
 import numpy as np
 
