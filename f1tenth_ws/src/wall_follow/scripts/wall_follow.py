@@ -1,6 +1,4 @@
-# Ideas
-# 1. Take average points to calc distance from the wall
-# 2. Check if obstacle/wall is a below a certain distance in front of the car
+#!/usr/bin/env python3
 
 import rclpy
 
