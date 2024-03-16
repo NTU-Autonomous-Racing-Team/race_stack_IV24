@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>automatic_emergency_braking</name>
+  <name>safety_node</name>
   <version>0.0.0</version>
-  <description>Automatic Emergency Braking Node using time to collision</description>
-  <maintainer email="lukettl15@gmail.com">luthov15</maintainer>
+  <description>Safety Node which set the speed gain depending on the time to collision and the deadman switch</description>
   <maintainer email="benjamintehjh01@gmail.com">bentjh01</maintainer>
-  <license>GNU General Public License</license>
+  <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>ament_cmake_python</buildtool_depend>
@@ -14,11 +13,11 @@
   <depend>rclcpp</depend>
   <depend>rclpy</depend>
 
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
   </export>
-  
 </package>
