@@ -3,4 +3,7 @@
 build/
 install/
 log/
-raceline/env
+raceline/env/
+raceline/bin/
+raceline/lib/
+raceline/pyvenv.cfg

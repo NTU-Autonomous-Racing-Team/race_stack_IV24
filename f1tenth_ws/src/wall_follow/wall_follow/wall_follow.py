@@ -20,13 +20,13 @@ class WallFollow(Node):
         # Subscribing to relevant topics
         self.sub_scan = self.create_subscription(
             LaserScan,
-            'scan',
+            'wall_scan',
             self.scan_callback,
             10)
         
         self.sub_odom = self.create_subscription(
             Odometry,
-            '/odom',
+            '/wall_odom',
             self.odom_callback,
             10)
 
