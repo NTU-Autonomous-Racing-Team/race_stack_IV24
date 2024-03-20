@@ -29,13 +29,16 @@ class Demux(Node):
 
 	def output_select_callback(self, output_select_data):
 
-		if output_select_data.data == "wall":
-			self.pub_wall_scan.publish(self.scan_data)
-			self.pub_wall_odom.publish(self.odom_data)
+        try:
+            if output_select_data.data == "wall":
+                self.pub_wall_scan.publish(self.scan_data)
+                self.pub_wall_odom.publish(self.odom_data)
 
-		elif output_select_data.data == "gap":
-			self.pub_gap_scan.publish(self.scan_data)
-			self.pub_gap_odom.publish(self.odom_data)
+            elif output_select_data.data == "gap":
+                self.pub_gap_scan.publish(self.scan_data)
+                self.pub_gap_odom.publish(self.odom_data)
+        except AttributeError:
+            pass
 
 def main(args=None):
 	rclpy.init(args=args)
