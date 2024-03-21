@@ -24,13 +24,13 @@ class WallFollow(Node):
         
         self.sub_odom = self.create_subscription(
             Odometry,
-            '/odom',
+            'ego_racecar/odom',
             self.odom_callback,
             10)
 
         self.pub_drive = self.create_publisher(
             AckermannDriveStamped,
-            'nav/drive',
+            'drive',
             10)
 
         self.sub_scan
@@ -49,8 +49,6 @@ class WallFollow(Node):
 
         self.longitudinal_vel = 0
         self.front_dist = 0
-
-        self.log = {"steering_angle": [], "speed": [], "actual_distance": []}
 
     def getRange(self, scan_data, angle):
         ranges = scan_data.ranges
@@ -91,7 +89,6 @@ class WallFollow(Node):
 
         error = desired_distance - actual_distance
         lookahead_distance = self.longitudinal_vel * 0.45 # Metres
-        # lookahead_distance = self.longitudinal_vel * 0.15 # Metres
 
         error_1 = error + lookahead_distance * math.sin(alpha)
         
@@ -103,35 +100,32 @@ class WallFollow(Node):
         dt = secs - self.prev_secs + (nsecs - self.prev_nsecs) * 1e-9
         
         
-        if dt != 0:
+        try:
             self.integral += error_1 * dt
-            steering_angle = ( (self.Kp * error_1) + (self.Ki * self.integral) + (self.Kd * (error_1 - self.prev_error_1) / dt) )
-            self.drive_msg.drive.steering_angle = steering_angle
+
+            steering_angle = ( (self.Kp * error_1) + 
+                               (self.Ki * self.integral) + 
+                               (self.Kd * (error_1 - self.prev_error_1) / dt) )
+
+            if steering_angle < -0.4:
+                self.drive_msg.drive.steering_angle = -0.4
+            elif steering_angle > 0.4:
+                self.drive_msg.drive.steering_angle = -0.4
+            else:
+                self.drive_msg.drive.steering_angle = steering_angle
+
             steering_angle_degrees = abs(steering_angle * (180 / math.pi))
 
             self.prev_error_1 = error_1
             self.prev_secs = secs
             self.prev_nsecs = nsecs
-            
 
-            # speed = 1 / exp(steering_angle_degrees)
-            #self.drive_msg.drive.speed = ((steering_angle_degrees / 5.2) - 3.8)**2
-
-            # steep drop
-            # self.drive_msg.drive.speed = (1 / 2)**(steering_angle_degrees - 3.9)
-
-            # less steep but still too much
-            # self.drive_msg.drive.speed = (1 / 1.5)**(steering_angle_degrees - 6.5)
-            # if self.front_dist < 2.5:
-            #     self.drive_msg.drive.speed = 2.0
-            # else:
-            self.drive_msg.drive.speed = -1 * float(min(0.5 * (1 / 1.2)**(steering_angle_degrees - 15), 10))
+            self.drive_msg.drive.speed = (0.8 * (1 / 1.2)**(steering_angle_degrees - 15))
 
             self.pub_drive.publish(self.drive_msg)
-            self.get_logger().info(f"steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f} | {actual_distance:.2f} | {lookahead_distance:.2f}")
-            # self.log["steering_angle"].append(steering_angle_degrees)
-            # self.log["speed"].append(self.longitudinal_vel)
-            # self.log["actual_distance"].append(actual_distance)
+            self.get_logger().info(f"steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f}")
+        except ZeroDivisionError:
+            pass
 
 
 
