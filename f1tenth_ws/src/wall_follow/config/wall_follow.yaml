@@ -1,0 +1,3 @@
+wall_follow:
+  ros__parameters:
+    lookahead_distance_gain: 0.60

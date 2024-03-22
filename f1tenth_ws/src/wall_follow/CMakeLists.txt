@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(lab1_pkg)
+project(wall_follow)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -50,11 +50,10 @@ install(PROGRAMS
 
 # Install launch files
 install(DIRECTORY
-  launch
   DESTINATION share/${PROJECT_NAME}
   )
 
-
+# Params files
 install(DIRECTORY
   config
   DESTINATION share/${PROJECT_NAME}

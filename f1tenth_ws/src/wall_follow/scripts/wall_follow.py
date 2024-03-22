@@ -14,6 +14,12 @@ class WallFollow(Node):
 
     def __init__(self):
         super().__init__('wall_follow')
+        self.declare_parameters(
+            namespace='',
+            parameters=[
+                ('lookahead_distance_gain', None)
+            ]
+        )
 
         # Subscribing to relevant topics
         self.sub_scan = self.create_subscription(
@@ -37,6 +43,8 @@ class WallFollow(Node):
         self.sub_odom
 
         self.drive_msg = AckermannDriveStamped()
+
+        self.lookahead_distance_gain = self.get_parameter('lookahead_distance_gain').value
         
         self.Kp = 0.25
         self.Ki = 0.006
@@ -88,7 +96,7 @@ class WallFollow(Node):
         desired_distance = 1.2 # Metres
 
         error = desired_distance - actual_distance
-        lookahead_distance = self.longitudinal_vel * 0.45 # Metres
+        lookahead_distance = self.longitudinal_vel * self.lookahead_distance_gain # Metres
 
         error_1 = error + lookahead_distance * math.sin(alpha)
         
@@ -123,7 +131,7 @@ class WallFollow(Node):
             self.drive_msg.drive.speed = (0.8 * (1 / 1.2)**(steering_angle_degrees - 15))
 
             self.pub_drive.publish(self.drive_msg)
-            self.get_logger().info(f"steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f}")
+            self.get_logger().info(f"{self.lookahead_distance_gain} | steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f}")
         except ZeroDivisionError:
             pass
 
