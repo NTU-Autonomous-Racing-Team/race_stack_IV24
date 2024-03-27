@@ -66,9 +66,9 @@ class AEB_Ackerman():
 
         # Check Collision
         if abs(distance - instantaneous_rotation_radius) < self.SAFETY_BUBBLE_DIAMETER/2:
-            return True
+            return 1
         else:
-            return False
+            return 0
 
 
 class AutomaticEmergencyBrakingNode(Node):
