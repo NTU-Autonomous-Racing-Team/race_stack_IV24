@@ -5,9 +5,13 @@ create_container (){
         docker run --rm -it\
         --name ${container_name} \
         -h ${container_name} \
-	--env DISPLAY=$DISPLAY\
+	--env="DISPLAY"\
+	--env="QT_X11_NO_MITSHM=1" \
+    	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+	--volume="${XAUTHORITY}:/root/.Xauthority" \
         --privileged \
         --net=host \
+        -v $(pwd)/../f1tenth_ws:/root/f1tenth_ws \
         f1tenth:gym_ros_foxy \
         run_sim.sh
 }
@@ -29,7 +33,7 @@ then
 	docker exec -it ${container_name} bash 
 else
 	rm_container 
-	xhost + 
+	xhost + local:host
 	create_container 
-	xhost -
+	xhost - local:host
 fi

@@ -1,12 +1,8 @@
 ackermann_mux:
   ros__parameters:
     topics:
-      auto_e_brake:
-        topic   : aeb/drive
-        timeout : 0.5
-        priority: 110
       navigation:
-        topic   : nav/drive
+        topic   : drive
         timeout : 0.2
         priority: 10
       joystick:
