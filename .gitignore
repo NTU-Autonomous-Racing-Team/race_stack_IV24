@@ -3,3 +3,5 @@
 build/
 install/
 log/
+.venv
+jupyter_nb.ipynb
