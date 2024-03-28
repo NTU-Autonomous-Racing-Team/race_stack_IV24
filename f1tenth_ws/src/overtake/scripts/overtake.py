@@ -17,47 +17,56 @@ class Overtake(Node):
             LaserScan, "scan", self.scan_callback, 10
         )
 
-        self.distance_threshold = 0.2
+        self.distance_threshold = 3.0
 
     def scan_callback(self, scan_data):
         ranges = scan_data.ranges
         angle_increment = scan_data.angle_increment
-        angle_min = scan_data.angle_min
-        angle_max = scan_data.angle_max
 
         found_start = False
         found_end = False
         one_iteration = False
         delta = float("inf")
         line_length = 0.0
-        start_of_car = None
-        end_of_car = None
 
         # Loop through the ranges and find when there is a big jump in the distance
-        for i in range(len(ranges)):
+        for i in range(1, len(ranges)):
 
-            delta = ranges[i] - ranges[i - 1]
+            delta = abs(ranges[i] - ranges[i - 1])
 
-            if delta < self.distance_threshold and found_start != True:
-                start_of_car = i
+            if delta > self.distance_threshold and found_start != True:
                 found_start = True
-                one_iteration = True
-            if delta > self.distance_threshold and found_start == True:
-                end_of_car = i - 1
-                found_end = True
-            # print(start_of_car, end_of_car)
-            print(found_end)
-            if found_start == True and found_end == False and one_iteration == True:
-                a = ranges[i]
-                b = ranges[i - 1]
-                line_length += math.sqrt(
-                    a**2 + b**2 - 2 * a * b * math.cos(angle_increment)
-                )
-                if line_length < 0.3:
-                    car_detected = True
+                # one_iteration = True
+                start_of_car = i
+                print(f"Start: {i} |{ranges[i-1]} | {ranges[i]} |  {delta}")
 
-            if car_detected == True:
+            elif (
+                delta > self.distance_threshold
+                and found_start == True
+                and found_end != True
+            ):
+                found_end = True
+                end_of_car = i - 1
+                print(f"End: {i} |{ranges[i-1]} | {ranges[i]} |  {delta}")
                 break
+
+        if found_start and found_end:
+            for i in range(start_of_car, end_of_car):
+                try:
+                    a = ranges[i + 1]
+                    b = ranges[i]
+
+                    # print(a, b)
+                    print(line_length, found_end)
+                    if line_length < 1.0 and i == (end_of_car - 1):
+                        print("Car detected")
+                        break
+
+                    line_length += math.sqrt(
+                        a**2 + b**2 - 2 * a * b * math.cos(angle_increment)
+                    )
+                except IndexError:
+                    pass
 
 
 def main(args=None):
