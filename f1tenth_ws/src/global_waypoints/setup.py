@@ -1,26 +1,20 @@
-from setuptools import setup
-
-package_name = 'global_waypoints'
+from setuptools import setup, find_packages
 
 setup(
-    name=package_name,
-    version='0.0.0',
-    packages=[package_name],
-    data_files=[
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
-        ('share/' + package_name, ['package.xml']),
+    name="Global Waypoints",
+    version="0.1.0",
+    author="Jingxiang Mo",
+    author_email="jingxiangmo@gmail.com",
+    description="Generating and optimizing track",
+    packages=find_packages(),
+    python_requires='>=3.6',
+    install_requires=[
+        "numpy",
+        "pandas",
+        "Pillow",
+        "matplotlib",
+        "scipy",
+        "scikit-image",
+        "PyYAML",
     ],
-    install_requires=['setuptools'],
-    zip_safe=True,
-    maintainer='jingxiangmo',
-    maintainer_email='jingxiangmo@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
-    tests_require=['pytest'],
-    entry_points={
-        'console_scripts': [
-            'global_waypoints_node = global_waypoints.global_waypoints_node:main'
-        ],
-    },
 )
