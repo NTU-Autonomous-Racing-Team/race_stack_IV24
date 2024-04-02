@@ -1,0 +1,9 @@
+numpy
+matplotlib
+trajectory_planning_helpers==0.76
+casadi
+scipy
+scikit-learn
+pyyaml~=6.0.1
+pandas
+scikit-image
