@@ -8,6 +8,8 @@ import sys
 import numpy as np
 import pandas as pd
 from typing import Tuple
+import subprocess
+
 
 # adapted from https://github.com/CL2-UWaterloo/Head-to-Head-Autonomous-Racing/blob/main/gym/f110_gym/envs/laser_models.py
 def get_centerline(map_name: str, track_width_margin: float) -> str:
@@ -165,5 +167,10 @@ def generate_optimzed_trajectory():
 
 
 if __name__ == "__main__":
-    get_centerline("Budapest_map", track_width_margin=0.0)  # TODO: MAP NAME PARAM
-    test_centerline("Budapest_map")  # sanity_check
+    MAP_NAME = "Budapest_map"
+
+    get_centerline(MAP_NAME, track_width_margin=0.0)
+    test_centerline(MAP_NAME)
+    subprocess.run(['python3', 'main_globaltraj.py'])
+
+    print("WAYPOINT GENERATION COMPLETE")
