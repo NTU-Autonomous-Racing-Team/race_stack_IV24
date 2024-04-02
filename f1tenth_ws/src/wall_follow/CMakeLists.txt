@@ -55,6 +55,7 @@ install(DIRECTORY
 
 # Params files
 install(DIRECTORY
+  config
   DESTINATION share/${PROJECT_NAME}
   )
 
