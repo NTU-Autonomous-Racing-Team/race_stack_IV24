@@ -23,10 +23,13 @@ class GapFinderAlgorithm:
         - speed_pid: a PID controller for the linear velocity
         - steering_pid: a PID controller for the angular velocity
     """
-    def __init__(self, safety_bubble_diameter = 0.6, view_angle = 1.4):
+    def __init__(self, safety_bubble_diameter = 0.6, view_angle = 1.4, coeffiecient_of_friction = 0.8):
         # Tunable Parameters
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.view_angle = view_angle  # [rad]
+        self.coeffiecient_of_friction = coeffiecient_of_friction
+        self.wheel_base = 0.324  # [m]
+        self.max_steering = 0.4  # [rad]
         # Controller Parameters
         self.speed_pid = PID(Kp=-1., Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
@@ -68,15 +71,15 @@ class GapFinderAlgorithm:
         max_gap_index = np.argmax(ranges)
 
         ### FIND TWIST ###
-        front_range = ranges[int(ranges.shape[0] // 2)]
         # find the twist required to go to the max range in the max gap
-        init_angZ = angle_increment * (max_gap_index - ranges.shape[0] // 2)
-        angZ = self.steering_pid.update(init_angZ, dt)
-        # linear velocity is proportional to the max range
-        init_linX = front_range
-        linX = self.speed_pid.update(init_linX, dt)
-        self.twist = [linX, angZ]
-        return self.twist
+        init_steering = angle_increment * (max_gap_index - ranges.shape[0] // 2)
+        steering = self.steering_pid.update(init_steering, dt)
+        steering = np.sign(steering) * min(np.abs(steering, self.max_steering))
+        # linear velocity uses the maximum linear speed that can be achieved with the current steering angle given the coefficient of friction
+        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(np.tan(steering)))
+        speed = self.speed_pid.update(init_speed, dt)
+        ackermann = [speed, steering]
+        return ackermann
 
 
 class GapFinderNode(Node):
@@ -92,7 +95,7 @@ class GapFinderNode(Node):
         self.max_speed = 10.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Steering limits
-        self.max_steering = 0.35 # [rad]
+        self.max_steering = 0.4 # [rad]
         # Scan Subscriber
         self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 1)
         self.scan_subscriber  # prevent unused variable warning
@@ -143,17 +146,17 @@ class GapFinderNode(Node):
             twist = self.gapFinderAlgorithm.update(self.ranges, self.scan_angle_increment, dt)
 
             # steering limits
-            twist[1] = np.sign(self.twist[1]) * min(np.abs(self.twist[1]), self.max_steering)
+            twist[1] = np.sign(twist[1]) * min(np.abs(twist[1]), self.max_steering)
             # speed limits
-            twist[0] = max(self.twist[0], self.min_speed)
-            twist[0] = min(self.twist[0], self.max_speed)
+            twist[0] = max(twist[0], self.min_speed)
+            twist[0] = min(twist[0], self.max_speed)
 
             self.publish_drive_msg(twist)
             self.last_time = self.get_time()
 
-        if self.get_time() - self.last_scan_time > self.timeout:
+        if ((self.get_time() - self.last_scan_time) > self.timeout):
             self.scan_ready = False
-        if self.get_time() - self.last_odom_time > self.timeout:
+        if ((self.get_time() - self.last_odom_time) > self.timeout):
             self.odom_ready = False
 
 def main(args=None):
