@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
+import math
 import rclpy
-
 from rclpy.node import Node
-
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry
 from ackermann_msgs.msg import AckermannDriveStamped
 
-import math
 
 class WallFollow(Node):
 
@@ -133,16 +131,10 @@ class WallFollow(Node):
             # self.log["speed"].append(self.longitudinal_vel)
             # self.log["actual_distance"].append(actual_distance)
 
-
-
 def main(args=None):
-
     rclpy.init(args=args)
-
     wall_follow = WallFollow()
-
     rclpy.spin(wall_follow)
-
     wall_follow.destroy_node()
     rclpy.shutdown()
 
@@ -150,5 +142,4 @@ def main(args=None):
 
 
 if __name__ == '__main__':
-
     main()
