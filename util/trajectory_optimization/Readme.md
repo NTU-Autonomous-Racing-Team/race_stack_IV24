@@ -5,7 +5,7 @@ cd f1tenth-trajectory-optimization
 conda create --name opt_raceline python=3.8
 conda activate opt_raceline
 pip install -r requirements.txt
-python3 main_globaltraj.py
+python3 main.py
 ``` 
 
 # Introduction

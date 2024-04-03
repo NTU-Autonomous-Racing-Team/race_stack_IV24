@@ -157,20 +157,14 @@ def test_centerline(map_name: str):
     plt.show()
 
 
-# adapted from https://github.com/TUMFTM/global_racetrajectory_optimization/blob/master/main_globaltraj.py
-def generate_optimzed_trajectory():
-    """
-    generate waypoints for publishing to pure pursuit.
-    """
-
-    pass
-
-
 if __name__ == "__main__":
     MAP_NAME = "Budapest_map"
 
-    get_centerline(MAP_NAME, track_width_margin=0.0)
-    test_centerline(MAP_NAME)
-    subprocess.run(['python3', 'main_globaltraj.py'])
+    try:
+        get_centerline(MAP_NAME, track_width_margin=0.0)
+        test_centerline(MAP_NAME)
+        subprocess.run(['python3', 'main_globaltraj.py', '--name', MAP_NAME])
 
-    print("WAYPOINT GENERATION COMPLETE")
+        print("WAYPOINT GENERATION COMPLETE")
+    except:
+        print("An error has occured.")
