@@ -5,4 +5,4 @@ build/
 install/
 log/
 .venv
-jupyter_nb.ipynbjupyter_nb.ipynb
+jupyter_nb.ipynb

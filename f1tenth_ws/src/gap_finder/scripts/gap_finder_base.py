@@ -97,19 +97,19 @@ class GapFinderNode(Node):
         # Steering limits
         self.max_steering = 0.4 # [rad]
         # Scan Subscriber
-        self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 1)
+        self.scan_subscriber = self.create_subscription(LaserScan, "scan", self.scan_callback, 1)
         self.scan_subscriber  # prevent unused variable warning
         self.scan_ready = False
         self.ranges = []
         self.scan_angle_increment = 0.0
         self.last_scan_time = self.get_time()
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "/odom", self.odom_callback, 1)
+        self.odom_subscriber = self.create_subscription(Odometry, "odom", self.odom_callback, 1)
         self.odom_subscriber
         self.odom_ready = False
         self.last_odom_time = self.get_time()
         # Drive Publisher
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/nav/drive", 1)
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "nav/drive", 1)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm()
