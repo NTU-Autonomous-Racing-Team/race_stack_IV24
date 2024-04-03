@@ -7,6 +7,7 @@ import os.path
 import matplotlib.path as mplPath
 from scipy.spatial import cKDTree
 import frictionmap
+import argparse
 
 """
 Created by:
@@ -31,6 +32,11 @@ corresponding cells of the friction map with a default mue value.
 #                         only necessary for circuits (closed racetracks).
 # bool_show_plots:        boolean which enables plotting of the reference line, the friction map and the corresponding
 #                         mue values
+parser = argparse.ArgumentParser(description="Generate an optimal trajectory based on a given reference track.")
+parser.add_argument('--name', type=str, help='The name of the map for which to generate the trajectory.', required=True)
+args = parser.parse_args()
+MAP_NAME = args.name
+
 
 track_name = "modena_2019"
 initial_mue = 0.8
