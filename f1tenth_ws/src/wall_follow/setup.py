@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'bringup'
+package_name = 'wall_follow'
 
 setup(
     name=package_name,
@@ -13,13 +13,15 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='root',
-    maintainer_email='benjamintehjh01@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Luthov',
+    maintainer_email='lukettl15@gmail.com',
+    description='Wall Following Node for F1Tenth',
+    license='',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'wall_follow = wall_follow.wall_follow:main'
         ],
     },
 )
+

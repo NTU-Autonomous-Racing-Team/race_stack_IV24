@@ -4,4 +4,5 @@
 build/
 install/
 log/
-jupyter_nb.ipynb
+.venv
+jupyter_nb.ipynbjupyter_nb.ipynb
