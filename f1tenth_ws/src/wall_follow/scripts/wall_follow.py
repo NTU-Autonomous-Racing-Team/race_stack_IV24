@@ -15,32 +15,29 @@ class WallFollow(Node):
 
     def __init__(self):
         super().__init__("wall_follow")
-        self.declare_parameters(
-            namespace="", parameters=[("lookahead_distance_gain", None)]
-        )
+        # self.declare_parameters(
+        #     namespace="", parameters=[("lookahead_distance_gain", None)]
+        # )
 
         # Subscribing to relevant topics
         self.sub_scan = self.create_subscription(
-            LaserScan, "scan", self.scan_callback, 10
+            LaserScan, "scan", self.scan_callback, 1
         )
 
         self.sub_odom = self.create_subscription(
-            Odometry, "ego_racecar/odom", self.odom_callback, 10
+            Odometry, "odom", self.odom_callback, 1
         )
 
-        self.pub_drive = self.create_publisher(AckermannDriveStamped, "drive", 10)
-
-        self.sub_scan
-        self.sub_odom
+        self.pub_drive = self.create_publisher(AckermannDriveStamped, "drive", 1)
 
         self.drive_msg = AckermannDriveStamped()
 
-        self.lookahead_distance_gain = self.get_parameter(
-            "lookahead_distance_gain"
-        ).value
+        # self.lookahead_distance_gain = self.get_parameter(
+        #     "lookahead_distance_gain"
+        # ).value
 
         self.Kp = 0.25
-        self.Ki = 0.006
+        self.Ki = 0.012
         self.Kd = 0.001
 
         self.integral = 0.0
@@ -50,6 +47,8 @@ class WallFollow(Node):
 
         self.longitudinal_vel = 0
         self.front_dist = 0
+        self.coeffiecient_of_friction = 2.0
+        self.wheel_base = 0.33
 
     def getRange(self, scan_data, angle):
         ranges = scan_data.ranges
@@ -62,8 +61,6 @@ class WallFollow(Node):
         self.longitudinal_vel = odom_data.twist.twist.linear.x
 
     def scan_callback(self, scan_data):
-
-        self.front_dist = self.getRange(scan_data, 0)
 
         secs = scan_data.header.stamp.sec
         nsecs = scan_data.header.stamp.nanosec
@@ -82,12 +79,10 @@ class WallFollow(Node):
         )
 
         actual_distance = distance_b * np.cos(alpha)
-        desired_distance = 1.2  # Metres
+        desired_distance = 1.4  # Metres
 
         error = desired_distance - actual_distance
-        lookahead_distance = (
-            self.longitudinal_vel * self.lookahead_distance_gain
-        )  # Metres
+        lookahead_distance = self.longitudinal_vel * 0.45
 
         error_1 = error + lookahead_distance * np.sin(alpha)
 
@@ -124,13 +119,21 @@ class WallFollow(Node):
             self.prev_secs = secs
             self.prev_nsecs = nsecs
 
-            self.drive_msg.drive.speed = 0.8 * (1 / 1.2) ** (
-                steering_angle_degrees - 15
+            # self.drive_msg.drive.speed = 0.8 * (1 / 1.2) ** (
+            #     steering_angle_degrees - 15
+            # )
+
+            self.drive_msg.drive.speed = min(
+                12.0,
+                np.sqrt(
+                    (10 * self.coeffiecient_of_friction * self.wheel_base)
+                    / np.abs(np.tan(steering_angle))
+                ),
             )
 
             self.pub_drive.publish(self.drive_msg)
             self.get_logger().info(
-                f"{self.lookahead_distance_gain} | steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f}"
+                f"steering_angle: {steering_angle_degrees:.2f} | speed: {self.longitudinal_vel:.2f}"
             )
         except ZeroDivisionError:
             pass
