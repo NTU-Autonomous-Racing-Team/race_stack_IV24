@@ -14,10 +14,10 @@ class Overtake(Node):
 
         # Subscribing to relevant topics
         self.sub_scan = self.create_subscription(
-            LaserScan, "scan", self.scan_callback, 10
+            LaserScan, "scan", self.scan_callback, 1
         )
 
-        self.distance_threshold = 0.5
+        self.distance_threshold = 0.7
         self.distance_threshold_car = 0.035
 
     def scan_callback(self, scan_data):
@@ -67,9 +67,14 @@ class Overtake(Node):
                             #     f"a: {a:.2f} | b: {b:.2f} | a-b: {abs(a-b):.2f} | line_length: {line_length:.2f}"
                             # )
 
-                            if 0.0 < line_length < 0.35 and i == (end_of_car - 1):
-                                print(f"Car detected")
-                                line_length = 0.0
+                            if 0.25 < line_length < 0.35 and i == (end_of_car - 1):
+                                if a < 20.0 and b < 20.0:
+
+                                    print(f"Car detected")
+                                    # print(
+                                    #     f"a: {a:.2f} | b: {b:.2f} | a-b: {abs(a-b):.2f} | line_length: {line_length:.2f}"
+                                    # )
+                                    line_length = 0.0
 
                             # print(line_length)
                             line_length += math.sqrt(
