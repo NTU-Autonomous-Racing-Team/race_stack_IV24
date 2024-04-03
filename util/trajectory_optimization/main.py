@@ -161,7 +161,7 @@ def test_centerline(map_name: str):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate waypoints for optimized trajectory given reference track.")
-    parser.add_argument('--name', type=str, help='Map name for generating waypoints of optimized trajectory', default='budapest_map')
+    parser.add_argument('--name', type=str, help='Map name for generating waypoints of optimized trajectory', default='Budapest_map')
     args = parser.parse_args()
     MAP_NAME = args.name
 
