@@ -38,7 +38,7 @@ args = parser.parse_args()
 MAP_NAME = args.name
 
 
-track_name = "modena_2019"
+track_name = MAP_NAME
 initial_mue = 0.8
 cellwidth_m = 2.0
 inside_trackbound = 'right'
