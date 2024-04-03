@@ -166,8 +166,11 @@ if __name__ == "__main__":
     MAP_NAME = args.name
 
     try:
+        print("get_centerline started.")
         get_centerline(MAP_NAME, track_width_margin=0.0)
+        print("test_centerline started.")
         test_centerline(MAP_NAME)
+        print("trajectory_optimization started")
         subprocess.run(['python3', 'main_globaltraj.py', '--name', MAP_NAME])
 
         print("WAYPOINT GENERATION COMPLETE")
