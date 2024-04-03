@@ -1,7 +1,5 @@
 # Usage
 ```
-git clone https://github.com/jingxiangmo/f1tenth-trajectory-optimization
-cd f1tenth-trajectory-optimization
 conda create --name opt_raceline python=3.8
 conda activate opt_raceline
 pip install -r requirements.txt
