@@ -10,6 +10,7 @@ import pandas as pd
 from typing import Tuple
 import subprocess
 
+import argparse
 
 # adapted from https://github.com/CL2-UWaterloo/Head-to-Head-Autonomous-Racing/blob/main/gym/f110_gym/envs/laser_models.py
 def get_centerline(map_name: str, track_width_margin: float) -> str:
@@ -158,7 +159,11 @@ def test_centerline(map_name: str):
 
 
 if __name__ == "__main__":
-    MAP_NAME = "Budapest_map"
+
+    parser = argparse.ArgumentParser(description="Generate waypoints for optimized trajectory given reference track.")
+    parser.add_argument('--name', type=str, help='Map name for generating waypoints of optimized trajectory', default='budapest_map')
+    args = parser.parse_args()
+    MAP_NAME = args.name
 
     try:
         get_centerline(MAP_NAME, track_width_margin=0.0)
