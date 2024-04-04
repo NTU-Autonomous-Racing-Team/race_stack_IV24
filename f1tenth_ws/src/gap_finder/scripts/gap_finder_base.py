@@ -9,7 +9,8 @@ from nav_msgs.msg import Odometry
 
 import numpy as np
 
-from gap_finder.pid import PID
+# from gap_finder.pid import PID
+from pid import PID
 
 # reference: https://github.com/f1tenth/f1tenth_labs_openrepo/blob/main/f1tenth_lab4/README.md
 
@@ -23,7 +24,7 @@ class GapFinderAlgorithm:
         - speed_pid: a PID controller for the linear velocity
         - steering_pid: a PID controller for the angular velocity
     """
-    def __init__(self, safety_bubble_diameter = 0.6, view_angle = 1.4, coeffiecient_of_friction = 0.8):
+    def __init__(self, safety_bubble_diameter = 1.2, view_angle = 3.142/2, coeffiecient_of_friction = 0.8):
         # Tunable Parameters
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.view_angle = view_angle  # [rad]
@@ -31,9 +32,9 @@ class GapFinderAlgorithm:
         self.wheel_base = 0.324  # [m]
         self.max_steering = 0.4  # [rad]
         # Controller Parameters
-        self.speed_pid = PID(Kp=-1., Ki=0.0, Kd=0.0)
+        self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
-        self.steering_pid = PID(Kp=-1, Ki=0.0, Kd=0.0)
+        self.steering_pid = PID(Kp=-0.9, Ki=0.0, Kd=0.005)
         self.steering_pid.set_point = 0.0
 
     def update(self, ranges, angle_increment, dt):
@@ -47,6 +48,7 @@ class GapFinderAlgorithm:
         ### DRAW SAFETY BUBBLE ###
         min_range = np.min(ranges)
         min_range_index = np.argmin(ranges)
+        dynamic_bubble =  
         arc_increment = float(min_range * angle_increment)
         radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
         ranges[min_range_index - radius_count : min_range_index + radius_count + 1] = 0.0
@@ -58,25 +60,32 @@ class GapFinderAlgorithm:
         else:
             # min is on left, turn right
             ranges = ranges[: min_range_index]
+        # half_window_size_array = []
+        # for i, r in enumerate(ranges):
+        #     if r > 0:
+        #         half_window_size_array.append(int(self.safety_bubble_diameter/2/r/angle_increment))
+        #     else:
+        #         half_window_size_array.append(1)
 
-        half_window_size_array = (np.power(ranges * angle_increment, -1) * self.safety_bubble_diameter / 2).astype(int)
-        for i, half_window_size in enumerate(half_window_size_array):
-            if i < half_window_size:
-                ranges[i] = np.mean(ranges[:i + half_window_size])
-            elif i > ranges.shape[0] - half_window_size:
-                ranges[i] = np.mean(ranges[i - half_window_size:])
-            else:
-                ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
+        # half_window_size_array = (np.power(ranges * angle_increment, -1) * self.safety_bubble_diameter / 2).astype(int)
+        # for i, half_window_size in enumerate(half_window_size_array):
+        #     if i < half_window_size:
+        #         ranges[i] = np.mean(ranges[:i + half_window_size])
+        #     elif i > ranges.shape[0] - half_window_size:
+        #         ranges[i] = np.mean(ranges[i - half_window_size:])
+        #     else:
+        #         ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
 
         max_gap_index = np.argmax(ranges)
+        print(f"index: {max_gap_index}, range:{ranges[max_gap_index]}")
 
         ### FIND TWIST ###
         # find the twist required to go to the max range in the max gap
         init_steering = angle_increment * (max_gap_index - ranges.shape[0] // 2)
         steering = self.steering_pid.update(init_steering, dt)
-        steering = np.sign(steering) * min(np.abs(steering, self.max_steering))
+        steering = np.sign(steering) * min(np.abs(steering), self.max_steering)
         # linear velocity uses the maximum linear speed that can be achieved with the current steering angle given the coefficient of friction
-        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(np.tan(steering)))
+        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(steering),1e-9)))
         speed = self.speed_pid.update(init_speed, dt)
         ackermann = [speed, steering]
         return ackermann
@@ -104,12 +113,12 @@ class GapFinderNode(Node):
         self.scan_angle_increment = 0.0
         self.last_scan_time = self.get_time()
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "odom", self.odom_callback, 1)
+        self.odom_subscriber = self.create_subscription(Odometry, "ego_racecar/odom", self.odom_callback, 1)
         self.odom_subscriber
         self.odom_ready = False
         self.last_odom_time = self.get_time()
         # Drive Publisher
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "nav/drive", 1)
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 1)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm()
