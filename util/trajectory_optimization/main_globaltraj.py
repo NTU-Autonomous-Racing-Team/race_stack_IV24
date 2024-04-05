@@ -49,7 +49,7 @@ plot_opts = {"mincurv_curv_lin": False,         # plot curv. linearization (orig
 # file_paths["track_name"] = "handling_track"                                 # artificial track
 # file_paths["track_name"] = "berlin_2018"                                    # Berlin Formula E 2018
 # file_paths["track_name"] = "modena_2019"                                    # Modena 2019
-file_paths["track_name"] = "singapore_map"
+file_paths["track_name"] = MAP_NAME
 # set import options ---------------------------------------------------------------------------------------------------
 imp_opts = {"flip_imp_track": False,                # flip imported track to reverse direction
             "set_new_start": False,                 # set new starting point (changes order, not coordinates)

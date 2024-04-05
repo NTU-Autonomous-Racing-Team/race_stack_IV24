@@ -97,7 +97,7 @@ def get_centerline(map_name: str, track_width_margin: float) -> str:
     csv_path = f"inputs/tracks/{map_name}.csv"
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
     with open(csv_path, 'w') as fh:
-        np.savetxt(fh, transformed_data, fmt='%0.4f', delimiter=',', header='x_m,y_m,w_tr_right_m,w_tr_left_m',
+        np.savetxt(fh, transformed_data, fmt='%0.4f', delimiter=',', header='# x_m,y_m,w_tr_right_m,w_tr_left_m',
                    comments='')
 
     print("test_centerline SUCCESS")
