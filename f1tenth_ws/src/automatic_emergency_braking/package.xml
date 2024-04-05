@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>gap_finder</name>
+  <name>automatic_emergency_braking</name>
   <version>0.0.0</version>
   <description>Automatic Emergency Braking</description>
   <maintainer email="benjamintehjh01@gmail.com">bentjh01</maintainer>
