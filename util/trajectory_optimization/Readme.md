@@ -1,11 +1,3 @@
-# Usage
-```
-conda create --name opt_raceline python=3.8
-conda activate opt_raceline
-pip install -r requirements.txt
-python3 main.py
-``` 
-
 # Introduction
 This repository contains algorithms that allow us to determine an optimal racing line on a race track. You can chose
 between several objectives:
@@ -21,25 +13,66 @@ more computation time. Please look into the `main_globaltraj.py` for all possibl
 # List of components
 * `frictionmap`: This package contains the functions related to the creation and handling of friction maps along the
 race track.
-* `helper_funcs_glob`: This package contains some helper functions used in several other functions when 
+* `helper_funcs_glob`: This package contains some helper functions used in several other functions when
 calculating the global race trajectory.
 * `inputs`: This folder contains the vehicle dynamics information, the reference track csvs and friction maps.
-* `opt_mintime_traj`: This package contains the functions required to find the time-optimal trajectory. 
-  
+* `opt_mintime_traj`: This package contains the functions required to find the time-optimal trajectory.
+
   It also includes the powertrain components in `opt_mintime_traj/powertrain_src` used to calculate power losses and 
   thermal behavior of the powertrain and to consider the state of charge of the battery.
 * `params`: This folder contains a parameter file with optimization and vehicle parameters.
 
-# Trajectory Planning Helpers repository
-Lots of the required functions for trajectory planning are cumulated in our trajectory planning helpers repository. It
-can be found on https://github.com/TUMFTM/trajectory_planning_helpers. They can be quite useful for other projects as
-well.
+# Getting Started
 
-# Dependencies
-Use the provided `requirements.txt` in the root directory of this repo, in order to install all required modules.\
-`pip3 install -r /path/to/requirements.txt`
+First, clone the repository
+```bash
+git clone https://github.com/CL2-UWaterloo/Raceline-Optimization.git
+cd Raceline-Optimization
+```
 
-The code is developed with Ubuntu 20.04 LTS and Python 3.7.
+Then, set up your virtual environment. Conda is the recommended method.
+
+```bash
+conda create --name raceline python=3.8
+conda activate raceline
+```
+
+Lots of the required functions for trajectory planning are cumulated in the trajectory planning helpers repository.
+
+**Note**: A fork of the trajectory planning helper repository is used in the `requirements.txt` file instead of the original repository due to issues with outdated `quadprog` library.
+
+Install the required python packages
+```bash
+pip install -r requirements.txt
+```
+
+# Steps
+
+### For `slam_toolbox`
+If you generated the map through `slam_toolbox`, consult https://stevengong.co/notes/Raceline-Optimization.
+You might need to photoshop the map first to remove any artifacts and have clear track boundaries.
+
+First, run `map_converter.ipynb`, and then run `sanity_check.ipynb` to make sure the line generated is correct.
+
+This will export a `.csv` file of the map to `inputs/tracks`.
+
+### For Waypoint Generator
+Alternatively, if you generated the map by storing a set of waypoints, you can directly store it inside `inputs/tracks`.
+
+### Common steps
+Then, run `main_globaltraj_f110.py` with the map name to generate the trajectory (expects the map to be inside `inputs/tracks`). By default, the generated raceline will be stored inside `outputs/<map_name>`.
+
+```bash
+python3 main_globaltraj_f110.py --map_name e7_floor5_square
+```
+
+Optionally, you can also specify a `--map_path` and `--export_path`:
+
+```bash
+python3 main_globaltraj_f110.py --map_name e7_floor5_square --map_path ~/workspaces/racetracks/e7_floor5_square.csv --export_path /tmp/traj_race_cl.csv
+```
+
+The code is developed with Ubuntu 20.04 LTS and Python 3.8.
 
 ### Solutions for possible installation problems (Windows)
 * `cvxpy`, `cython` or any other package requires a `Visual C++ compiler` -> Download the build tools for Visual Studio
