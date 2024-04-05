@@ -1,8 +1,3 @@
-"""
-A modification of `main_globaltraj.py` to so that the csv generated can directly be used
-by the pure_pursuit node: https://github.com/CL2-UWaterloo/f1tenth_ws/tree/main/src/pure_pursuit
-
-"""
 import opt_mintime_traj
 import numpy as np
 import time
