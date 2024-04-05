@@ -3,16 +3,30 @@
 <package format="3">
   <name>bringup</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="benjamintehjh01@gmail.com">root</maintainer>
-  <license>TODO: License declaration</license>
+  <description>This package contains necessary launch files for f1tenth_icra2024</description>
+  <maintainer email="lukettl15@gmail.com">Name</maintainer>
+  <license>GNU General Public License</license>
 
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+
+  <exec_depend>safety_node</exec_depend>
+  <exec_depend>f1tenth_system</exec_depend>
+  <exec_depend>time_to_collision</exec_depend>
+  <exec_depend>wall_follow</exec_depend>
+  <exec_depend>demux</exec_depend>
+  <exec_depend>pure_pursuit</exec_depend>
+  <exec_depend>wall_follow</exec_depend>
+  <exec_depend>gap_finder</exec_depend>
+  <exec_depend>automatic_emergency_braking</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <export>
-    <build_type>ament_python</build_type>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
