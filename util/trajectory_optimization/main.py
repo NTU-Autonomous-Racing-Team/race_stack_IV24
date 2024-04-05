@@ -163,7 +163,7 @@ if __name__ == "__main__":
     # parser.add_argument('--name', type=str, help='Map name for generating waypoints of optimized trajectory', default='singapore_map')
     # args = parser.parse_args()
     # MAP_NAME = args.name
-    MAP_NAME = "singapore_map"
+    MAP_NAME = "test_map"
 
     # try:
     print("get_centerline started.")
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     subprocess.run(['python3', 'main_gen_frictionmap.py'])
 
     print("trajectory_optimization started")
-    subprocess.run(['python3', 'main_globaltraj.py', '--name', MAP_NAME])
+    subprocess.run(['python3', 'main_globaltraj.py'])
 
     # print("WAYPOINT GENERATION COMPLETE")
     # # except:
