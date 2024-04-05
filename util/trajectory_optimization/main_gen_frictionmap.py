@@ -32,7 +32,7 @@ corresponding cells of the friction map with a default mue value.
 # bool_show_plots:        boolean which enables plotting of the reference line, the friction map and the corresponding
 #                         mue values
 
-track_name = "test_map"
+track_name = "modena_2019"
 initial_mue = 0.8
 cellwidth_m = 2.0
 inside_trackbound = 'right'
@@ -43,8 +43,9 @@ bool_show_plots = True
 # ----------------------------------------------------------------------------------------------------------------------
 
 # determine names of output files
-filename_tpamap = track_name + '_tpamap.csv'
-filename_tpadata = track_name + '_tpadata.json'
+datetime_save = datetime.now().strftime("%Y%m%d_%H%M%S")
+filename_tpamap = datetime_save + '_' + track_name + '_tpamap.csv'
+filename_tpadata = datetime_save + '_' + track_name + '_tpadata.json'
 
 # set paths
 path2module = os.path.dirname(os.path.abspath(__file__))
