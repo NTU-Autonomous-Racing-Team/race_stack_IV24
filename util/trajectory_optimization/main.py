@@ -166,19 +166,19 @@ if __name__ == "__main__":
     # MAP_NAME = args.name
     MAP_NAME = "singapore_map"
 
-    try:
-        print("get_centerline started.")
-        get_centerline(MAP_NAME, track_width_margin=0.0)
+    # try:
+    print("get_centerline started.")
+    get_centerline(MAP_NAME, track_width_margin=0.0)
 
-        print("test_centerline started.")
-        test_centerline(MAP_NAME)
+    print("test_centerline started.")
+    test_centerline(MAP_NAME)
 
-        print("generate friction map started")
-        subprocess.run(['python3', 'main_gen_frictionmap.py', '--name', MAP_NAME])
+    print("generate friction map started")
+    subprocess.run(['python3', 'main_gen_frictionmap.py', '--name', MAP_NAME])
 
-        print("trajectory_optimization started")
-        subprocess.run(['python3', 'main_globaltraj.py', '--name', MAP_NAME])
+    print("trajectory_optimization started")
+    subprocess.run(['python3', 'main_globaltraj.py', '--name', MAP_NAME])
 
-        print("WAYPOINT GENERATION COMPLETE")
-    except:
-        print("An error has occured.")
+    print("WAYPOINT GENERATION COMPLETE")
+    # except:
+    #     print("An error has occured.")
