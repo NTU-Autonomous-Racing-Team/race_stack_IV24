@@ -40,32 +40,40 @@ class GapFinderAlgorithm:
 
     def update(self, ranges, angle_increment, dt):
         ranges = np.array(ranges)
-        ranges_left = ranges[ranges.shape[0]//2:]
-        ranges_right = ranges[:ranges.shape[0]//2]
+        ranges[ranges > 30] = 30
         ### LIMIT FIELD OF VIEW ###
         view_angle_count = self.view_angle//angle_increment
         lower_bound = int((ranges.shape[0] - view_angle_count)/2)
         upper_bound = int(lower_bound + view_angle_count)
         ranges = ranges[lower_bound:upper_bound]
 
-        ### DRAW SAFETY BUBBLE ###
-        # Left safety
+        ### SPLIT SCAN INTO LEFT AND RIGHT ###
+        ranges_left = ranges[ranges.shape[0]//2:]
+        ranges_right = ranges[:ranges.shape[0]//2]
+
+        ### DRAW SAFETY BUBBLES ###
+        # LEFT SAFETY BUBBLE
         min_range = np.min(ranges_left)
         min_range_index = np.argmin(ranges_left)
-        self.min_angle_1 = angle_increment * (min_range_index - ranges_left.shape[0] // 2)
-        self.min_range_1 = min_range
         arc_increment = float(min_range * angle_increment)
         radius_count = int(self.safety_bubble_diameter/2 / np.nan_to_num(arc_increment))
         ranges_left[min_range_index - radius_count : min_range_index + radius_count + 1] = 9999
-        #Right safety
+        # for visialisation
+        self.min_range_bearing_1 = angle_increment * (min_range_index - ranges_left.shape[0] // 2)
+        self.min_range_1 = min_range
+
+        # RIGHT SAFETY BUBBLE
         min_range = np.min(ranges_right)
         min_range_index = np.argmin(ranges_right)
-        self.min_angle_2 = angle_increment * (min_range_index - ranges.shape[0] // 2)
-        self.min_range_2 = min_range
         arc_increment = float(min_range * angle_increment)
         radius_count = int(self.safety_bubble_diameter/2 / np.nan_to_num(arc_increment))
         ranges_right[min_range_index - radius_count : min_range_index + radius_count + 1] = 9999
+        # for visialisation
+        self.min_range_bearing_2 = angle_increment * (min_range_index - ranges.shape[0] // 2)
+        self.min_range_2 = min_range
 
+        # combine left and right
+        ranges = np.concatenate((ranges_right, ranges_left))
         ranges[ranges == 9999] = 0.0
 
         ### APPLY MEAN FILTER ###
@@ -75,6 +83,7 @@ class GapFinderAlgorithm:
         # half_window_size_array = (np.power(ranges * angle_increment, -1) * self.safety_bubble_diameter / 2).astype(int)
         for i, half_window_size in enumerate(half_window_size_array):
             if ranges[i] <= 1e-9:
+                # within the safety bubble
                 continue
             elif i < half_window_size:
                 ranges[i] = np.mean(ranges[:i + half_window_size])
@@ -93,12 +102,12 @@ class GapFinderAlgorithm:
         np.nan_to_num(ranges)
 
         ### FIND MAX AVERAGE GAP ###
-        if min_range_index < ranges.shape[0] // 2:
-            # min is on right, turn left
-            ranges = ranges[min_range_index :]
-        else:
-            # min is on left, turn right
-            ranges = ranges[: min_range_index]
+        # if min_range_index < ranges.shape[0] // 2:
+        #     # min is on right, turn left
+        #     ranges = ranges[min_range_index :]
+        # else:
+        #     # min is on left, turn right
+        #     ranges = ranges[: min_range_index]
 
         max_gap_index = np.argmax(ranges)
         self.max_range = np.max(ranges)
@@ -227,18 +236,13 @@ class GapFinderNode(Node):
         gap_viz_msg.header.frame_id = "ego_racecar/base_link"
         gap_viz_msg.pose.position.x = goal_coord[0]
         gap_viz_msg.pose.position.y = goal_coord[1]
-        gap_viz_msg.pose.position.z = 1.0
         gap_viz_msg.color.a = 1.0
-        gap_viz_msg.color.r = 0.0
         gap_viz_msg.color.g = 1.0
-        gap_viz_msg.color.b = 0.0
         gap_viz_msg.scale.x = 1.0
         gap_viz_msg.scale.y = 1.0
         gap_viz_msg.scale.z = 1.0
         gap_viz_msg.type = Marker.SPHERE
         gap_viz_msg.action = Marker.ADD
-        gap_viz_msg.id = 0
-        gap_viz_msg.ns = "gaps"
 
         self.bubble_1_viz_publisher.publish(bubble_1_viz_msg)
         self.bubble_2_viz_publisher.publish(bubble_2_viz_msg)
