@@ -98,8 +98,7 @@ def get_centerline(map_name: str, track_width_margin: float) -> str:
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
     with open(csv_path, 'w') as fh:
         fh.write("# x_m,y_m,w_tr_right_m,w_tr_left_m\n")
-        np.savetxt(fh, transformed_data, fmt='%0.4f', delimiter=',')
-
+        np.savetxt(fh, transformed_data, fmt='%0.4f', delimiter=',', comments='')
     return csv_path
 
 
@@ -134,11 +133,11 @@ def test_centerline(map_name: str):
     orig_c = np.cos(origin[2])
 
     # Load the track data
-    raw_data = pd.read_csv(f"inputs/tracks/{map_name}.csv")
-    x = raw_data["x_m"].values
-    y = raw_data["y_m"].values
-    wr = raw_data["w_tr_right_m"].values
-    wl = raw_data["w_tr_left_m"].values
+    raw_data = pd.read_csv(f"inputs/tracks/{map_name}.csv", comment='#')
+    x = raw_data.iloc[:, 0].values
+    y = raw_data.iloc[:, 1].values
+    wr = raw_data.iloc[:, 2].values
+    wl = raw_data.iloc[:, 3].values
 
     x -= orig_x
     y -= orig_y
@@ -171,7 +170,7 @@ if __name__ == "__main__":
     get_centerline(MAP_NAME, track_width_margin=0.0)
 
     # print("test_centerline started.")
-    # test_centerline(MAP_NAME)
+    test_centerline(MAP_NAME)
 
     print("generate friction map started")
     subprocess.run(['python3', 'main_gen_frictionmap.py', '--name', MAP_NAME])
