@@ -6,7 +6,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from ackermann_msgs.msg import AckermannDriveStamped
 from nav_msgs.msg import Odometry
-from visualization_msgs.msg import Marker
+from visualization_msgs.msg import Marker, MarkerArray
 
 import numpy as np
 
@@ -34,12 +34,19 @@ class GapFinderAlgorithm:
         self.wheel_base = 0.324  # [m]
         self.lookahead = lookahead
         self.max_speed = max_speed
+        self.change_threshold = 0.5
         # Controller Parameters
         # self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
         self.speed_pid = PID(Kp=-0.3, Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
         self.steering_pid = PID(Kp=-0.15, Ki=-0.001, Kd=0.0)
         self.steering_pid.set_point = 0.0
+
+    def draw_safety_bubble(self, index, angle_increment, ranges):
+        arc_increment = float(ranges[index] * angle_increment)
+        radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
+        ranges[index - radius_count : index + radius_count + 1] = 9999
+        return ranges
 
     def update(self, ranges, angle_increment, dt):
         ranges = np.array(ranges)
@@ -53,23 +60,19 @@ class GapFinderAlgorithm:
         upper_bound = int(lower_bound + view_angle_count)
         ranges = ranges[lower_bound:upper_bound]
 
+        ### MARK LARGE DERIVATIVE CHANGES###
+        for i in range(1, ranges.shape[0]):
+            if ranges[i] - ranges[i-1] > self.change_threshold:
+                ranges[i] = 9999
+ 
         ### SPLIT SCAN INTO LEFT AND RIGHT ###
         ranges_left = ranges[ranges.shape[0]//2:]
         ranges_right = ranges[:ranges.shape[0]//2]
 
-        ### PRIORITISE CENTER OF SCAN ###
-        mask_left = np.linspace(1, 0.95, ranges_left.shape[0])
-        mask_right = np.linspace(0.95, 1, ranges_right.shape[0])
-        ranges_left *= mask_left
-        ranges_right *=mask_right
-
-        ### DRAW SAFETY BUBBLES ###
-        # LEFT SAFETY BUBBLE
+        ### MARK MINIMUM ON LEFT AND RIGHT ###
         min_range = np.min(ranges_left)
         min_range_index = np.argmin(ranges_left)
-        arc_increment = float(min_range * angle_increment)
-        radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
-        ranges_left[min_range_index - radius_count : min_range_index + radius_count + 1] = 9999
+        ranges_left[min_range_index] = 9999
         # for visialisation
         self.left_min_range_bearing = angle_increment * min_range_index
         self.left_min_range = min_range
@@ -77,17 +80,28 @@ class GapFinderAlgorithm:
         # RIGHT SAFETY BUBBLE
         min_range = np.min(ranges_right)
         min_range_index = np.argmin(ranges_right)
-        arc_increment = float(min_range * angle_increment)
-        radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
-        ranges_right[min_range_index - radius_count : min_range_index + radius_count + 1] = 9999
+        ranges_right[min_range_index] = 9999
         # for visialisation
         self.right_min_range_bearing = angle_increment * (min_range_index - ranges_right.shape[0])
         self.right_min_range = min_range
-
-        ranges[ranges >= 9999] = 0.0
-
-        ### COMBINE LEFT AND RIGHT SCANS###
+  
+        ### PRIORITISE CENTER OF SCAN ###
+        mask_left = np.linspace(1.1, 1.0, ranges_left.shape[0])
+        mask_right = np.linspace(1.0, 1.1, ranges_right.shape[0])
+        ranges_left *= mask_left
+        ranges_right *=mask_right
+      
         ranges = np.concatenate((ranges_right, ranges_left))
+
+        ### APPLY SAFETY BUBBLE ###
+        self.marked_ranges = []
+        for i, r in ranges:
+            marker = []
+            if r >= 9999:
+                marker.append(i)
+                marker.append(r)
+                self.marked_ranges.append(marker)
+                ranges = self.draw_safety_bubble(i, angle_increment, ranges)
 
         ### APPLY MEAN FILTER ###
         arc_increments = ranges * angle_increment
@@ -122,15 +136,13 @@ class GapFinderAlgorithm:
         ackermann = [speed, steering]
         return ackermann
     
-    def get_left_bubble_coord(self):
-        x = self.left_min_range * np.cos(self.left_min_range_bearing)
-        y = self.left_min_range * np.sin(self.left_min_range_bearing)
-        return [x, y]
-
-    def get_right_bubble_coord(self):
-        x = self.right_min_range * np.cos(self.right_min_range_bearing)
-        y = self.right_min_range * np.sin(self.right_min_range_bearing)
-        return [x, y]
+    def get_bubble_coord(self):
+        m = []
+        for marker in self.marked_ranges:
+            x = marker[1] * np.cos(marker[0] * self.scan_angle_increment)
+            y = marker[1] * np.sin(marker[0] * self.scan_angle_increment)
+            m.append([x, y])
+        return m
 
     def get_goal_coord(self):
         x = self.goal_range * np.cos(self.goal_bearing)
@@ -170,8 +182,7 @@ class GapFinderNode(Node):
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 1)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # Safety Viz Publisher
-        self.bubble_left_viz_publisher = self.create_publisher(Marker, "/bubble_left", 1)
-        self.bubble_right_viz_publisher = self.create_publisher(Marker, "/bubble_right", 1)
+        self.bubble_viz_publisher = self.create_publisher(Marker, "/bubble", 1)
         # Goal Viz Publisher
         self.gap_viz_publisher = self.create_publisher(Marker, "/gap", 1)
         # GapFinder Algorithm
@@ -203,34 +214,23 @@ class GapFinderNode(Node):
         self.drive_publisher.publish(drive_msg)
 
     def publish_viz_msgs(self):
-        bubble_left_coord = self.gapFinderAlgorithm.get_left_bubble_coord()
-        bubble_right_coord = self.gapFinderAlgorithm.get_right_bubble_coord()
+        bubble_coord = self.gapFinderAlgorithm.get_bubble_coord()
         goal_coord = self.gapFinderAlgorithm.get_goal_coord()
-        bubble_left_viz_msg = Marker()
-        bubble_right_viz_msg = Marker()
+        bubble_viz_msg = Marker()
         gap_viz_msg = Marker()
 
-        bubble_left_viz_msg.header.frame_id = "ego_racecar/base_link"
-        bubble_left_viz_msg.pose.position.x = bubble_left_coord[0]
-        bubble_left_viz_msg.pose.position.y = bubble_left_coord[1]
-        bubble_left_viz_msg.color.a = 1.0
-        bubble_left_viz_msg.color.r = 1.0
-        bubble_left_viz_msg.scale.x = self.safety_bubble_diameter
-        bubble_left_viz_msg.scale.y = self.safety_bubble_diameter*0.2
-        bubble_left_viz_msg.scale.z = self.safety_bubble_diameter
-        bubble_left_viz_msg.type = Marker().SPHERE
-        bubble_left_viz_msg.action = Marker().ADD
-
-        bubble_right_viz_msg.header.frame_id = "ego_racecar/base_link"
-        bubble_right_viz_msg.pose.position.x = bubble_right_coord[0]
-        bubble_right_viz_msg.pose.position.y = bubble_right_coord[1]
-        bubble_right_viz_msg.color.a = 1.0
-        bubble_right_viz_msg.color.r = 1.0
-        bubble_right_viz_msg.scale.x = self.safety_bubble_diameter
-        bubble_right_viz_msg.scale.y = self.safety_bubble_diameter*0.2
-        bubble_right_viz_msg.scale.z = self.safety_bubble_diameter
-        bubble_right_viz_msg.type = Marker().SPHERE
-        bubble_right_viz_msg.action = Marker().ADD
+        for coord in bubble_coord:
+            bubble_viz_msg = Marker()
+            bubble_viz_msg.header.frame_id = "ego_racecar/base_link"
+            bubble_viz_msg.pose.position.x = coord[0]
+            bubble_viz_msg.pose.position.y = coord[1]
+            bubble_viz_msg.color.a = 1.0
+            bubble_viz_msg.color.r = 1.0
+            bubble_viz_msg.scale.x = self.safety_bubble_diameter
+            bubble_viz_msg.scale.y = self.safety_bubble_diameter*0.2
+            bubble_viz_msg.scale.z = self.safety_bubble_diameter
+            bubble_viz_msg.type = Marker().SPHERE
+            bubble_viz_msg.action = Marker().ADD
 
         gap_viz_msg.header.frame_id = "ego_racecar/base_link"
         gap_viz_msg.pose.position.x = goal_coord[0]
@@ -245,8 +245,7 @@ class GapFinderNode(Node):
         gap_viz_msg.type = Marker.SPHERE
         gap_viz_msg.action = Marker.ADD
 
-        self.bubble_left_viz_publisher.publish(bubble_left_viz_msg)
-        self.bubble_right_viz_publisher.publish(bubble_right_viz_msg)
+        self.bubble_viz_publisher.publish(bubble_viz_msg)
         self.gap_viz_publisher.publish(gap_viz_msg)
 
 
