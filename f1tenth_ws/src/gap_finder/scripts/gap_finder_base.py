@@ -60,21 +60,23 @@ class GapFinderAlgorithm:
         else:
             # min is on left, turn right
             ranges = ranges[: min_range_index]
-        # half_window_size_array = []
-        # for i, r in enumerate(ranges):
-        #     if r > 0:
-        #         half_window_size_array.append(int(self.safety_bubble_diameter/2/r/angle_increment))
-        #     else:
-        #         half_window_size_array.append(1)
 
-        # half_window_size_array = (np.power(ranges * angle_increment, -1) * self.safety_bubble_diameter / 2).astype(int)
-        # for i, half_window_size in enumerate(half_window_size_array):
-        #     if i < half_window_size:
-        #         ranges[i] = np.mean(ranges[:i + half_window_size])
-        #     elif i > ranges.shape[0] - half_window_size:
-        #         ranges[i] = np.mean(ranges[i - half_window_size:])
-        #     else:
-        #         ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
+        half_window_size_array = (np.power(ranges * angle_increment, -1) * self.safety_bubble_diameter / 2).astype(int)
+        for i, half_window_size in enumerate(half_window_size_array):
+            if i < half_window_size:
+                ranges[i] = np.mean(ranges[:i + half_window_size])
+            elif i > ranges.shape[0] - half_window_size:
+                ranges[i] = np.mean(ranges[i - half_window_size:])
+            else:
+                ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
+        
+        # prioiritising the center of the scan
+        mask_right = np.linspace(0, 1, ranges.shape[0]//2)
+        mask_left = np.linspace(1, 0, ranges.shape[0]//2)
+        mask = np.concatenate((mask_right, mask_left))
+        ranges *= mask
+        if mask.shape[0] < ranges.shape[0]:
+            mask = np.concatenate((mask, [mask_right[-1]]))
 
         max_gap_index = np.argmax(ranges)
         print(f"index: {max_gap_index}, range:{ranges[max_gap_index]}")
