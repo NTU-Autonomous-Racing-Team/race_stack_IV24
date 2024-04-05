@@ -279,7 +279,6 @@ class GapFinderNode(Node):
             # speed limits
             twist[0] = max(twist[0], self.min_speed)
             twist[0] = min(twist[0], self.max_speed)
-            twist[0] = 0.0
 
             self.publish_drive_msg(twist)
             self.last_time = self.get_time()
