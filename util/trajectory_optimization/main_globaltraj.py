@@ -48,7 +48,7 @@ EXPORT_PATH = args.export_path
 # ----------------------------------------------------------------------------------------------------------------------
 
 # choose vehicle parameter file ----------------------------------------------------------------------------------------
-file_paths = {"veh_params_file": "f110.ini"}
+file_paths = {"veh_params_file": "racecar.ini"}
 
 # debug and plot options -----------------------------------------------------------------------------------------------
 debug = True                                    # print console messages
