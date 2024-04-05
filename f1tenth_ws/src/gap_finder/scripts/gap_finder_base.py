@@ -24,23 +24,29 @@ class GapFinderAlgorithm:
         - view_angle: the angle of the field of view of the LiDAR as a cone in front of the car
         - speed_pid: a PID controller for the linear velocity
         - steering_pid: a PID controller for the angular velocity
+        - ADD SAFETY BUBBLE AT BIG DR CHANGE
     """
-    def __init__(self, safety_bubble_diameter = 0.6, view_angle = 3.142/4*2, coeffiecient_of_friction = 0.8):
+    def __init__(self, safety_bubble_diameter = 0.6, view_angle = 3.5* 3.142/4, coeffiecient_of_friction = 0.2, lookahead = 5.0, max_speed = 10.0):
         # Tunable Parameters
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.view_angle = view_angle  # [rad]
         self.coeffiecient_of_friction = coeffiecient_of_friction
         self.wheel_base = 0.324  # [m]
-        self.max_steering = 0.4  # [rad]
+        self.lookahead = lookahead
+        self.max_speed = max_speed
         # Controller Parameters
-        self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
+        # self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
+        self.speed_pid = PID(Kp=-0.3, Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
-        self.steering_pid = PID(Kp=-1.2, Ki=0.0, Kd=0.005)
+        self.steering_pid = PID(Kp=-0.15, Ki=-0.001, Kd=0.0)
         self.steering_pid.set_point = 0.0
 
     def update(self, ranges, angle_increment, dt):
         ranges = np.array(ranges)
-        ranges[ranges > 30] = 30
+        cp_ranges = np.copy(ranges)
+        front_clearance = ranges[ranges.shape[0]//2]
+        ranges[ranges > self.lookahead] = self.lookahead
+        
         ### LIMIT FIELD OF VIEW ###
         view_angle_count = self.view_angle//angle_increment
         lower_bound = int((ranges.shape[0] - view_angle_count)/2)
@@ -51,30 +57,37 @@ class GapFinderAlgorithm:
         ranges_left = ranges[ranges.shape[0]//2:]
         ranges_right = ranges[:ranges.shape[0]//2]
 
+        ### PRIORITISE CENTER OF SCAN ###
+        mask_left = np.linspace(1, 0.95, ranges_left.shape[0])
+        mask_right = np.linspace(0.95, 1, ranges_right.shape[0])
+        ranges_left *= mask_left
+        ranges_right *=mask_right
+
         ### DRAW SAFETY BUBBLES ###
         # LEFT SAFETY BUBBLE
         min_range = np.min(ranges_left)
         min_range_index = np.argmin(ranges_left)
         arc_increment = float(min_range * angle_increment)
-        radius_count = int(self.safety_bubble_diameter/2 / np.nan_to_num(arc_increment))
+        radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
         ranges_left[min_range_index - radius_count : min_range_index + radius_count + 1] = 9999
         # for visialisation
-        self.min_range_bearing_1 = angle_increment * (min_range_index - ranges_left.shape[0] // 2)
-        self.min_range_1 = min_range
+        self.left_min_range_bearing = angle_increment * min_range_index
+        self.left_min_range = min_range
 
         # RIGHT SAFETY BUBBLE
         min_range = np.min(ranges_right)
         min_range_index = np.argmin(ranges_right)
         arc_increment = float(min_range * angle_increment)
-        radius_count = int(self.safety_bubble_diameter/2 / np.nan_to_num(arc_increment))
+        radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
         ranges_right[min_range_index - radius_count : min_range_index + radius_count + 1] = 9999
         # for visialisation
-        self.min_range_bearing_2 = angle_increment * (min_range_index - ranges.shape[0] // 2)
-        self.min_range_2 = min_range
+        self.right_min_range_bearing = angle_increment * (min_range_index - ranges_right.shape[0])
+        self.right_min_range = min_range
 
-        # combine left and right
+        ranges[ranges >= 9999] = 0.0
+
+        ### COMBINE LEFT AND RIGHT SCANS###
         ranges = np.concatenate((ranges_right, ranges_left))
-        ranges[ranges == 9999] = 0.0
 
         ### APPLY MEAN FILTER ###
         arc_increments = ranges * angle_increment
@@ -92,52 +105,36 @@ class GapFinderAlgorithm:
             else:
                 ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
 
-        ### PRIORITISE CENTER OF SCAN ###
-        mask_right = np.linspace(0.99, 1, ranges.shape[0]//2)
-        mask_left = np.linspace(1, 0.99, ranges.shape[0]//2)
-        mask = np.concatenate((mask_right, mask_left))
-        if mask.shape[0] < ranges.shape[0]:
-            mask = np.concatenate((mask, [mask_right[-1]]))
-        ranges *= mask
-        np.nan_to_num(ranges)
-
         ### FIND MAX AVERAGE GAP ###
-        # if min_range_index < ranges.shape[0] // 2:
-        #     # min is on right, turn left
-        #     ranges = ranges[min_range_index :]
-        # else:
-        #     # min is on left, turn right
-        #     ranges = ranges[: min_range_index]
-
         max_gap_index = np.argmax(ranges)
-        self.max_range = np.max(ranges)
-        # print(f"index: {max_gap_index}, range:{ranges[max_gap_index]}")
+        self.goal_range = np.max(ranges)
+        self.goal_bearing = angle_increment * (max_gap_index - ranges.shape[0] // 2)
 
         ### FIND TWIST ###
         # find the twist required to go to the max range in the max gap
-        init_steering = angle_increment * (max_gap_index - ranges.shape[0] // 2)
-        self.max_angle = init_steering
+        init_steering = self.goal_bearing
         steering = self.steering_pid.update(init_steering, dt)
-        steering = np.sign(steering) * min(np.abs(steering), self.max_steering)
         # linear velocity uses the maximum linear speed that can be achieved with the current steering angle given the coefficient of friction
-        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(steering),1e-9)))
+        # init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(steering),1e-9)))
+        # init_speed = front_clearance
+        init_speed = front_clearance / cp_ranges[max_gap_index] * self.max_speed
         speed = self.speed_pid.update(init_speed, dt)
         ackermann = [speed, steering]
         return ackermann
     
-    def get_safety_1_coord(self):
-        x = self.min_range_1 * np.cos(self.min_angle_1)
-        y = self.min_range_1 * np.sin(self.min_angle_1)
+    def get_left_bubble_coord(self):
+        x = self.left_min_range * np.cos(self.left_min_range_bearing)
+        y = self.left_min_range * np.sin(self.left_min_range_bearing)
         return [x, y]
 
-    def get_safety_2_coord(self):
-        x = self.min_range_2 * np.cos(self.min_angle_2)
-        y = self.min_range_2 * np.sin(self.min_angle_2)
+    def get_right_bubble_coord(self):
+        x = self.right_min_range * np.cos(self.right_min_range_bearing)
+        y = self.right_min_range * np.sin(self.right_min_range_bearing)
         return [x, y]
 
     def get_goal_coord(self):
-        x = self.max_range * np.cos(self.max_angle)
-        y = self.max_range * np.sin(self.max_angle)
+        x = self.goal_range * np.cos(self.goal_bearing)
+        y = self.goal_range * np.sin(self.goal_bearing)
         return [x, y]
 
 
@@ -148,6 +145,8 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         super().__init__("gap_finder")
+        self.safety_bubble_diameter = 0.6
+        self.lookahead = 5.0
         # Timeouts
         self.timeout = 1.0 # [s]
         # Speed limits
@@ -171,12 +170,12 @@ class GapFinderNode(Node):
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 1)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # Safety Viz Publisher
-        self.bubble_1_viz_publisher = self.create_publisher(Marker, "/bubble_1", 1)
-        self.bubble_2_viz_publisher = self.create_publisher(Marker, "/bubble_2", 1)
+        self.bubble_left_viz_publisher = self.create_publisher(Marker, "/bubble_left", 1)
+        self.bubble_right_viz_publisher = self.create_publisher(Marker, "/bubble_right", 1)
         # Goal Viz Publisher
         self.gap_viz_publisher = self.create_publisher(Marker, "/gap", 1)
         # GapFinder Algorithm
-        self.gapFinderAlgorithm = GapFinderAlgorithm()
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = self.safety_bubble_diameter, lookahead = self.lookahead, max_speed = self.max_speed)
         # Memory
         self.last_time = self.get_time()
 
@@ -204,48 +203,50 @@ class GapFinderNode(Node):
         self.drive_publisher.publish(drive_msg)
 
     def publish_viz_msgs(self):
-        bubble_1_coord = self.gapFinderAlgorithm.get_safety_1_coord()
-        bubble_2_coord = self.gapFinderAlgorithm.get_safety_2_coord()
+        bubble_left_coord = self.gapFinderAlgorithm.get_left_bubble_coord()
+        bubble_right_coord = self.gapFinderAlgorithm.get_right_bubble_coord()
         goal_coord = self.gapFinderAlgorithm.get_goal_coord()
-        bubble_1_viz_msg = Marker()
-        bubble_2_viz_msg = Marker()
+        bubble_left_viz_msg = Marker()
+        bubble_right_viz_msg = Marker()
         gap_viz_msg = Marker()
 
-        bubble_1_viz_msg.header.frame_id = "ego_racecar/base_link"
-        bubble_1_viz_msg.pose.position.x = bubble_1_coord[0]
-        bubble_1_viz_msg.pose.position.y = bubble_1_coord[1]
-        bubble_1_viz_msg.color.a = 1.0
-        bubble_1_viz_msg.color.r = 1.0
-        bubble_1_viz_msg.scale.x = .6
-        bubble_1_viz_msg.scale.y = .6
-        bubble_1_viz_msg.scale.z = .6
-        bubble_1_viz_msg.type = Marker().SPHERE
-        bubble_1_viz_msg.action = Marker().ADD
+        bubble_left_viz_msg.header.frame_id = "ego_racecar/base_link"
+        bubble_left_viz_msg.pose.position.x = bubble_left_coord[0]
+        bubble_left_viz_msg.pose.position.y = bubble_left_coord[1]
+        bubble_left_viz_msg.color.a = 1.0
+        bubble_left_viz_msg.color.r = 1.0
+        bubble_left_viz_msg.scale.x = self.safety_bubble_diameter
+        bubble_left_viz_msg.scale.y = self.safety_bubble_diameter*0.2
+        bubble_left_viz_msg.scale.z = self.safety_bubble_diameter
+        bubble_left_viz_msg.type = Marker().SPHERE
+        bubble_left_viz_msg.action = Marker().ADD
 
-        bubble_2_viz_msg.header.frame_id = "ego_racecar/base_link"
-        bubble_2_viz_msg.pose.position.x = bubble_2_coord[0]
-        bubble_2_viz_msg.pose.position.y = bubble_2_coord[1]
-        bubble_2_viz_msg.color.a = 1.0
-        bubble_2_viz_msg.color.r = 1.0
-        bubble_2_viz_msg.scale.x = .6
-        bubble_2_viz_msg.scale.y = .6
-        bubble_2_viz_msg.scale.z = .6
-        bubble_2_viz_msg.type = Marker().SPHERE
-        bubble_2_viz_msg.action = Marker().ADD
+        bubble_right_viz_msg.header.frame_id = "ego_racecar/base_link"
+        bubble_right_viz_msg.pose.position.x = bubble_right_coord[0]
+        bubble_right_viz_msg.pose.position.y = bubble_right_coord[1]
+        bubble_right_viz_msg.color.a = 1.0
+        bubble_right_viz_msg.color.r = 1.0
+        bubble_right_viz_msg.scale.x = self.safety_bubble_diameter
+        bubble_right_viz_msg.scale.y = self.safety_bubble_diameter*0.2
+        bubble_right_viz_msg.scale.z = self.safety_bubble_diameter
+        bubble_right_viz_msg.type = Marker().SPHERE
+        bubble_right_viz_msg.action = Marker().ADD
 
         gap_viz_msg.header.frame_id = "ego_racecar/base_link"
         gap_viz_msg.pose.position.x = goal_coord[0]
         gap_viz_msg.pose.position.y = goal_coord[1]
+        # gap_viz_msg.pose.position.x = 0.0
+        # gap_viz_msg.pose.position.y = 0.0
         gap_viz_msg.color.a = 1.0
         gap_viz_msg.color.g = 1.0
-        gap_viz_msg.scale.x = 1.0
-        gap_viz_msg.scale.y = 1.0
-        gap_viz_msg.scale.z = 1.0
+        gap_viz_msg.scale.x = 0.3
+        gap_viz_msg.scale.y = 0.3
+        gap_viz_msg.scale.z = 0.3
         gap_viz_msg.type = Marker.SPHERE
         gap_viz_msg.action = Marker.ADD
 
-        self.bubble_1_viz_publisher.publish(bubble_1_viz_msg)
-        self.bubble_2_viz_publisher.publish(bubble_2_viz_msg)
+        self.bubble_left_viz_publisher.publish(bubble_left_viz_msg)
+        self.bubble_right_viz_publisher.publish(bubble_right_viz_msg)
         self.gap_viz_publisher.publish(gap_viz_msg)
 
 
