@@ -173,11 +173,11 @@ if __name__ == "__main__":
     test_centerline(MAP_NAME)
 
     print("generate friction map started")
-    subprocess.run(['python3', 'main_gen_frictionmap.py', '--name', MAP_NAME])
+    subprocess.run(['python3', 'main_gen_frictionmap.py'])
 
     print("trajectory_optimization started")
     subprocess.run(['python3', 'main_globaltraj.py', '--name', MAP_NAME])
 
-    print("WAYPOINT GENERATION COMPLETE")
-    # except:
-    #     print("An error has occured.")
+    # print("WAYPOINT GENERATION COMPLETE")
+    # # except:
+    # #     print("An error has occured.")
