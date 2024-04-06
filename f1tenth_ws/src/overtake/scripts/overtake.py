@@ -8,6 +8,13 @@ from sensor_msgs.msg import LaserScan
 import math
 
 
+CAR_DETECTED_DURATION_THRESHOLD = 0.5
+FALSE_CAR_DETECTION_THRESHOLD = 0.030
+EDGE_DETECTION_THRESHOLD = 0.7
+DISTANCE_BETWEEN_EDGES_LOWER_BOUND = 0.25
+DISTANCE_BETWEEN_EDGES_UPPER_BOUND = 0.35
+
+
 class Overtake(Node):
     def __init__(self):
         super().__init__("overtake")
@@ -17,87 +24,70 @@ class Overtake(Node):
             LaserScan, "scan", self.scan_callback, 1
         )
 
-        self.distance_threshold = 0.7
-        self.distance_threshold_car = 0.035
-        self.car_detected_period = 0.3
-        self.car_detected = False
-        self.init_period = 0.0
+        self.maybe_detected_car = False
+
+        self.car_detected_start_time = 0.0
 
     def scan_callback(self, scan_data):
-
         ranges = scan_data.ranges
         angle_increment = scan_data.angle_increment
-        secs = scan_data.header.stamp.sec
-        nsecs = scan_data.header.stamp.nanosec
+        current_scan_time = (
+            scan_data.header.stamp.sec + scan_data.header.stamp.nanosec * 1e-9
+        )
 
-        found_start = False
-        found_end = False
-
-        delta = float("inf")
-        line_length = 0.0
-
-        # To keep track of how long another car is detected
-        if self.car_detected:
-            if self.init_period == 0.0:
-                self.init_period = secs + nsecs * 1e-9
-            curr_period = secs + nsecs * 1e-9
-            self.car_detected_period = curr_period - self.init_period
-
+        # To keep track of how long its been since a car was detected
+        time_elapsed_since_last_car_detection = 0.0
+        if self.maybe_detected_car:
+            if self.car_detected_start_time == 0.0:
+                self.car_detected_start_time = current_scan_time
+            time_elapsed_since_last_car_detection = (
+                current_scan_time - self.car_detected_start_time
+            )
         else:
-            self.car_detected_period = 0.0
-            self.init_period = 0.0
+            self.car_detected_start_time = 0.0
+
+        self.maybe_detected_car = False
+        first_edge_found = False
+        distance_between_edges = 0.0
 
         for i in range(1, len(ranges)):
+            range_a = ranges[i - 1]
+            range_b = ranges[i]
+            delta = abs(range_a - range_b)
 
-            delta = abs(ranges[i] - ranges[i - 1])
+            # TODO: Add comment explaining why this is needed
+            # why were checking for FALSE_CAR_DETECTION_THRESHOLD, etc.
+            if first_edge_found and delta < FALSE_CAR_DETECTION_THRESHOLD:
+                distance_between_edges += math.sqrt(
+                    range_a**2
+                    + range_b**2
+                    - 2 * range_a * range_b * math.cos(angle_increment)
+                )
 
-            # Finding start and end of car by detecting edges using a distance_threshold
-            if delta > self.distance_threshold and found_start != True:
-                found_start = True
-                start_of_car = i
+            # Finding right and left edges of the car by using a distance_threshold
+            if delta > EDGE_DETECTION_THRESHOLD:
+                first_edge_found = True
 
-            elif (
-                delta > self.distance_threshold
-                and found_start == True
-                and found_end != True
-            ):
-                found_end = True
-                end_of_car = i - 1
+                # TODO: Add comment explaining why this is needed
+                if (
+                    distance_between_edges > DISTANCE_BETWEEN_EDGES_UPPER_BOUND
+                    or distance_between_edges < DISTANCE_BETWEEN_EDGES_LOWER_BOUND
+                ):
+                    distance_between_edges = 0.0
+                    continue
 
-            # Once edges found calculate the width of the range
-            if found_start and found_end:
-                for i in range(start_of_car, end_of_car):
+                # TODO: Add comment explaining why this is needed
+                self.maybe_detected_car = True
 
-                    try:
-                        a = ranges[i + 1]
-                        b = ranges[i]
+                # TODO: Add comment explaining why this is needed
+                if (
+                    time_elapsed_since_last_car_detection
+                    < CAR_DETECTED_DURATION_THRESHOLD
+                ):
+                    continue
 
-                        if abs(a - b) < self.distance_threshold_car:
-                            if (
-                                0.25 < line_length < 0.35
-                                and i == (end_of_car - 1)
-                                and a < 20.0
-                                and b < 20.0
-                            ):
-
-                                # Checking for false positives
-                                if self.car_detected_period > 0.5:
-                                    print(f"Car detected")
-
-                                self.car_detected = True
-
-                            line_length += math.sqrt(
-                                a**2 + b**2 - 2 * a * b * math.cos(angle_increment)
-                            )
-
-                    except IndexError:
-                        pass
-
-                if self.car_detected == True and self.car_detected_period > 0.5:
-                    self.car_detected = False
-                found_end = False
-                start_of_car = end_of_car
-                line_length = 0.0
+                print(f"Car detected")
+                break
 
 
 def main(args=None):
@@ -113,5 +103,4 @@ def main(args=None):
 
 
 if __name__ == "__main__":
-
     main()
