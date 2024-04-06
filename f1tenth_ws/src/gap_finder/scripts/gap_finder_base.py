@@ -72,13 +72,11 @@ class GapFinderAlgorithm:
 
         ### MARK LARGE DERIVATIVE CHANGES###
         for i in range(1, ranges.shape[0]):
-            if ranges[i] - ranges[i-1] > self.change_threshold:
-                ranges[i-1] = 9999
-        ranges = np.flip(ranges)
-        for i in range(1, ranges.shape[0]):
-            if ranges[i] - ranges[i-1] > self.change_threshold:
-                ranges[i-1] = 9999
-        ranges = np.flip(ranges) 
+            if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
+                if ranges[i] > ranges[i-1]:
+                    ranges[i-1] = 9999
+                else:
+                    ranges[i] = 9999
  
         ### SPLIT SCAN INTO LEFT AND RIGHT ###
         ranges_right = ranges[:ranges.shape[0]//2]
