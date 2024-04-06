@@ -46,7 +46,7 @@ class GapFinderAlgorithm:
         # self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
         self.speed_pid = PID(Kp=-1, Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
-        self.steering_pid = PID(Kp=-0.6, Ki=-0.0, Kd=0.0025)
+        self.steering_pid = PID(Kp=-1.3, Ki=-0.0, Kd=0.00)
         self.steering_pid.set_point = 0.0
 
     def draw_safety_bubble(self, index, angle_increment, ranges):
@@ -55,7 +55,7 @@ class GapFinderAlgorithm:
         ranges[index - radius_count : index + radius_count + 1] = 0.0
         return ranges
 
-    def update(self, ranges, angle_increment, dt):
+    def update(self, ranges, angle_increment, dt, scan_msg):
         ranges = np.array(ranges)
         
         ### LIMIT FIELD OF VIEW ###
@@ -72,11 +72,18 @@ class GapFinderAlgorithm:
 
         ### MARK LARGE DERIVATIVE CHANGES###
         for i in range(1, ranges.shape[0]):
-            if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
-                if ranges[i] > ranges[i-1]:
-                    ranges[i-1] = 9999
-                else:
-                    ranges[i] = 9999
+            # if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
+            #     if ranges[i] > ranges[i-1]:
+            #         ranges[i-1] = 9999
+            #     else:
+            #         ranges[i] = 9999
+            if ranges[i] - ranges[i-1] > self.change_threshold:
+                ranges[i-1] = 9999
+        ranges = np.flip(ranges)
+        for i in range(1, ranges.shape[0]):
+            if ranges[i] - ranges[i-1] > self.change_threshold:
+                ranges[i-1] = 9999
+        ranges = np.flip(ranges)
  
         ### SPLIT SCAN INTO LEFT AND RIGHT ###
         ranges_right = ranges[:ranges.shape[0]//2]
@@ -107,6 +114,11 @@ class GapFinderAlgorithm:
                 ranges = self.draw_safety_bubble(i, angle_increment, ranges)
 
         ranges[ranges == 9999] = 0.0
+        ranges = ranges.astype(float)
+
+        self.safety_scan = scan_msg
+        scan_msg.ranges = ranges.tolist()
+        # print(scan_msg.ranges[0])
 
         ### APPLY MEAN FILTER ###
         arc_increments = ranges * angle_increment
@@ -122,7 +134,6 @@ class GapFinderAlgorithm:
             else:
                 ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
 
-  
         ### PRIORITISE CENTER OF SCAN ###
         mask_left = np.linspace(1.0, 0.99, ranges_left.shape[0])
         mask_right = np.linspace(0.99, 1.0, ranges_right.shape[0])
@@ -157,6 +168,9 @@ class GapFinderAlgorithm:
         y = self.goal_range * np.sin(self.goal_bearing)
         return [x, y]
 
+    def get_safety_scan(self):
+        return self.safety_scan
+
 
 class GapFinderNode(Node):
     """
@@ -165,7 +179,7 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         super().__init__("gap_finder")
-        self.safety_bubble_diameter = 1.3
+        self.safety_bubble_diameter = 2.0 
         # Timeouts
         self.timeout = 1.0 # [s]
         # Speed limits
@@ -192,6 +206,8 @@ class GapFinderNode(Node):
         self.bubble_viz_publisher = self.create_publisher(MarkerArray, "/bubble", 1)
         # Goal Viz Publisher
         self.gap_viz_publisher = self.create_publisher(Marker, "/gap", 1)
+        # Laser Viz Publisher
+        self.laser_publisher = self.create_publisher(LaserScan, "/safety_scan", 1)
         # GapFinder Algorithm
         self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = self.safety_bubble_diameter, 
                                                      view_angle= 4* 3.142/4,
@@ -213,6 +229,7 @@ class GapFinderNode(Node):
         self.scan_angle_increment = scan_msg.angle_increment
         self.ranges = scan_msg.ranges
         self.last_scan_time = self.get_time()
+        self.scan_msg = scan_msg
 
     def odom_callback(self, odom_msg):
         self.odom_ready = True
@@ -227,10 +244,12 @@ class GapFinderNode(Node):
         self.drive_publisher.publish(drive_msg)
 
     def publish_viz_msgs(self):
+        safety_scan = self.gapFinderAlgorithm.get_safety_scan()
         bubble_coord = self.gapFinderAlgorithm.get_bubble_coord()
         goal_coord = self.gapFinderAlgorithm.get_goal_coord()
         bubble_viz_msg = MarkerArray()
         gap_viz_msg = Marker()
+        laser_viz_msg = safety_scan
 
         for i, coord in enumerate(bubble_coord):
             marker = Marker()
@@ -260,19 +279,21 @@ class GapFinderNode(Node):
 
         self.bubble_viz_publisher.publish(bubble_viz_msg)
         self.gap_viz_publisher.publish(gap_viz_msg)
+        self.laser_publisher.publish(laser_viz_msg)
 
 
     def timer_callback(self):
         if self.scan_ready and self.odom_ready:
             dt = self.get_time() - self.last_time
 
-            twist = self.gapFinderAlgorithm.update(self.ranges, self.scan_angle_increment, dt)
+            twist = self.gapFinderAlgorithm.update(self.ranges, self.scan_angle_increment, dt, self.scan_msg)
 
             # steering limits
             twist[1] = np.sign(twist[1]) * min(np.abs(twist[1]), self.max_steering)
             # speed limits
             twist[0] = max(twist[0], self.min_speed)
             twist[0] = min(twist[0], self.max_speed)
+            twist[0] = 0.0
 
             self.publish_drive_msg(twist)
             self.last_time = self.get_time()
