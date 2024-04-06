@@ -26,16 +26,22 @@ class GapFinderAlgorithm:
         - steering_pid: a PID controller for the angular velocity
         - ADD SAFETY BUBBLE AT BIG DR CHANGE
     """
-    def __init__(self, safety_bubble_diameter = 0.6, view_angle = 4* 3.142/4, coeffiecient_of_friction = 0.5, lookahead = 5.0, max_speed = 10.0, max_steering = 0.4):
+    def __init__(self,  safety_bubble_diameter = 0.6, 
+                        view_angle = 4* 3.142/4, 
+                        coeffiecient_of_friction = 0.71, 
+                        vertice_detection_threshold = 0.6,
+                        lookahead = 5.0, 
+                        max_speed = 10.0, 
+                        max_steering = 0.4):
         # Tunable Parameters
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.view_angle = view_angle  # [rad]
         self.coeffiecient_of_friction = coeffiecient_of_friction
-        self.wheel_base = 0.324  # [m]
         self.lookahead = lookahead
         self.max_speed = max_speed
         self.max_steering = max_steering
-        self.change_threshold = 1.0
+        self.change_threshold = vertice_detection_threshold
+        self.wheel_base = 0.324  # [m]
         # Controller Parameters
         # self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
         self.speed_pid = PID(Kp=-1, Ki=0.0, Kd=0.0)
@@ -78,23 +84,16 @@ class GapFinderAlgorithm:
         ranges_left = ranges[ranges.shape[0]//2:]
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
-        # min_range = np.min(ranges_left)
         ranges_left = np.flip(ranges_left)
         min_range_index = np.argmin(ranges_left)
         ranges_left[min_range_index] = 9999
         ranges_left = np.flip(ranges_left)
-        # for visialisation
-        # self.left_min_range_bearing = angle_increment * min_range_index
-        # self.left_min_range = min_range
 
         # RIGHT SAFETY BUBBLE
-        # min_range = np.min(ranges_right)
         min_range_index = np.argmin(ranges_right)
         ranges_right[min_range_index] = 9999
-        # for visialisation
-        # self.right_min_range_bearing = angle_increment * (min_range_index - ranges_right.shape[0])
-        # self.right_min_range = min_range
       
+        # COMBINE LEFT AND RIGHT
         ranges = np.concatenate((ranges_right, ranges_left))
 
         ### APPLY SAFETY BUBBLE ###
@@ -114,10 +113,8 @@ class GapFinderAlgorithm:
         arc_increments = ranges * angle_increment
         half_window_size_array = (self.safety_bubble_diameter/2 / arc_increments).astype(int)
         half_window_size_array[half_window_size_array == 0] = 1
-        # half_window_size_array = (np.power(ranges * angle_increment, -1) * self.safety_bubble_diameter / 2).astype(int)
         for i, half_window_size in enumerate(half_window_size_array):
             if ranges[i] <= 1e-9:
-                # within the safety bubble
                 continue
             elif i < half_window_size:
                 ranges[i] = np.mean(ranges[:i + half_window_size])
@@ -131,8 +128,6 @@ class GapFinderAlgorithm:
         mask_left = np.linspace(1.0, 0.99, ranges_left.shape[0])
         mask_right = np.linspace(0.99, 1.0, ranges_right.shape[0])
         mask = np.concatenate((mask_right, mask_left))
-        # ranges_left *= mask_left
-        # ranges_right *=mask_right
         ranges *= mask
 
         ### FIND MAX AVERAGE GAP ###
@@ -141,14 +136,11 @@ class GapFinderAlgorithm:
         self.goal_bearing = angle_increment * (max_gap_index - ranges.shape[0] // 2)
 
         ### FIND TWIST ###
-        # find the twist required to go to the max range in the max gap
         init_steering = self.goal_bearing
         steering = self.steering_pid.update(init_steering, dt)
         steering = min(abs(steering), self.max_steering) * np.sign(steering)
-        print(steering)
-        # linear velocity uses the maximum linear speed that can be achieved with the current steering angle given the coefficient of friction
-        # init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(steering),1e-9)))
-        init_speed = front_clearance / (1.0 * cp_ranges[max_gap_index]) * self.max_speed * np.cos(3*steering)
+        # init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
+        init_speed = front_clearance / (1.0 * cp_ranges[max_gap_index]) * self.max_speed * np.cos(2*steering)
         speed = self.speed_pid.update(init_speed, dt)
         ackermann = [speed, steering]
         return ackermann
@@ -203,7 +195,13 @@ class GapFinderNode(Node):
         # Goal Viz Publisher
         self.gap_viz_publisher = self.create_publisher(Marker, "/gap", 1)
         # GapFinder Algorithm
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = self.safety_bubble_diameter, lookahead = self.lookahead, max_speed = self.max_speed, max_steering = self.max_steering)
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = self.safety_bubble_diameter, 
+                                                     view_angle= 4* 3.142/4,
+                                                     coeffiecient_of_friction= 0.5,
+                                                     vertice_detection_threshold=self.safety_bubble_diameter/2,
+                                                     lookahead = self.lookahead, 
+                                                     max_speed = self.max_speed, 
+                                                     max_steering = self.max_steering)
         # Memory
         self.last_time = self.get_time()
 
