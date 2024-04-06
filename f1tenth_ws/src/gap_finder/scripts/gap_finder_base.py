@@ -65,7 +65,8 @@ class GapFinderAlgorithm:
         ranges = ranges[lower_bound:upper_bound+1]
 
         self.scan_angle_increment = angle_increment
-        ranges[ranges > self.lookahead] = self.lookahead
+        if self.lookahead != None:
+            ranges[ranges > self.lookahead] = self.lookahead
         front_clearance = ranges[ranges.shape[0]//2]
         cp_ranges = np.copy(ranges)
 
@@ -167,7 +168,6 @@ class GapFinderNode(Node):
     def __init__(self, hz=50):
         super().__init__("gap_finder")
         self.safety_bubble_diameter = 1.3
-        self.lookahead = 30.0
         # Timeouts
         self.timeout = 1.0 # [s]
         # Speed limits
@@ -199,7 +199,7 @@ class GapFinderNode(Node):
                                                      view_angle= 4* 3.142/4,
                                                      coeffiecient_of_friction= 0.5,
                                                      vertice_detection_threshold=self.safety_bubble_diameter/2,
-                                                     lookahead = self.lookahead, 
+                                                     lookahead = None, 
                                                      max_speed = self.max_speed, 
                                                      max_steering = self.max_steering)
         # Memory
@@ -236,10 +236,10 @@ class GapFinderNode(Node):
 
         for i, coord in enumerate(bubble_coord):
             marker = Marker()
+            marker.id = i
             marker.header.frame_id = "ego_racecar/base_link"
             marker.pose.position.x = coord[0]
             marker.pose.position.y = coord[1]
-            marker.id = i
             marker.color.a = 1.0
             marker.color.r = 1.0
             marker.scale.x = self.safety_bubble_diameter
@@ -252,8 +252,6 @@ class GapFinderNode(Node):
         gap_viz_msg.header.frame_id = "ego_racecar/base_link"
         gap_viz_msg.pose.position.x = goal_coord[0]
         gap_viz_msg.pose.position.y = goal_coord[1]
-        # gap_viz_msg.pose.position.x = 0.0
-        # gap_viz_msg.pose.position.y = 0.0
         gap_viz_msg.color.a = 1.0
         gap_viz_msg.color.g = 1.0
         gap_viz_msg.scale.x = 0.3
