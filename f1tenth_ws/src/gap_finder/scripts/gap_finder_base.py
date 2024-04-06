@@ -166,7 +166,7 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         super().__init__("gap_finder")
-        self.safety_bubble_diameter = 1.2
+        self.safety_bubble_diameter = 1.3
         self.lookahead = 30.0
         # Timeouts
         self.timeout = 1.0 # [s]
