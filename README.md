@@ -29,6 +29,14 @@ To control the car by keyboard, run ```source /opt/ros/foxy/setup.bash
 ros2 run demo_nodes_cpp talker```.
 
 ## Documentation
+### Waypoint Generation and Trajectory Optimizaiton
+```
+cd util/trajectory_optimization
+conda create --name opt_raceline python=3.8
+conda activate opt_raceline
+pip install -r requirements.txt
+python3 main.py
+```
 
 ### `simulator/`
 
@@ -42,8 +50,10 @@ Sometimes after running the container, the `topics` dont show up with `ros2 topi
 ` 
 `
 ``
-
 ### hardware
 1. VESC Setup
   1. Refer to [f1tenth build](https://f1tenth.org/build.html)
   2. Upload Motor Configuration and App Configuration
+
+
+
