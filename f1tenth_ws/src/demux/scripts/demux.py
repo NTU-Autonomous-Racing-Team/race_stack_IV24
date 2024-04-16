@@ -16,29 +16,40 @@ class Demux(Node):
 		self.sub_output_select = self.create_subscription(String, 'output_select', self.output_select_callback, 10)
 
 		self.pub_wall_scan = self.create_publisher(LaserScan, 'wall_scan', 10)
-		self.pub_gap_scan = self.create_publisher(LaserScan, 'gap_scan', 10)
-
 		self.pub_wall_odom = self.create_publisher(Odometry, 'wall_odom', 10)
+
+		self.pub_gap_scan = self.create_publisher(LaserScan, 'gap_scan', 10)
 		self.pub_gap_odom = self.create_publisher(Odometry, 'gap_odom', 10)
+		
+		default_output_select_msg = String()
+		default_output_select_msg.data = "None"
+
+		self.output_select_data = default_output_select_msg.data
 
 	def scan_callback(self, scan_data):
-		self.scan_data = scan_data
+
+		if self.output_select_data == "wall":
+			self.pub_wall_scan.publish(scan_data)
+		if self.output_select_data == "gap":
+			self.pub_gap_scan.publish(scan_data)
+		else:
+			self.pub_wall_scan.publish(self.output_select_data)
+			self.pub_gap_scan.publish(self.output_select_data)
 
 	def odom_callback(self, odom_data):
-		self.odom_data = odom_data
+
+		if self.output_select_data == "wall":
+			self.pub_wall_scan.publish(odom_data)
+		if self.output_select_data == "gap":
+			self.pub_gap_scan.publish(odom_data)
+		else:
+			self.pub_wall_scan.publish(self.output_select_data)
+			self.pub_gap_scan.publish(self.output_select_data)
 
 	def output_select_callback(self, output_select_data):
 
-        try:
-            if output_select_data.data == "wall":
-                self.pub_wall_scan.publish(self.scan_data)
-                self.pub_wall_odom.publish(self.odom_data)
+         self.output_select_data = output_select_data
 
-            elif output_select_data.data == "gap":
-                self.pub_gap_scan.publish(self.scan_data)
-                self.pub_gap_odom.publish(self.odom_data)
-        except AttributeError:
-            pass
 
 def main(args=None):
 	rclpy.init(args=args)
