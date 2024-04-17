@@ -24,7 +24,7 @@ class WallFollow(Node):
         )
 
         self.sub_odom = self.create_subscription(
-            Odometry, "ego_racecar/odom", self.odom_callback, 1
+            Odometry, "odom", self.odom_callback, 1
         )
 
         self.pub_drive = self.create_publisher(AckermannDriveStamped, "drive", 1)
