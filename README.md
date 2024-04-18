@@ -25,8 +25,11 @@ To change map:
 2. rebuild docker image
 
 ### Control Car
-To control the car by keyboard, run ```source /opt/ros/foxy/setup.bash
-ros2 run demo_nodes_cpp talker```.
+To control the car by keyboard, run 
+```sh
+bringup_key_teleop
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
 
 ## Documentation
 ### Waypoint Generation and Trajectory Optimizaiton
@@ -55,5 +58,9 @@ Sometimes after running the container, the `topics` dont show up with `ros2 topi
   1. Refer to [f1tenth build](https://f1tenth.org/build.html)
   2. Upload Motor Configuration and App Configuration
 
-
-
+## Misc.
+Use this to prioritise a network adapter
+```sh
+nmcli connection modify <connection-name> ipv4.route-metric 1
+nmcli connection up <connection-name>
+```
