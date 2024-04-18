@@ -32,7 +32,7 @@ corresponding cells of the friction map with a default mue value.
 # bool_show_plots:        boolean which enables plotting of the reference line, the friction map and the corresponding
 #                         mue values
 
-track_name = "modena_2019"
+track_name = "Budapest_map"
 initial_mue = 0.8
 cellwidth_m = 2.0
 inside_trackbound = 'right'
