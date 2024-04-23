@@ -24,7 +24,6 @@ class GapFinderAlgorithm:
         - view_angle: the angle of the field of view of the LiDAR as a cone in front of the car
         - speed_pid: a PID controller for the linear velocity
         - steering_pid: a PID controller for the angular velocity
-        - ADD SAFETY BUBBLE AT BIG DR CHANGE
     """
     def __init__(self,  safety_bubble_diameter = 0.6, 
                         view_angle = 4* 3.142/4, 
@@ -72,11 +71,6 @@ class GapFinderAlgorithm:
 
         ### MARK LARGE DERIVATIVE CHANGES###
         for i in range(1, ranges.shape[0]):
-            # if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
-            #     if ranges[i] > ranges[i-1]:
-            #         ranges[i-1] = 9999
-            #     else:
-            #         ranges[i] = 9999
             if ranges[i] - ranges[i-1] > self.change_threshold:
                 ranges[i-1] = 9999
         ranges = np.flip(ranges)
@@ -114,7 +108,6 @@ class GapFinderAlgorithm:
                 ranges = self.draw_safety_bubble(i, angle_increment, ranges)
 
         ranges[ranges == 9999] = 0.0
-        ranges = ranges.astype(float)
 
         self.safety_scan = scan_msg
         scan_msg.ranges = ranges.tolist()
