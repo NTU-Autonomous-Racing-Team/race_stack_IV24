@@ -30,6 +30,7 @@ class AutomaticEmergencyBrakingNode(Node):
     def timer_callback(self):
         if self.ttc_waiting:
             return
+        # Check if TTC is less than threshold
         int_msg = Int32()
         if self.ttc_msg.data <= self.threshold:
             int_msg.data = 1
