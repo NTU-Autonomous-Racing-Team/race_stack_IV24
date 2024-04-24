@@ -15,7 +15,7 @@ from std_msgs.msg import Int32
 class AEB_Ackerman():
     def __init__(self, SAFETY_BUBBLE_DIAMETER = 0.3, 
                  frictional_coefficient = 0.5, 
-                 max_steering_angle = 0.35,
+                 max_steering_angle = 0.4,
                  wheelbase = 0.33,
                  view_angle = 3.142/2.0):
         # CONSTANTS
@@ -32,6 +32,7 @@ class AEB_Ackerman():
         lower_bound = int((len(ranges)- view_angle_count)/2)
         upper_bound = int(lower_bound + view_angle_count)
         ranges = ranges[lower_bound:upper_bound]
+        return ranges
 
     def update(self, scan_msg, odom_msg):
         ranges = scan_msg.ranges
