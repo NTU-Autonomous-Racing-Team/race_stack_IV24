@@ -33,8 +33,10 @@ class AutomaticEmergencyBrakingNode(Node):
         # Check if TTC is less than threshold
         int_msg = Int32()
         if self.ttc_msg.data <= self.threshold:
+            # Collision
             int_msg.data = 1
         else:
+            # No Collision
             int_msg.data = 0
         self.aeb_publisher.publish(int_msg)
 
