@@ -56,7 +56,7 @@ class SafetyNode(Node):
 
     def aeb_callback(self, msg):
         if msg.data == 1:
-            self.get_logger().info('Collision Iminent')
+            self.get_logger().info('AEB: Collision Iminent')
             self.aeb_gain = 0.0
 
 def main(args = None):
