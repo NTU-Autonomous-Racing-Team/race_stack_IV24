@@ -66,8 +66,10 @@ class AEB_Ackerman():
 
         # Check Collision
         if abs(distance - instantaneous_rotation_radius) < self.SAFETY_BUBBLE_DIAMETER/2:
+            # Collision
             return 1
         else:
+            # No Collision
             return 0
 
 
