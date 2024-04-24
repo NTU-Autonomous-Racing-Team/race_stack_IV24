@@ -28,7 +28,7 @@ class AEB_Ackerman():
         self.VIEW_ANGLE = view_angle
 
     def limit_field_of_view(self, ranges, angle_increment):
-        view_angle_count = self.view_angle//angle_increment
+        view_angle_count = self.VIEW_ANGLE//angle_increment
         lower_bound = int((len(ranges)- view_angle_count)/2)
         upper_bound = int(lower_bound + view_angle_count)
         ranges = ranges[lower_bound:upper_bound]
@@ -37,7 +37,7 @@ class AEB_Ackerman():
         ranges = scan_msg.ranges
         angle_increment = scan_msg.angle_increment
         speed = odom_msg.twist.twist.linear.x
-        if self.view_angle is not None:
+        if self.VIEW_ANGLE is not None:
             ranges = self.limit_field_of_view(ranges, angle_increment)
 
         # Calculate Nearest Point Coordinates
