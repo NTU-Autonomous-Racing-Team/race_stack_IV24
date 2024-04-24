@@ -19,9 +19,9 @@ class SafetyNode(Node):
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, 'drive', 1)
         
         # Managed Sources
-        self.ttc_subcription = self.create_subscription(Float32, 'ttc', self.ttc_callback, 1)
-        self.ttc_subcription 
-        self.ttc_gain = 1.0
+        # self.ttc_subcription = self.create_subscription(Float32, 'ttc', self.ttc_callback, 1)
+        # self.ttc_subcription 
+        # self.ttc_gain = 1.0
 
         self.joy_subscription = self.create_subscription(Joy, 'joy', self.joy_callback, 1)
         self.joy_subscription
@@ -38,16 +38,16 @@ class SafetyNode(Node):
         self.drive_msg.drive.speed *= self.joy_gain * self.aeb_gain # * self.ttc_gain
         self.drive_publisher.publish(self.drive_msg)
 
-    def ttc_callback(self, msg):
-        if msg.data < 0.6125:
-            self.get_logger().info('TTC = "%s"' % msg)
-            self.ttc_gain = 0.0
+    # def ttc_callback(self, msg):
+        # if msg.data < 0.6125:
+        #     self.get_logger().info('TTC = "%s"' % msg)
+        #     self.ttc_gain = 0.0
 
     def joy_callback(self, msg):
         buttons_list = msg.buttons
         # dead_man_switch = buttons_list[4] # DualShock4 L1
         dead_man_switch = buttons_list[5] # DualShock4 R1
-        if dead_man_switch:
+        if dead_man_switch == 1:
             self.joy_gain = 1.0
         else:
             self.joy_gain = 0.0
@@ -55,7 +55,7 @@ class SafetyNode(Node):
             self.aeb_gain = 1.0
 
     def aeb_callback(self, msg):
-        if msg.data:
+        if msg.data == 1:
             self.get_logger().info('Collision Iminent')
             self.aeb_gain = 0.0
 
