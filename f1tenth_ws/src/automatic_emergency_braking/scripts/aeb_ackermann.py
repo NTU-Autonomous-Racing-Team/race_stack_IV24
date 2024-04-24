@@ -17,7 +17,7 @@ class AEB_Ackerman():
                  frictional_coefficient = 0.5, 
                  max_steering_angle = 0.35,
                  wheelbase = 0.33,
-                 view_angle = None):
+                 view_angle = 3.142/2.0):
         # CONSTANTS
         self.G = 9.81
         # TUNABLE PARAMETERS
@@ -66,8 +66,10 @@ class AEB_Ackerman():
 
         # Check Collision
         if abs(distance - instantaneous_rotation_radius) < self.SAFETY_BUBBLE_DIAMETER/2:
+            # Collision
             return 1
         else:
+            # No Collision
             return 0
 
 
