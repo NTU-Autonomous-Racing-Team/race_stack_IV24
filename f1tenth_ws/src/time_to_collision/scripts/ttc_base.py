@@ -57,16 +57,18 @@ class AutomaticEmergencyBrakingNode(Node):
         self.ttc_publisher = self.create_publisher(Float32, 'ttc', 1)
         self.timer = self.create_timer(1/10, self.timer_callback)
 
-        self.ready = False
+        self.scan_waiting = True
+        self.odom_waiting = True
 
     def scan_callback(self, scan_msg):
-        self.ready = True
+        self.scan_waiting = False
         self.angle_min = scan_msg.angle_min
         self.angle_max = scan_msg.angle_max
         self.aeb.angle_increment = scan_msg.angle_increment
         self.ranges = scan_msg.ranges
 
     def odom_callback(self, odom_msg):
+        self.odom_waiting = False
         x = odom_msg.pose.pose.position.x
         y = odom_msg.pose.pose.position.y
         yaw = odom_msg.pose.pose.orientation.z
@@ -75,11 +77,12 @@ class AutomaticEmergencyBrakingNode(Node):
         self.odom = [x, y, yaw, linX, angZ]
     
     def timer_callback(self):
-        if self.ready == True:
-            ttc = self.aeb.update(self.ranges, self.odom)
-            msg = Float32()
-            msg.data = ttc
-            self.ttc_publisher.publish(msg)
+        if self.scan_waiting or self.odom_waiting:
+            return
+        ttc = self.aeb.update(self.ranges, self.odom)
+        msg = Float32()
+        msg.data = ttc
+        self.ttc_publisher.publish(msg)
 
 def main(args = None):
     rclpy.init(args=args)
