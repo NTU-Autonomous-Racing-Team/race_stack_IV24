@@ -2,6 +2,9 @@
 
 ![CleanShot 2024-03-14 at 16 42 18@2x](https://github.com/NTU-Autonomous-Racing-Team/f1tenth_icra2024/assets/65676392/44360186-bb67-4fd0-8ce3-2cb304b6a80f)
 
+## Navigation
+[Simulator](./simulator) 
+
 ## Requirements
 
 ROS 2 Foxy, Ubuntu 20.04, Docker.
@@ -12,29 +15,6 @@ ROS 2 Foxy, Ubuntu 20.04, Docker.
 4. [Add Docker into sudo group ](https://docs.docker.com/engine/install/linux-postinstall/)
 
 ## Run
-
-### Simulator
-1. Build Dockerfile
-```
-cd simulator
-sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
-```
-3. Start container to visualise simulator
-```
-./run_gym_ros.sh
-```
-4. Start container to access `f1tenth_ws`
-```
-./run_gym_ros.sh # starts a new session in container
-```
-5. Go to f1tenth_ws in container
-```
-cd ~/f1tenth_ws
-```
-
-To change map:
-1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
-2. rebuild docker image
 
 ### Control Car
 To control the car by keyboard, run 
