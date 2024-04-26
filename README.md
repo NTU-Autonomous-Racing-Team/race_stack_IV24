@@ -15,6 +15,7 @@ ROS 2 Foxy, Ubuntu 20.04, Docker.
 2. [Setup GitHub crediential](https://cli.github.com/manual/)
 3. [Install docker](https://docs.docker.com/engine/install/ubuntu/)
 4. [Add Docker into sudo group ](https://docs.docker.com/engine/install/linux-postinstall/)
+5. [Install rosdep](http://wiki.ros.org/rosdep)
 
 ## Run
 
