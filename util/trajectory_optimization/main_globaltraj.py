@@ -7,9 +7,7 @@ import trajectory_planning_helpers as tph
 import copy
 import matplotlib.pyplot as plt
 import configparser
-import pkg_resources
 import helper_funcs_glob
-import argparse
 
 """
 Created by:
@@ -22,12 +20,6 @@ This script has to be executed to generate an optimal trajectory based on a give
 # ----------------------------------------------------------------------------------------------------------------------
 # USER INPUT -----------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------
-
-# setup command-line arguments for name
-parser = argparse.ArgumentParser(description="Generate an optimal trajectory based on a given reference track.")
-parser.add_argument('--name', type=str, help='The name of the map for which to generate the trajectory.', required=True)
-args = parser.parse_args()
-MAP_NAME = args.name
 
 # choose vehicle parameter file ----------------------------------------------------------------------------------------
 file_paths = {"veh_params_file": "racecar.ini"}
@@ -47,7 +39,7 @@ plot_opts = {"mincurv_curv_lin": False,         # plot curv. linearization (orig
 # select track file (including centerline coordinates + track widths) --------------------------------------------------
 # file_paths["track_name"] = "rounded_rectangle"                              # artificial track
 # file_paths["track_name"] = "handling_track"                                 # artificial track
-file_paths["track_name"] = MAP_NAME                                          # Berlin Formula E 2018
+file_paths["track_name"] = "Budapest_map"                                    # Berlin Formula E 2018
 # file_paths["track_name"] = "modena_2019"                                    # Modena 2019
 
 # set import options ---------------------------------------------------------------------------------------------------
@@ -105,20 +97,6 @@ if opt_type == "mintime" and not mintime_opts["recalc_vel_profile_by_tph"] and l
 
 # get current path
 file_paths["module"] = os.path.dirname(os.path.abspath(__file__))
-
-# read dependencies from requirements.txt
-requirements_path = os.path.join(file_paths["module"], 'requirements.txt')
-dependencies = []
-
-with open(requirements_path, 'r') as fh:
-    line = fh.readline()
-
-    while line:
-        dependencies.append(line.rstrip())
-        line = fh.readline()
-
-# check dependencies
-pkg_resources.require(dependencies)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # INITIALIZATION OF PATHS ----------------------------------------------------------------------------------------------
