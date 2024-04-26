@@ -5,7 +5,13 @@
 cd simulator
 sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 ```
-3. Start container to visualise simulator
+2. Install dependencies
+```
+sudo apt install python3-pip
+git clone https://github.com/f1tenth/f1tenth_gym
+cd f1tenth_gym && pip3 install -e .
+```
+4. Start container to visualise simulator
 ```
 ./run_gym_ros.sh
 ```
@@ -17,6 +23,14 @@ sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 ```
 cd ~/f1tenth_ws
 ```
+
+## Troubleshoot
+1. Test: `ros2 topic list`
+Expected:
+```
+
+```
+   
 
 ## To change map:
 1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
