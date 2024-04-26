@@ -13,13 +13,25 @@ ROS 2 Foxy, Ubuntu 20.04, Docker.
 
 ## Run
 
-### Simulation
+### Simulator
+1. Build Dockerfile
 ```
 cd simulator
-sudo docker network create f1tenth_network
 sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
+```
+3. Start container to visualise simulator
+```
 ./run_gym_ros.sh
 ```
+4. Start container to access `f1tenth_ws`
+```
+./run_gym_ros.sh # starts a new session in container
+```
+5. Go to f1tenth_ws in container
+```
+cd ~/f1tenth_ws
+```
+
 To change map:
 1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
 2. rebuild docker image
