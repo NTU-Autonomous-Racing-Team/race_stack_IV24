@@ -18,7 +18,7 @@ sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 cd ~/f1tenth_ws
 ```
 
-To change map:
+## To change map:
 1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
 2. rebuild docker image
 
