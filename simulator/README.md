@@ -25,7 +25,7 @@ cd ~/f1tenth_ws
 ```
 
 ## Troubleshoot
-1. Test if topic are pulishing
+1. Test if topic are publishing
    1. Test: `ros2 topic list`
    2. Expected:
       ```
