@@ -25,28 +25,29 @@ cd ~/f1tenth_ws
 ```
 
 ## Troubleshoot
-1. Test: `ros2 topic list`
-Expected:
-```
-root@f1tenth_gym_ros:/# ros2 topic list
-/clicked_point
-/clock
-/cmd_vel
-/drive
-/ego_racecar/odom
-/ego_robot_description
-/goal_pose
-/initialpose
-/joint_states
-/map
-/map_server/transition_event
-/map_updates
-/parameter_events
-/rosout
-/scan
-/tf
-/tf_static
-```
+1. Test if topic are pulishing
+   1. Test: `ros2 topic list`
+   2. Expected:
+      ```
+      root@f1tenth_gym_ros:/# ros2 topic list
+      /clicked_point
+      /clock
+      /cmd_vel
+      /drive
+      /ego_racecar/odom
+      /ego_robot_description
+      /goal_pose
+      /initialpose
+      /joint_states
+      /map
+      /map_server/transition_event
+      /map_updates
+      /parameter_events
+      /rosout
+      /scan
+      /tf
+      /tf_static
+      ```
    
 
 ## To change map:
