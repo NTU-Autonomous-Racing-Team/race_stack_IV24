@@ -10,6 +10,13 @@ sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 sudo apt install -y python3-pip ros-foxy-ackermann-msgs
 git clone https://github.com/f1tenth/f1tenth_gym
 cd f1tenth_gym && pip3 install -e .
+sudo apt install ros-foxy-navigation2
+sudo apt install ros-foxy-nav2-bringup
+sudo apt install ros-foxy-xacro
+sudo apt install ros-foxy-joint-state-publisher
+sudo rosdep init
+rosdep update
+rosdep install -i --from-path src --rosdistro foxy -y
 ```
 3. Start container to visualise simulator
 ```
