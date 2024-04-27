@@ -19,7 +19,7 @@ class PID:
         elif (abs(self.integral + self.Ki * error) <= self.max_integral):
             self.integral += self.Ki * error
 
-        control_signal = self.Kp * error + self.I_term + self.Kd * (error - self.prev_error) + self.bias
+        control_signal = self.Kp * error + self.integral + self.Kd * (error - self.prev_error) + self.bias
 
         return control_signal 
     
