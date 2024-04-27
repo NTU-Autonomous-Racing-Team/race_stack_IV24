@@ -25,8 +25,8 @@ class GapFinderAlgorithm:
         - speed_pid: a PID controller for the linear velocity
         - steering_pid: a PID controller for the angular velocity
     """
-    def __init__(self,  safety_bubble_diameter = 0.6, 
-                        view_angle = 4* 3.142/4, 
+    def __init__(self,  safety_bubble_diameter = 0.4, 
+                        view_angle = 3.142, 
                         coeffiecient_of_friction = 0.71, 
                         vertice_detection_threshold = 0.6,
                         lookahead = 5.0, 
@@ -42,7 +42,6 @@ class GapFinderAlgorithm:
         self.change_threshold = vertice_detection_threshold
         self.wheel_base = 0.324  # [m]
         # Controller Parameters
-        # self.speed_pid = PID(Kp=-0.5, Ki=0.0, Kd=0.0)
         self.speed_pid = PID(Kp=-1, Ki=0.0, Kd=0.0)
         self.speed_pid.set_point = 0.0
         self.steering_pid = PID(Kp=-1.3, Ki=-0.0, Kd=0.00)
@@ -55,36 +54,34 @@ class GapFinderAlgorithm:
         return ranges
 
     def update(self, ranges, angle_increment, dt, scan_msg):
-        ranges = np.array(ranges)
-        
-        ### LIMIT FIELD OF VIEW ###
-        view_angle_count = self.view_angle//angle_increment
-        lower_bound = int((ranges.shape[0] - view_angle_count)/2)
-        upper_bound = int(lower_bound + view_angle_count)
-        ranges = ranges[lower_bound:upper_bound+1]
-
         self.scan_angle_increment = angle_increment
+        ranges = np.array(ranges)
+        cp_ranges = np.copy(ranges)
+
+        ### FIND FRONT CLEARANCE ###
+        mid_index = ranges.shape[0]//2
+        mid_arc = ranges[mid_index] * angle_increment
+        front_clearance_count = int(self.safety_bubble_diameter/2 / mid_arc)
+        front_clearance = np.mean(ranges[(mid_index - front_clearance_count):(mid_index + front_clearance_count)])
+        
+        ### LIMIT LOOKAHEAD ##
         if self.lookahead != None:
             ranges[ranges > self.lookahead] = self.lookahead
-        front_clearance = ranges[ranges.shape[0]//2]
-        cp_ranges = np.copy(ranges)
 
         ### MARK LARGE DERIVATIVE CHANGES###
         for i in range(1, ranges.shape[0]):
-            if ranges[i] - ranges[i-1] > self.change_threshold:
-                ranges[i-1] = 9999
-        ranges = np.flip(ranges)
-        for i in range(1, ranges.shape[0]):
-            if ranges[i] - ranges[i-1] > self.change_threshold:
-                ranges[i-1] = 9999
-        ranges = np.flip(ranges)
- 
+            if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
+                if ranges[i] < ranges[i-1]:
+                    ranges[i] = 9999
+                else:
+                    ranges[i-1] = 9999
+
         ### SPLIT SCAN INTO LEFT AND RIGHT ###
         ranges_right = ranges[:ranges.shape[0]//2]
         ranges_left = ranges[ranges.shape[0]//2:]
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
-        ranges_left = np.flip(ranges_left)
+        ranges_left = np.flip(ranges_left) # flip to select the in closest to the center
         min_range_index = np.argmin(ranges_left)
         ranges_left[min_range_index] = 9999
         ranges_left = np.flip(ranges_left)
@@ -109,23 +106,22 @@ class GapFinderAlgorithm:
 
         ranges[ranges == 9999] = 0.0
 
-        self.safety_scan = scan_msg
+        self.safety_scan_msg = scan_msg
         scan_msg.ranges = ranges.tolist()
-        # print(scan_msg.ranges[0])
 
         ### APPLY MEAN FILTER ###
-        arc_increments = ranges * angle_increment
-        half_window_size_array = (self.safety_bubble_diameter/2 / arc_increments).astype(int)
-        half_window_size_array[half_window_size_array == 0] = 1
-        for i, half_window_size in enumerate(half_window_size_array):
-            if ranges[i] <= 1e-9:
-                continue
-            elif i < half_window_size:
-                ranges[i] = np.mean(ranges[:i + half_window_size])
-            elif i > ranges.shape[0] - half_window_size:
-                ranges[i] = np.mean(ranges[i - half_window_size:])
-            else:
-                ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
+        # arc_increments = ranges * angle_increment
+        # half_window_size_array = (self.safety_bubble_diameter/2 / arc_increments).astype(int)
+        # half_window_size_array[half_window_size_array == 0] = 1
+        # for i, half_window_size in enumerate(half_window_size_array):
+        #     if ranges[i] <= 1e-9:
+        #         continue
+        #     elif i < half_window_size:
+        #         ranges[i] = np.mean(ranges[:i + half_window_size])
+        #     elif i > ranges.shape[0] - half_window_size:
+        #         ranges[i] = np.mean(ranges[i - half_window_size:])
+        #     else:
+        #         ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
 
         ### PRIORITISE CENTER OF SCAN ###
         mask_left = np.linspace(1.0, 0.99, ranges_left.shape[0])
@@ -133,17 +129,22 @@ class GapFinderAlgorithm:
         mask = np.concatenate((mask_right, mask_left))
         ranges *= mask
 
+        ### LIMIT FIELD OF VIEW ###
+        view_angle_count = self.view_angle//angle_increment
+        lower_bound = int((ranges.shape[0] - view_angle_count)/2)
+        upper_bound = int(lower_bound + view_angle_count)
+
         ### FIND MAX AVERAGE GAP ###
-        max_gap_index = np.argmax(ranges)
-        self.goal_range = np.max(ranges)
+        max_gap_index = np.argmax(ranges[lower_bound:upper_bound+1])
+        self.goal_range = np.max(ranges[lower_bound:upper_bound+1])
         self.goal_bearing = angle_increment * (max_gap_index - ranges.shape[0] // 2)
 
         ### FIND TWIST ###
         init_steering = self.goal_bearing
         steering = self.steering_pid.update(init_steering, dt)
         steering = min(abs(steering), self.max_steering) * np.sign(steering)
-        # init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
-        init_speed = front_clearance / (1.0 * cp_ranges[max_gap_index]) * self.max_speed * np.cos(2*steering)
+        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
+        # init_speed = front_clearance / (1.0 * cp_ranges[max_gap_index]) * self.max_speed * np.cos(2*steering)
         speed = self.speed_pid.update(init_speed, dt)
         ackermann = [speed, steering]
         return ackermann
