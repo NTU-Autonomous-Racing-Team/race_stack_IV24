@@ -42,34 +42,27 @@ class GapFinderAlgorithm:
         self.change_threshold = vertice_detection_threshold
         self.wheel_base = 0.324  # [m]
         # Controller Parameters
-        self.speed_pid = PID(Kp=-1, Ki=0.0, Kd=0.0)
+        self.speed_pid = PID(Kp=-1)
         self.speed_pid.set_point = 0.0
-        self.steering_pid = PID(Kp=-0.8, Ki=-0.0, Kd=0.00)
+        self.steering_pid = PID(Kp=-1.2)
         self.steering_pid.set_point = 0.0
         # Filtering
         self.last_goal_bearing = 0.0
-        self.filter_alpha = 0.7 # closer to 1 means no filtering
+        self.filter_alpha = 1.0 # closer to 1 means no filtering
 
-    def draw_safety_bubble(self, index, angle_increment, ranges):
-        arc_increment = float(ranges[index] * angle_increment)
-        radius_count = int(self.safety_bubble_diameter/2 / arc_increment)
-        ranges[index - radius_count : index + radius_count + 1] = 0.0
-        return ranges
-
-    def update(self, ranges, angle_increment, dt, scan_msg):
-        self.scan_angle_increment = angle_increment
+    def update(self, ranges, angle_increment, scan_msg):
         ranges = np.array(ranges)
-        cp_ranges = np.copy(ranges)
 
         ### FIND FRONT CLEARANCE ###
-        # mid_index = ranges.shape[0]//2
+        mid_index = ranges.shape[0]//2
         # mid_arc = ranges[mid_index] * angle_increment
         # front_clearance_count = int(self.safety_bubble_diameter/2 / mid_arc)
         # front_clearance = np.mean(ranges[(mid_index - front_clearance_count):(mid_index + front_clearance_count)])
         
         ### LIMIT LOOKAHEAD ##
-        # if self.lookahead != None:
-            # ranges[ranges > self.lookahead] = self.lookahead
+        if self.lookahead is not None:
+            ranges[ranges > self.lookahead] = self.lookahead
+        cp_ranges = ranges.copy()
 
         ### MARK LARGE DERIVATIVE CHANGES###
         marked_indexes = []
@@ -77,71 +70,39 @@ class GapFinderAlgorithm:
             if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
                 if ranges[i] < ranges[i-1]:
                     marked_indexes.append(i)
-                    # ranges[i] = 9999
                 else:
                     marked_indexes.append(i-1)
-                    # ranges[i-1] = 9999
-
-        ### SPLIT SCAN INTO LEFT AND RIGHT ###
-        ranges_right = ranges[:ranges.shape[0]//2]
-        ranges_left = ranges[ranges.shape[0]//2:]
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
-        # ranges_left = np.flip(ranges_left) # flip to select the in closest to the center
+        # split ranges into left and right
+        ranges_right = ranges[:ranges.shape[0]//2]
+        ranges_left = ranges[ranges.shape[0]//2:]
+        # find minimums on left and right
         min_range_index = np.argmin(ranges_left)
-        # ranges_left[min_range_index] = 9999
-        marked_indexes.append(min_range_index)
-        # ranges_left = np.flip(ranges_left)
-
-        # RIGHT SAFETY BUBBLE
+        marked_indexes.append(ranges.shape[0]//2 + min_range_index)
         min_range_index = np.argmin(ranges_right)
-        # ranges_right[min_range_index] = 9999
         marked_indexes.append(min_range_index)
-      
-        # COMBINE LEFT AND RIGHT
+        # recombine left and right
         ranges = np.concatenate((ranges_right, ranges_left))
 
         ### APPLY SAFETY BUBBLE ###
-        self.marked_ranges = []
+        self.marked_ranges = [] # for visualisation
         for i in marked_indexes:
-            if ranges[i] == 0.0:
+            if cp_ranges[i] == 0.0:
                 continue
-            marker = []
-            bearing = angle_increment * (i - ranges.shape[0]//2)
-            marker.append(bearing)
-            marker.append(ranges[i])
-            arc = angle_increment * ranges[i]
+
+            arc = angle_increment * cp_ranges[i]
             arc_increment = int(self.safety_bubble_diameter/arc/2)
             ranges[i-arc_increment:i+arc_increment+1] = 0.0
+
+            # for visualisation
+            bearing = angle_increment * (i - ranges.shape[0]//2)
+            marker = [bearing, cp_ranges[i]]
             self.marked_ranges.append(marker)
 
-        # for i, r in enumerate(ranges):
-        #     marker = []
-        #     if r == 9999:
-        #         bearing = angle_increment * (i - ranges.shape[0]//2)
-        #         marker.append(bearing)
-        #         marker.append(cp_ranges[i])
-        #         self.marked_ranges.append(marker)
-        #         ranges = self.draw_safety_bubble(i, angle_increment, ranges)
-
-        # ranges[ranges == 9999] = 0.0
-
+        # for visualisation
         self.safety_scan_msg = scan_msg
         scan_msg.ranges = ranges.tolist()
-
-        ### APPLY MEAN FILTER ###
-        # arc_increments = ranges * angle_increment
-        # half_window_size_array = (self.safety_bubble_diameter/2 / arc_increments).astype(int)
-        # half_window_size_array[half_window_size_array == 0] = 1
-        # for i, half_window_size in enumerate(half_window_size_array):
-        #     if ranges[i] <= 1e-9:
-        #         continue
-        #     elif i < half_window_size:
-        #         ranges[i] = np.mean(ranges[:i + half_window_size])
-        #     elif i > ranges.shape[0] - half_window_size:
-        #         ranges[i] = np.mean(ranges[i - half_window_size:])
-        #     else:
-        #         ranges[i] = np.mean(ranges[i - half_window_size: i + half_window_size])
 
         ### PRIORITISE CENTER OF SCAN ###
         mask_left = np.linspace(1.0, 0.99, ranges_left.shape[0])
@@ -157,21 +118,23 @@ class GapFinderAlgorithm:
         ### FIND MAX AVERAGE GAP ###
         limited_range = ranges[lower_bound:upper_bound+1]
         max_gap_index = np.argmax(limited_range)
-        # self.goal_range = np.max(limited_range)
-        target_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
-        self.goal_bearing = self.last_goal_bearing * (1.0-self.filter_alpha) + target_bearing * self.filter_alpha
-        target_index = int(self.goal_bearing/angle_increment + limited_range.shape[0]/2)
-        self.goal_range = limited_range[target_index]
+        self.goal_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
+        # target_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
+        # self.goal_bearing = self.last_goal_bearing * (1.0-self.filter_alpha) + target_bearing * self.filter_alpha
+        # self.last_goal_bearing = target_bearing
+        # target_index = int(self.goal_bearing/angle_increment + limited_range.shape[0]/2)
+        self.goal_range = limited_range[max_gap_index]
+        # self.goal_range = limited_range[target_index]
 
         ### FIND TWIST ###
-        init_steering = self.goal_bearing
-        steering = self.steering_pid.update(init_steering, dt)
-        steering = min(abs(steering), self.max_steering) * np.sign(steering)
+        # init_steering = self.goal_bearing
+        init_steering = np.arctan(self.goal_bearing * self.wheel_base)
+        steering = self.steering_pid.update(init_steering)
+        # steering = min(abs(steering), self.max_steering) * np.sign(steering)
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
         # init_speed = front_clearance / (1.0 * cp_ranges[max_gap_index]) * self.max_speed * np.cos(2*steering)
-        speed = self.speed_pid.update(init_speed, dt)
-        # speed = init_speed
-        ackermann = [speed, steering]
+        speed = self.speed_pid.update(init_speed)
+        ackermann = {"speed": speed, "steering": steering}
         return ackermann
     
     def get_bubble_coord(self):
@@ -198,20 +161,22 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         super().__init__("gap_finder")
-        self.safety_bubble_diameter = 0.6
+        # self.safety_bubble_diameter = 0.6
         # Timeouts
         self.timeout = 1.0 # [s]
         # Speed limits
         self.max_speed = 10.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
+        self.max_acceleration = 10.0 # [m s^-2]
         # Steering limits
         self.max_steering = 0.4 # [rad]
+        self.max_d_steering = 0.6 # [rad/s]
         # Scan Subscriber
         self.scan_subscriber = self.create_subscription(LaserScan, "scan", self.scan_callback, 1)
         self.scan_subscriber  # prevent unused variable warning
         self.scan_ready = False
-        self.ranges = []
-        self.scan_angle_increment = 0.0
+        # self.ranges = []
+        # self.scan_angle_increment = 0.0
         self.last_scan_time = self.get_time()
         # Odom Subscriber
         self.odom_subscriber = self.create_subscription(Odometry, "ego_racecar/odom", self.odom_callback, 1)
@@ -222,50 +187,53 @@ class GapFinderNode(Node):
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 1)
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # Safety Viz Publisher
-        self.bubble_viz_publisher = self.create_publisher(MarkerArray, "/bubble", 1)
+        self.bubble_viz_publisher = self.create_publisher(MarkerArray, "/safety_bubble", 1)
         # Goal Viz Publisher
-        self.gap_viz_publisher = self.create_publisher(Marker, "/gap", 1)
+        self.gap_viz_publisher = self.create_publisher(Marker, "/goal_point", 1)
         # Laser Viz Publisher
         self.laser_publisher = self.create_publisher(LaserScan, "/safety_scan", 1)
         # GapFinder Algorithm
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = self.safety_bubble_diameter, 
-                                                     view_angle= 4* 3.142/4,
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.6, 
+                                                     view_angle= 3.142,
                                                      coeffiecient_of_friction= 0.5,
-                                                     vertice_detection_threshold=self.safety_bubble_diameter/2,
+                                                     vertice_detection_threshold = 0.6/2,
                                                      lookahead = None, 
                                                      max_speed = self.max_speed, 
                                                      max_steering = self.max_steering)
         # Memory
         self.last_time = self.get_time()
+        self.last_twist = {"speed": 0.0, "steering":0.0}
 
     def get_time(self):
         return self.get_clock().now().to_msg().sec + self.get_clock().now().to_msg().nanosec * 1e-9
 
     def scan_callback(self, scan_msg):
         self.scan_ready = True
-        self.angle_min = scan_msg.angle_min
-        self.angle_max = scan_msg.angle_max
-        self.scan_angle_increment = scan_msg.angle_increment
-        self.ranges = scan_msg.ranges
-        self.last_scan_time = self.get_time()
         self.scan_msg = scan_msg
+        self.last_scan_time = self.get_time()
+        # self.angle_min = scan_msg.angle_min
+        # self.angle_max = scan_msg.angle_max
+        # self.scan_angle_increment = scan_msg.angle_increment
+        # self.ranges = scan_msg.ranges
 
     def odom_callback(self, odom_msg):
         self.odom_ready = True
-        self.linX = odom_msg.twist.twist.linear.x
-        self.angZ = odom_msg.twist.twist.angular.z
+        self.odom_msg = odom_msg
+        # self.linX = odom_msg.twist.twist.linear.x
+        # self.angZ = odom_msg.twist.twist.angular.z
         self.last_odom_time = self.get_time()
 
-    def publish_drive_msg(self, twist=[0.0, 0.0]):
+    def publish_drive_msg(self, twist={"speed": 0.0, "steering": 0.0}):
         drive_msg = AckermannDriveStamped()
-        drive_msg.drive.speed = float(twist[0])
-        drive_msg.drive.steering_angle = float(twist[1])
+        drive_msg.drive.speed = float(twist["speed"])
+        drive_msg.drive.steering_angle = float(twist["steering"])
         self.drive_publisher.publish(drive_msg)
 
     def publish_viz_msgs(self):
         safety_scan = self.gapFinderAlgorithm.get_safety_scan()
         bubble_coord = self.gapFinderAlgorithm.get_bubble_coord()
         goal_coord = self.gapFinderAlgorithm.get_goal_coord()
+        safety_bubble_diameter = self.gapFinderAlgorithm.safety_bubble_diameter
         bubble_viz_msg = MarkerArray()
         gap_viz_msg = Marker()
         laser_viz_msg = safety_scan
@@ -278,9 +246,9 @@ class GapFinderNode(Node):
             marker.pose.position.y = coord[1]
             marker.color.a = 1.0
             marker.color.r = 1.0
-            marker.scale.x = self.safety_bubble_diameter
-            marker.scale.y = self.safety_bubble_diameter
-            marker.scale.z = self.safety_bubble_diameter
+            marker.scale.x = safety_bubble_diameter
+            marker.scale.y = safety_bubble_diameter
+            marker.scale.z = safety_bubble_diameter
             marker.type = Marker.SPHERE
             marker.action = Marker.ADD
             bubble_viz_msg.markers.append(marker)
@@ -305,24 +273,35 @@ class GapFinderNode(Node):
         if self.scan_ready and self.odom_ready:
             dt = self.get_time() - self.last_time
 
-            twist = self.gapFinderAlgorithm.update(self.ranges, self.scan_angle_increment, dt, self.scan_msg)
+            twist = self.gapFinderAlgorithm.update(self.scan_msg.ranges, self.scan_msg.angle_increment, self.scan_msg)
 
             # steering limits
-            twist[1] = np.sign(twist[1]) * min(np.abs(twist[1]), self.max_steering)
+            twist["steering"] = np.sign(twist["steering"]) * min(np.abs(twist["steering"]), self.max_steering)
             # speed limits
-            twist[0] = max(twist[0], self.min_speed)
-            twist[0] = min(twist[0], self.max_speed)
-            # twist[0] = 0.0
+            twist["speed"] = max(twist["speed"], self.min_speed)
+            twist["speed"] = min(twist["speed"], self.max_speed)
+
+            # control change limits
+            # d_speed = twist["speed"] - self.last_twist["speed"]
+            # if abs(d_speed) > self.max_acceleration*dt:
+            #     twist["speed"] = self.last_twist["speed"] + np.sign(d_speed) * self.max_acceleration*dt
+
+            # d_steering = twist["steering"] - self.last_twist["steering"]
+            # if abs(d_steering) > self.max_d_steering*dt:
+            #     twist["steering"] = self.last_twist["steering"] + np.sign(d_steering) * self.max_d_steering*dt
+            
+            # self.last_twist = twist
+            # twist["speed"] = 0.0
 
             self.publish_drive_msg(twist)
             self.last_time = self.get_time()
         
             self.publish_viz_msgs()
 
-        # if ((self.get_time() - self.last_scan_time) > self.timeout):
-        #     self.scan_ready = False
-        # if ((self.get_time() - self.last_odom_time) > self.timeout):
-        #     self.odom_ready = False
+        if ((self.get_time() - self.last_scan_time) > self.timeout):
+            self.scan_ready = False
+        if ((self.get_time() - self.last_odom_time) > self.timeout):
+            self.odom_ready = False
 
 def main(args=None):
     rclpy.init(args=args)
