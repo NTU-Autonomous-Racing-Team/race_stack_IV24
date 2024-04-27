@@ -46,6 +46,9 @@ class GapFinderAlgorithm:
         self.speed_pid.set_point = 0.0
         self.steering_pid = PID(Kp=-0.8, Ki=-0.0, Kd=0.00)
         self.steering_pid.set_point = 0.0
+        # Filtering
+        self.last_goal_bearing = 0.0
+        self.filter_alpha = 0.7 # closer to 1 means no filtering
 
     def draw_safety_bubble(self, index, angle_increment, ranges):
         arc_increment = float(ranges[index] * angle_increment)
@@ -154,8 +157,11 @@ class GapFinderAlgorithm:
         ### FIND MAX AVERAGE GAP ###
         limited_range = ranges[lower_bound:upper_bound+1]
         max_gap_index = np.argmax(limited_range)
-        self.goal_range = np.max(limited_range)
-        self.goal_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
+        # self.goal_range = np.max(limited_range)
+        target_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
+        self.goal_bearing = self.last_goal_bearing * (1.0-self.filter_alpha) + target_bearing * self.filter_alpha
+        target_index = int(self.goal_bearing/angle_increment + limited_range.shape[0]/2)
+        self.goal_range = limited_range[target_index]
 
         ### FIND TWIST ###
         init_steering = self.goal_bearing
@@ -192,7 +198,7 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         super().__init__("gap_finder")
-        self.safety_bubble_diameter = 0.8
+        self.safety_bubble_diameter = 0.6
         # Timeouts
         self.timeout = 1.0 # [s]
         # Speed limits
