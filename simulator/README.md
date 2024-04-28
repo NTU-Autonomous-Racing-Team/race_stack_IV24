@@ -5,7 +5,7 @@
 cd simulator
 sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 ```
-2. Install dependencies (WIP i.e. IGNORE) 
+2. Install dependencies (WIP i.e. SKIP THIS STEP) 
 ```
 sudo apt install -y python3-pip ros-foxy-ackermann-msgs
 git clone https://github.com/f1tenth/f1tenth_gym
@@ -30,7 +30,7 @@ rosdep install -i --from-path src --rosdistro foxy -y
 ```
 cd ~/f1tenth_ws
 ```
-6. Build with colon. Note that if you face a cmake cache issue, rm the specific pakcage in /build.
+6. Run your packages in the container. Build with colcon. 
 ```
 colcon build packages-select [package name]
 ```
@@ -59,6 +59,14 @@ colcon build packages-select [package name]
       /tf
       /tf_static
       ```
+2. If you face a cmake cache issue, remove the generated files in the `f1tenth_ws`
+   1. ```
+      rm -rf build install log
+      ```
+   2. ```
+      colcon build --packages-select <package name>
+      ```
+
    
 
 ## To change map:
