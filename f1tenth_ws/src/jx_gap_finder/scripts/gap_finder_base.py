@@ -51,87 +51,52 @@ class GapFinderAlgorithm:
         # Misc
         self.visualise = visualise
 
+
+
+
     def update(self, ranges, angle_increment, scan_msg):
         ranges = np.array(ranges)
 
-        ### FIND FRONT CLEARANCE ###
-        mid_index = ranges.shape[0]//2
-        # arc = angle_increment * ranges[mid_index]
-        # front_clearance = np.mean(ranges[mid_index-10:mid_index+10])
-        
-        ### LIMIT LOOKAHEAD ##
-        if self.lookahead is not None:
-            ranges[ranges > self.lookahead] = self.lookahead
-        cp_ranges = ranges.copy()
+        disparities = []
+        safe_ranges = ranges.copy()
 
-        ### MARK LARGE DERIVATIVE CHANGES###
-        marked_indexes = []
-        for i in range(1, ranges.shape[0]):
+        # find disparities
+        for i in range(1, len(ranges)):
             if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
-                if ranges[i] < ranges[i-1]:
-                    marked_indexes.append(i)
-                else:
-                    marked_indexes.append(i-1)
+                disparities.append(i)
 
-        ### MARK MINIMUM ON LEFT AND RIGHT ###
-        # split ranges into left and right
-        ranges_right = ranges[:mid_index]
-        ranges_left = ranges[mid_index:]
-        # find minimums on left and right
-        min_range_index = np.argmin(ranges_left)
-        marked_indexes.append(ranges.shape[0]//2 + min_range_index)
-        min_range_index = np.argmin(ranges_right)
-        marked_indexes.append(min_range_index)
-        # recombine left and right
-        ranges = np.concatenate((ranges_right, ranges_left))
+        # process each disparity
+        for index in disparities:
+            # marks the point of obstacle
+            closer_index = index - 1 if ranges[index - 1] < ranges[index] else index
+            distance = ranges[closer_index]
 
-        ### APPLY SAFETY BUBBLE ###
-        self.marked_ranges = [] # for visualisation
-        for i in marked_indexes:
-            if cp_ranges[i] == 0.0:
-                continue
+            # calculate # of samples to cover half of the car width
+            num_samples = int(self.safety_bubble_diameter / (angle_increment * distance))
 
-            arc = angle_increment * cp_ranges[i]
-            arc_increment = int(self.safety_bubble_diameter/arc/2)
-            ranges[i-arc_increment:i+arc_increment+1] = 0.0
+            # extend parity
+            for j in range(max(0, index - num_samples), min(len(ranges), index + num_samples)):
+                safe_ranges[j] = min(safe_ranges[j], distance)
 
-            if self.visualise:
-                # for visualisation
-                bearing = angle_increment * (i - ranges.shape[0]//2)
-                marker = [bearing, cp_ranges[i]]
-                self.marked_ranges.append(marker)
+        # find the best gap within the safe ranges
+        # search only forward facing ranges (+- 90 deg)
+        half_range_count = int(len(ranges) / 2)
+        start_index = half_range_count - int(np.pi / 2 / angle_increment)
+        end_index = half_range_count + int(np.pi / 2 / angle_increment)
 
-        # for visualisation
-        self.safety_scan_msg = scan_msg
-        if self.visualise:
-            scan_msg.ranges = ranges.tolist()
+        max_gap_index = np.argmax(safe_ranges[start_index:end_index]) + start_index
+        max_distance = safe_ranges[max_gap_index]
+        goal_bearing = (max_gap_index - half_range_count) * angle_increment
 
-        ### PRIORITISE CENTER OF SCAN ###
-        mask_left = np.linspace(1.0, 0.99, ranges_left.shape[0])
-        mask_right = np.linspace(0.99, 1.0, ranges_right.shape[0])
-        mask = np.concatenate((mask_right, mask_left))
-        ranges *= mask
-
-        ### LIMIT FIELD OF VIEW ###
-        view_angle_count = self.view_angle//angle_increment
-        lower_bound = int((ranges.shape[0] - view_angle_count)/2)
-        upper_bound = int(lower_bound + view_angle_count)
-
-        ### FIND DEEPEST GAP ###
-        limited_range = ranges[lower_bound:upper_bound+1]
-        max_gap_index = np.argmax(limited_range)
-        self.goal_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
-        self.goal_range = limited_range[max_gap_index]
-
-        ### FIND TWIST ###
-        # init_steering = self.goal_bearing
-        init_steering = np.arctan(self.goal_bearing * self.wheel_base) # using ackermann steering model
+        # calculate steering and speed
+        init_steering = np.arctan(goal_bearing * self.wheel_base)
         steering = self.steering_pid.update(init_steering)
-        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
+        init_speed = np.sqrt(
+            10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)), 1e-9)))
         speed = self.speed_pid.update(init_speed)
         ackermann = {"speed": speed, "steering": steering}
         return ackermann
-    
+
     def get_bubble_coord(self):
         m = []
         for marker in self.marked_ranges:
@@ -164,7 +129,7 @@ class GapFinderNode(Node):
                                                      speed_kp = 1.0,
                                                      steering_kp = 1.5, 
                                                      wheel_base = 0.324, 
-                                                     visualise=True)
+                                                     visualise=False)
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
