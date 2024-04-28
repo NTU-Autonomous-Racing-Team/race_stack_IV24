@@ -18,17 +18,21 @@ sudo rosdep init
 rosdep update
 rosdep install -i --from-path src --rosdistro foxy -y
 ```
-3. Start container to visualise simulator
+3. Start container to start the Rviz simulator
 ```
 ./run_gym_ros.sh
 ```
-4. Start container to access `f1tenth_ws`
+4. Start container again to develop inside the container and access `f1tenth_ws`
 ```
 ./run_gym_ros.sh # starts a new session in container
 ```
 5. Go to f1tenth_ws in container
 ```
 cd ~/f1tenth_ws
+```
+6. Build with colon. Note that if you face a cmake cache issue, rm the specific pakcage in /build.
+```
+colcon build packages-select [package name]
 ```
 
 ## Troubleshoot
