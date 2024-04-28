@@ -27,7 +27,7 @@ class GapFinderAlgorithm:
         - speed_pid: a PID controller for the linear velocity
         - steering_pid: a PID controller for the angular velocity
     """
-    def __init__(self,  safety_bubble_diameter = 0.4, 
+    def __init__(self,  safety_bubble_diameter = 0.2,
                         view_angle = 3.142, 
                         coeffiecient_of_friction = 0.71, 
                         vertice_detection_threshold = 0.6,
