@@ -5,7 +5,7 @@
 cd simulator
 sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
 ```
-2. Install dependencies (WIP)
+2. Install dependencies (WIP i.e. IGNORE) 
 ```
 sudo apt install -y python3-pip ros-foxy-ackermann-msgs
 git clone https://github.com/f1tenth/f1tenth_gym
