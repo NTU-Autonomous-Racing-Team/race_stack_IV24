@@ -69,7 +69,7 @@ colcon build --packages-select <package name>
 
    
 
-## To change map:
+## To change map (WIP):
 1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
 2. rebuild docker image
 
