@@ -32,7 +32,7 @@ cd ~/f1tenth_ws
 ```
 6. Run your packages in the container. Build with colcon. 
 ```
-colcon build packages-select [package name]
+colcon build --packages-select <package name>
 ```
 
 ## Troubleshoot
