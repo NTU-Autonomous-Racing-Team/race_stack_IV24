@@ -88,8 +88,7 @@ class GapFinderAlgorithm:
         ranges = np.concatenate((ranges_right, ranges_left))
 
         ### APPLY SAFETY BUBBLE ###
-        if self.visualise:
-            self.marked_ranges = [] # for visualisation
+        self.marked_ranges = [] # for visualisation
         for i in marked_indexes:
             if cp_ranges[i] == 0.0:
                 continue
@@ -105,8 +104,8 @@ class GapFinderAlgorithm:
                 self.marked_ranges.append(marker)
 
         # for visualisation
+        self.safety_scan_msg = scan_msg
         if self.visualise:
-            self.safety_scan_msg = scan_msg
             scan_msg.ranges = ranges.tolist()
 
         ### PRIORITISE CENTER OF SCAN ###
@@ -159,14 +158,15 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.6, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.5, 
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
-                                                     vertice_detection_threshold = 0.6/2,
-                                                     lookahead = None, 
+                                                     vertice_detection_threshold = 0.5/2,
+                                                     lookahead = 10, 
                                                      speed_kp = 1.0,
-                                                     steering_kp = 1.2, 
-                                                     wheel_base = 0.324)
+                                                     steering_kp = 1.5, 
+                                                     wheel_base = 0.324, 
+                                                     visualise=True)
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
@@ -177,7 +177,7 @@ class GapFinderNode(Node):
 
         ### ROS2 NODE ###
         self.timeout = 1.0 # [s]
-        self.vizualize = True
+        self.vizualize = self.gapFinderAlgorithm.visualise
         super().__init__("gap_finder")
         # Scan Subscriber
         self.scan_subscriber = self.create_subscription(LaserScan, "scan", self.scan_callback, 1)
