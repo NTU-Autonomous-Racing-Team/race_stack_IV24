@@ -58,8 +58,8 @@ class GapFinderAlgorithm:
 
         ### FIND FRONT CLEARANCE ###
         mid_index = ranges.shape[0]//2
-        # arc = angle_increment * ranges[mid_index]
-        # front_clearance = np.mean(ranges[mid_index-10:mid_index+10])
+        arc = angle_increment * ranges[mid_index]
+        front_clearance = np.mean(ranges[mid_index-10:mid_index+10])
         
         ### LIMIT LOOKAHEAD ##
         if self.lookahead is not None:
@@ -109,8 +109,10 @@ class GapFinderAlgorithm:
             scan_msg.ranges = ranges.tolist()
 
         ### PRIORITISE CENTER OF SCAN ###
-        mask_left = np.linspace(1.0, 0.99, ranges_left.shape[0])
-        mask_right = np.linspace(0.99, 1.0, ranges_right.shape[0])
+        ranges_right = ranges[:mid_index]
+        ranges_left = ranges[mid_index:]
+        mask_left = np.linspace(1.0, 0.999, ranges_left.shape[0])
+        mask_right = np.linspace(0.999, 1.0, ranges_right.shape[0])
         mask = np.concatenate((mask_right, mask_left))
         ranges *= mask
 
@@ -129,7 +131,7 @@ class GapFinderAlgorithm:
         # init_steering = self.goal_bearing
         init_steering = np.arctan(self.goal_bearing * self.wheel_base) # using ackermann steering model
         steering = self.steering_pid.update(init_steering)
-        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
+        init_speed = front_clearance/self.lookahead * min(np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9))), 10)
         speed = self.speed_pid.update(init_speed)
         ackermann = {"speed": speed, "steering": steering}
         return ackermann
@@ -158,12 +160,12 @@ class GapFinderNode(Node):
     """
     def __init__(self, hz=50):
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.5, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 1.0, 
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
                                                      vertice_detection_threshold = 0.5/2,
                                                      lookahead = 10, 
-                                                     speed_kp = 1.0,
+                                                     speed_kp = 1.5,
                                                      steering_kp = 1.5, 
                                                      wheel_base = 0.324, 
                                                      visualise=True)
