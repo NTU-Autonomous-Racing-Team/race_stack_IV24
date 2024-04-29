@@ -74,9 +74,11 @@ class GapFinderAlgorithm:
 
         ### FIND FRONT CLEARANCE ###
         mid_index = ranges.shape[0]//2
-        arc = angle_increment * ranges[mid_index]
-        radius_count = int(self.safety_bubble_diameter/arc/2)
-        front_clearance = np.mean(ranges[mid_index-radius_count:mid_index+radius_count])
+        front_clearance = ranges[mid_index]
+        if front_clearance != 0.0:
+            arc = angle_increment * ranges[mid_index]
+            radius_count = int(self.safety_bubble_diameter/arc/2)
+            front_clearance = np.mean(ranges[mid_index-radius_count:mid_index+radius_count])
 
         ### MARK LARGE DISPARITY###
         marked_indexes = []
@@ -92,8 +94,8 @@ class GapFinderAlgorithm:
 
         ### MARK LEFT AND RIGHT ###
         marked_indexes.append(np.argmin(ranges))
-        marked_indexes.append(0) # right most
-        marked_indexes.append(-1) # left most
+        marked_indexes.append(0 + 15) # right most
+        marked_indexes.append(ranges.shape[0]-1 -15) # left most
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
         # # split ranges into left and right
@@ -108,8 +110,9 @@ class GapFinderAlgorithm:
         # ranges = np.concatenate((ranges_right, ranges_left))
 
         ### APPLY SAFETY BUBBLE ###
-        self.marked_ranges = [] # for visualisation
         for i in marked_indexes:
+            if ranges[i] == 0.0:
+                continue
             arc = angle_increment * ranges[i]
             radius_count = int(self.safety_bubble_diameter/arc/2)
             modified_ranges[i-radius_count:i+radius_count+1] = 0.0
@@ -164,9 +167,9 @@ class GapFinderAlgorithm:
     
     def get_bubble_coord(self):
         m = []
-        for marker in self.safety_markers:
-            x = marker[1] * np.cos(marker[0])
-            y = marker[1] * np.sin(marker[0])
+        for i, r in enumerate(self.safety_markers["range"]):
+            x = r * np.cos(self.safety_markers["bearing"][i])
+            y = r * np.sin(self.safety_markers["bearing"][i])
             m.append([x, y])
         return m
 
@@ -190,16 +193,16 @@ class GapFinderNode(Node):
     """
     def __init__(self):
         ### ROS2 PARAMETERS ###
-        self.hz = 50
+        self.hz = 50.0 # [Hz]
         self.timeout = 1.0 # [s]
         self.visualise = True
         scan_topic = "scan"
-        drive_topic = "/nav/drive"
-        # drive_topic = "drive"
+        # drive_topic = "/nav/drive"
+        drive_topic = "drive"
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 3.0 # [m/s]
+        self.max_speed = 10.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
@@ -207,10 +210,10 @@ class GapFinderNode(Node):
         self.max_steering = 0.4 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.6, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 1.0, 
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
-                                                     disparity_threshold = 0.5/2,
+                                                     disparity_threshold = 0.5,
                                                      lookahead = 10, 
                                                      speed_kp = 1.5,
                                                      steering_kp = 1.5, 
@@ -288,6 +291,15 @@ class GapFinderNode(Node):
         bubble_array_viz_msg = MarkerArray()
 
         for i, coord in enumerate(bubble_coord):
+            self.bubble_viz_msg = Marker()
+            self.bubble_viz_msg.header.frame_id = "ego_racecar/base_link"
+            self.bubble_viz_msg.color.a = 1.0
+            self.bubble_viz_msg.color.r = 1.0
+            self.bubble_viz_msg.scale.x = self.gapFinderAlgorithm.safety_bubble_diameter
+            self.bubble_viz_msg.scale.y = self.gapFinderAlgorithm.safety_bubble_diameter
+            self.bubble_viz_msg.scale.z = self.gapFinderAlgorithm.safety_bubble_diameter
+            self.bubble_viz_msg.type = Marker.SPHERE
+            self.bubble_viz_msg.action = Marker.ADD
             self.bubble_viz_msg.id = i
             self.bubble_viz_msg.pose.position.x = coord[0]
             self.bubble_viz_msg.pose.position.y = coord[1]
@@ -323,6 +335,7 @@ class GapFinderNode(Node):
                     # decelerate
                     else:
                         drive["speed"] = self.last_drive_msg.drive.speed - self.max_acceleration
+            # drive["speed"] = 0.0
 
             ### PUBLISH DRIVE MESSAGE ###
             self.publish_drive_msg(drive)
