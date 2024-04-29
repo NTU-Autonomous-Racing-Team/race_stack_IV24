@@ -1,7 +1,7 @@
 # F1Tenth ICRA 2024
 
 ## Navigation
-[Simulator](./simulator) 
+[ROS Workspace](./f1tenth_ws/)    |    [Simulator](./simulator)    |    [Hardware](./hardware/)
 
 ## System Overview
 
