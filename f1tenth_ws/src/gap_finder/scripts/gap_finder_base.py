@@ -54,7 +54,7 @@ class GapFinderAlgorithm:
         self.steering_pid.set_point = 0.0
         # Visualisation
         self.visualise = visualise
-        self.safety_markers = {"range":[], "bearing":[]}
+        self.safety_markers = {"range":[0.0], "bearing":[0.0]}
         self.goal_marker = {"range":0.0, "bearing":0.0}
         # Internal Variables
         self.initialise_center_priority_mask = True
@@ -195,7 +195,7 @@ class GapFinderNode(Node):
         self.max_speed = 3.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Acceleration limits
-        self.max_acceleration = 1.0 # [m/s^2]
+        self.max_acceleration = None # [m/s^2]
         # Steering limits
         self.max_steering = 0.4 # [rad]
 
@@ -256,6 +256,9 @@ class GapFinderNode(Node):
         self.laser_publisher = self.create_publisher(LaserScan, "/safety_scan", 1)
 
     def get_time(self):
+        """
+        Returns the current time in seconds
+        """
         return self.get_clock().now().to_msg().sec + self.get_clock().now().to_msg().nanosec * 1e-9
 
     def scan_callback(self, scan_msg):
@@ -263,9 +266,9 @@ class GapFinderNode(Node):
         self.scan_msg = scan_msg
         self.last_scan_time = self.get_time()
 
-    def publish_drive_msg(self, twist={"speed": 0.0, "steering": 0.0}):
-        self.drive_msg.drive.speed = float(twist["speed"])
-        self.drive_msg.drive.steering_angle = float(twist["steering"])
+    def publish_drive_msg(self, drive={"speed": 0.0, "steering": 0.0}):
+        self.drive_msg.drive.speed = float(drive["speed"])
+        self.drive_msg.drive.steering_angle = float(drive["steering"])
         self.drive_publisher.publish(self.drive_msg)
         self.last_drive_msg = self.drive_msg
         self.last_drive_time = self.get_time()
@@ -294,27 +297,28 @@ class GapFinderNode(Node):
     def timer_callback(self):
         if self.scan_ready:
             ### UPDATE GAP FINDER ALGORITHM ###
-            twist = self.gapFinderAlgorithm.update(self.scan_msg)
+            drive = self.gapFinderAlgorithm.update(self.scan_msg)
 
             ### APPLY SPEED AND STEERING LIMITS ###
             # steering limits
-            twist["steering"] = np.sign(twist["steering"]) * min(np.abs(twist["steering"]), self.max_steering)
+            drive["steering"] = np.sign(drive["steering"]) * min(np.abs(drive["steering"]), self.max_steering)
             # speed limits
-            twist["speed"] = max(twist["speed"], self.min_speed)
-            twist["speed"] = min(twist["speed"], self.max_speed)
+            drive["speed"] = max(drive["speed"], self.min_speed)
+            drive["speed"] = min(drive["speed"], self.max_speed)
             # acceleration limits
             if self.max_acceleration is not None:
-                d_speed = twist["speed"] - self.last_drive_msg.drive.speed
-                if abs(d_speed) > self.max_acceleration/self.hz:
+                dt = self.get_time() - self.last_drive_time
+                d_speed = drive["speed"] - self.last_drive_msg.drive.speed
+                if abs(d_speed) > self.max_acceleration * dt:
                     # accelerate
-                    if twist["speed"] > self.last_drive_msg.drive.speed:
-                        twist["speed"] = self.last_drive_msg.drive.speed + self.max_acceleration
+                    if drive["speed"] > self.last_drive_msg.drive.speed:
+                        drive["speed"] = self.last_drive_msg.drive.speed + self.max_acceleration
                     # decelerate
                     else:
-                        twist["speed"] = self.last_drive_msg.drive.speed - self.max_acceleration
+                        drive["speed"] = self.last_drive_msg.drive.speed - self.max_acceleration
 
             ### PUBLISH DRIVE MESSAGE ###
-            self.publish_drive_msg(twist)
+            self.publish_drive_msg(drive)
             self.last_time = self.get_time()
         
             #### PUBLISH VISUALISATION MESSAGES ###
