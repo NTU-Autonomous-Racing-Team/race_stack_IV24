@@ -64,16 +64,19 @@ class GapFinderAlgorithm:
         ranges = np.array(scan_msg.ranges)
         angle_increment = scan_msg.angle_increment
 
+        ### LIMIT LOOKAHEAD ##
+        if self.lookahead is not None:
+            ranges[ranges > self.lookahead] = self.lookahead
+            range_max = self.lookahead
+        else:
+            range_max = scan_msg.range_max
+        modified_ranges = ranges.copy()
+
         ### FIND FRONT CLEARANCE ###
         mid_index = ranges.shape[0]//2
         arc = angle_increment * ranges[mid_index]
         radius_count = int(self.safety_bubble_diameter/arc/2)
         front_clearance = np.mean(ranges[mid_index-radius_count:mid_index+radius_count])
-
-        ### LIMIT LOOKAHEAD ##
-        if self.lookahead is not None:
-            ranges[ranges > self.lookahead] = self.lookahead
-        modified_ranges = ranges.copy()
 
         ### MARK LARGE DISPARITY###
         marked_indexes = []
@@ -136,7 +139,7 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        init_speed = front_clearance/scan_msg.range_max * min(init_speed, self.speed_max)
+        init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
         ackermann = {"speed": speed, "steering": steering}
