@@ -180,6 +180,10 @@ class GapFinderNode(Node):
     """
     ROS2 Node Class that handles all the subscibers and publishers for the gap finder algorithm. 
     It abstracts the gap finder algorithm from the ROS2 interface.
+    The only things to tune or change are in the sections:
+    - ROS2 PARAMETERS
+    - SPEED AND STEERING LIMITS
+    - GAP FINDER ALGORITHM
     """
     def __init__(self):
         ### ROS2 PARAMETERS ###
