@@ -163,17 +163,18 @@ class GapFinderNode(Node):
     ROS2 Node Class that handles all the subscibers and publishers for the gap finder algorithm. 
     It abstracts the gap finder algorithm from the ROS2 interface.
     """
-    def __init__(self, hz=50):
+    def __init__(self, hz=100):
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 12.0 # [m/s]
+        # self.max_speed = 12.0 # [m/s]
+        self.max_speed = 3.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Steering limits
         self.max_steering = 0.4 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 1.0, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.6, 
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
                                                      disparity_threshold = 0.5/2,
@@ -194,12 +195,14 @@ class GapFinderNode(Node):
         self.scan_ready = False
         self.last_scan_time = self.get_time()
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "ego_racecar/odom", self.odom_callback, 1)
+        # self.odom_subscriber = self.create_subscription(Odometry, "ego_racecar/odom", self.odom_callback, 1)
+        self.odom_subscriber = self.create_subscription(Odometry, "/odom", self.odom_callback, 1)
         self.odom_subscriber
         self.odom_ready = False
         self.last_odom_time = self.get_time()
         # Drive Publisher
-        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 1)
+        # self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/drive", 1)
+        self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/nav/drive", 1)
         # Timer
         self.timer = self.create_timer(1/hz , self.timer_callback)
         # Viz Publishers
