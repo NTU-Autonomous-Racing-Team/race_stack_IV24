@@ -32,19 +32,21 @@ class GapFinderAlgorithm:
     def __init__(self,  safety_bubble_diameter = 0.4, 
                         view_angle = 3.142, 
                         coeffiecient_of_friction = 0.71, 
-                        vertice_detection_threshold = 0.6,
+                        disparity_threshold = 0.6,
                         lookahead = None, 
                         speed_kp = 1.0,
                         steering_kp = 1.2,
                         wheel_base = 0.324, 
+                        speed_max = 10.0,
                         visualise = False):
         # Tunable Parameters
         self.safety_bubble_diameter = safety_bubble_diameter  # [m]
         self.view_angle = view_angle  # [rad]
         self.coeffiecient_of_friction = coeffiecient_of_friction
         self.lookahead = lookahead # [m]
-        self.change_threshold = vertice_detection_threshold # [m]
+        self.disparity_threshold = disparity_threshold # [m]
         self.wheel_base = wheel_base  # [m]
+        self.speed_max = speed_max  # [m/s]
         # Controller Parameters
         self.speed_pid = PID(Kp=-speed_kp)
         self.speed_pid.set_point = 0.0
@@ -60,16 +62,16 @@ class GapFinderAlgorithm:
         mid_index = ranges.shape[0]//2
         arc = angle_increment * ranges[mid_index]
         front_clearance = np.mean(ranges[mid_index-10:mid_index+10])
-        
+
         ### LIMIT LOOKAHEAD ##
         if self.lookahead is not None:
             ranges[ranges > self.lookahead] = self.lookahead
         cp_ranges = ranges.copy()
 
-        ### MARK LARGE DERIVATIVE CHANGES###
+        ### MARK LARGE DISPARITY###
         marked_indexes = []
         for i in range(1, ranges.shape[0]):
-            if abs(ranges[i] - ranges[i-1]) > self.change_threshold:
+            if abs(ranges[i] - ranges[i-1]) > self.disparity_threshold:
                 if ranges[i] < ranges[i-1]:
                     marked_indexes.append(i)
                 else:
@@ -131,8 +133,11 @@ class GapFinderAlgorithm:
         # init_steering = self.goal_bearing
         init_steering = np.arctan(self.goal_bearing * self.wheel_base) # using ackermann steering model
         steering = self.steering_pid.update(init_steering)
-        init_speed = front_clearance/self.lookahead * min(np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9))), 10)
+
+        init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-9)))
+        init_speed = front_clearance/scan_msg.range_max * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
+
         ackermann = {"speed": speed, "steering": steering}
         return ackermann
     
@@ -159,23 +164,25 @@ class GapFinderNode(Node):
     It abstracts the gap finder algorithm from the ROS2 interface.
     """
     def __init__(self, hz=50):
+
+        ### SPEED AND STEERING LIMITS ###
+        # Speed limits
+        self.max_speed = 12.0 # [m/s]
+        self.min_speed = 1.0 # [m/s]
+        # Steering limits
+        self.max_steering = 0.4 # [rad]
+
         ### GAP FINDER ALGORITHM ###
         self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 1.0, 
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
-                                                     vertice_detection_threshold = 0.5/2,
+                                                     disparity_threshold = 0.5/2,
                                                      lookahead = 10, 
                                                      speed_kp = 1.5,
                                                      steering_kp = 1.5, 
                                                      wheel_base = 0.324, 
+                                                     speed_max= self.max_speed,
                                                      visualise=True)
-
-        ### SPEED AND STEERING LIMITS ###
-        # Speed limits
-        self.max_speed = 10.0 # [m/s]
-        self.min_speed = 1.0 # [m/s]
-        # Steering limits
-        self.max_steering = 0.4 # [rad]
 
         ### ROS2 NODE ###
         self.timeout = 1.0 # [s]
