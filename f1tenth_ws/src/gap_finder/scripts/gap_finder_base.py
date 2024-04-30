@@ -85,17 +85,16 @@ class GapFinderAlgorithm:
         for i in range(1, ranges.shape[0]):
             if abs(ranges[i] - ranges[i-1]) > self.disparity_threshold:
                 if ranges[i] < ranges[i-1]:
-                    marked_indexes.append(i)
+                    marked_indexes.append([i, ranges[i]])
                 else:
-                    marked_indexes.append(i-1)
+                    marked_indexes.append([i-1, ranges[i-1]])
 
         ### MARK MINIMUM ###
-        marked_indexes.append(np.argmin(ranges))
+        marked_indexes.append([np.argmin(ranges), np.min(ranges)])
 
         ### MARK LEFT AND RIGHT ###
-        marked_indexes.append(np.argmin(ranges))
-        marked_indexes.append(0 + 15) # right most
-        marked_indexes.append(ranges.shape[0]-1 -15) # left most
+        marked_indexes.append([0, ranges[0]]) # right most
+        marked_indexes.append([ranges.shape[0]-1, ranges[ranges.shape[0]-1]]) # left most
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
         # # split ranges into left and right
@@ -110,12 +109,12 @@ class GapFinderAlgorithm:
         # ranges = np.concatenate((ranges_right, ranges_left))
 
         ### APPLY SAFETY BUBBLE ###
-        for i in marked_indexes:
-            if ranges[i] == 0.0:
+        for i_range in marked_indexes:
+            if i_range[1] == 0.0:
                 continue
-            arc = angle_increment * ranges[i]
+            arc = angle_increment * i_range[1]
             radius_count = int(self.safety_bubble_diameter/arc/2)
-            modified_ranges[i-radius_count:i+radius_count+1] = 0.0
+            modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
 
         ### PRIORITISE CENTER OF SCAN ###
         if self.initialise_center_priority_mask:
@@ -155,9 +154,9 @@ class GapFinderAlgorithm:
             # Visualise Marked Ranges
             self.safety_markers["range"].clear()
             self.safety_markers["bearing"].clear()
-            for i in marked_indexes:
-                bearing = angle_increment * (i - ranges.shape[0]//2)
-                self.safety_markers["range"].append(ranges[i])
+            for i_range in marked_indexes:
+                bearing = angle_increment * (i_range[0] - ranges.shape[0]//2)
+                self.safety_markers["range"].append(i_range[1])
                 self.safety_markers["bearing"].append(bearing)
             # Visualise Goal
             self.goal_marker["range"] = limited_range[max_gap_index]
@@ -195,14 +194,14 @@ class GapFinderNode(Node):
         ### ROS2 PARAMETERS ###
         self.hz = 50.0 # [Hz]
         self.timeout = 1.0 # [s]
-        self.visualise = True
+        self.visualise = False
         scan_topic = "scan"
-        # drive_topic = "/nav/drive"
-        drive_topic = "drive"
+        drive_topic = "/nav/drive"
+        # drive_topic = "drive"
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 10.0 # [m/s]
+        self.max_speed = 3.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
