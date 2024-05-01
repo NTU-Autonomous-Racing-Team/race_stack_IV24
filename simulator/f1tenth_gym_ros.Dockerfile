@@ -43,7 +43,7 @@ RUN cd f1tenth_gym && \
 
 # ros2 gym bridge
 RUN mkdir -p sim_ws/src/
-RUN 	cd sim_ws/src && \
+RUN cd sim_ws/src && \
 	git clone https://github.com/f1tenth/f1tenth_gym_ros.git
 RUN source /opt/ros/foxy/setup.bash && \
     cd sim_ws &&\
@@ -68,6 +68,7 @@ RUN printf \
 "#!/bin/bash \n \
 source /opt/ros/foxy/setup.bash \n \
 source /sim_ws/install/setup.bash \n \
+cd /sim_ws && colcon build \n \
 ros2 launch f1tenth_gym_ros gym_bridge_launch.py" \
 >> run_sim.sh
 
@@ -76,6 +77,9 @@ RUN cd /sim_ws && \
 sed -i 's/levine/Spielberg_map/g' /sim_ws/src/f1tenth_gym_ros/config/sim.yaml && \
 colcon build
 
+# remove sim_ws because it is in the repo. but comment  this line to leave it
+RUN cd ../ && \
+    rm -rf sim_ws
 
 ENTRYPOINT ["/bin/bash"]
 

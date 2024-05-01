@@ -12,6 +12,7 @@ create_container (){
     --privileged \
     --net=host \
     -v $(pwd)/../f1tenth_ws:/root/f1tenth_ws \
+    -v $(pwd)/sim_ws:/sim_ws \
     f1tenth:gym_ros_foxy \
     run_sim.sh
 }
