@@ -21,7 +21,7 @@ class GapFinderAlgorithm:
     This class implements the gap finder algorithm. The algorithm takes in a list of ranges from a LiDAR scan and
     returns a twist dictionary that will move the car to the deepest gap in the scan after drawing safety bubbles.
     params:
-        - safety_bubble_diameter: the diameter of the safety bubble to draw around obstacles
+        - safety_bubble_radius: the radius of the safety bubble to draw around obstacles
         - view_angle: the angle of the field of view of the LiDAR as a cone in front of the car
         - coeffiecient_of_friction: the coeffiecient of friction of the car used for speed calculation
         - wheel_base: the distance between the front and rear axles of the car
@@ -57,28 +57,47 @@ class GapFinderAlgorithm:
         self.safety_markers = {"range":[0.0], "bearing":[0.0]}
         self.goal_marker = {"range":0.0, "bearing":0.0}
         # Internal Variables
-        self.initialise_center_priority_mask = True
+        self.initialise = True
         self.center_priority_mask = None
+        self.fov_bounds = None
+        self.middle_index = None
 
     def update(self, scan_msg):
         ranges = np.array(scan_msg.ranges)
         angle_increment = scan_msg.angle_increment
 
+        if self.initialise:
+            # lookahead
+            if self.lookahead is None:
+                self.lookahead = scan_msg.range_max
+            # middle index for front of car
+            self.middle_index = ranges.shape[0]//2
+            # field of view bounds
+            view_angle_count = self.view_angle//angle_increment
+            lower_bound = int((ranges.shape[0] - view_angle_count)/2)
+            upper_bound = int(lower_bound + view_angle_count)
+            self.fov_bounds = [lower_bound, upper_bound+1]
+            # center priority mask
+            ranges_right = ranges[lower_bound:self.middle_index]
+            ranges_left = ranges[self.middle_index:upper_bound+1]
+            mask_right = np.linspace(0.999, 1.0, ranges_right.shape[0])
+            mask_left = np.linspace(1.0, 0.999, ranges_left.shape[0])
+            self.center_priority_mask = np.concatenate((mask_right, mask_left))
+            self.initialise = False
+ 
         ### LIMIT LOOKAHEAD ##
-        if self.lookahead is not None:
-            ranges[ranges > self.lookahead] = self.lookahead
-            range_max = self.lookahead
-        else:
-            range_max = scan_msg.range_max
+        ranges[ranges > self.lookahead] = self.lookahead
         modified_ranges = ranges.copy()
 
         ### FIND FRONT CLEARANCE ###
-        mid_index = ranges.shape[0]//2
-        front_clearance = ranges[mid_index]
-        if front_clearance != 0.0:
-            arc = angle_increment * ranges[mid_index]
-            radius_count = int(self.safety_bubble_diameter/arc/2)
-            front_clearance = np.mean(ranges[mid_index-radius_count:mid_index+radius_count])
+        # front_clearance = ranges[self.middle_index]
+        # if front_clearance != 0.0:
+        #     arc = angle_increment * ranges[self.middle_index]
+        #     radius_count = int(self.safety_bubble_diameter/arc/2)
+        #     front_clearance = np.mean(ranges[self.mid_index-radius_count:self.mid_index+radius_count])
+
+        ### FIND MEAN RANGE ###
+        mean_range = np.mean(ranges)
 
         ### MARK LARGE DISPARITY###
         marked_indexes = []
@@ -116,32 +135,40 @@ class GapFinderAlgorithm:
             radius_count = int(self.safety_bubble_diameter/arc/2)
             modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
 
-        ### PRIORITISE CENTER OF SCAN ###
-        if self.initialise_center_priority_mask:
-            ranges_right = ranges[:mid_index]
-            ranges_left = ranges[mid_index:]
-            mask_right = np.linspace(0.999, 1.0, ranges_right.shape[0])
-            mask_left = np.linspace(1.0, 0.999, ranges_left.shape[0])
-            self.center_priority_mask = np.concatenate((mask_right, mask_left))
-            self.initialise_center_priority_mask = False
-        modified_ranges *= self.center_priority_mask
-
         ### LIMIT FIELD OF VIEW ###
-        view_angle_count = self.view_angle//angle_increment
-        lower_bound = int((ranges.shape[0] - view_angle_count)/2)
-        upper_bound = int(lower_bound + view_angle_count)
+        limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+
+        ### MEAN FILTER ###
+        for i, r in enumerate(limited_ranges):
+            arc = angle_increment * r
+            radius_count = int(self.safety_bubble_diameter/arc/2)
+            if i < radius_count:
+                mean = np.mean(limited_ranges[:i+radius_count+1])
+            elif i > ranges.shape[0] - radius_count:
+                mean = np.mean(limited_ranges[i-radius_count:])
+            else:
+                mean = np.mean(limited_ranges[i-radius_count:i+radius_count+1])
+            # ranges[i] = mean
+            # r_index = i + self.fov_bounds[0]
+            # mean = np.mean(ranges[r_index-radius_count:r_index+radius_count+1])
+            limited_ranges[i] = mean
+
+        ### PRIORITISE CENTER OF SCAN ###
+        limited_ranges *= self.center_priority_mask
 
         ### FIND DEEPEST GAP ###
-        limited_range = modified_ranges[lower_bound:upper_bound+1]
-        max_gap_index = np.argmax(limited_range)
-        goal_bearing = angle_increment * (max_gap_index - limited_range.shape[0] // 2)
+        limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+        max_gap_index = np.argmax(limited_ranges)
+        goal_bearing = angle_increment * (max_gap_index - limited_ranges.shape[0] // 2)
 
         ### FIND TWIST ###
         init_steering = np.arctan(goal_bearing * self.wheel_base) # using ackermann steering model
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
+        # init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
+        # init_speed = mean_range/range_max * min(init_speed, self.speed_max)
+        init_speed = mean_range/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
         ackermann = {"speed": speed, "steering": steering}
@@ -159,7 +186,7 @@ class GapFinderAlgorithm:
                 self.safety_markers["range"].append(i_range[1])
                 self.safety_markers["bearing"].append(bearing)
             # Visualise Goal
-            self.goal_marker["range"] = limited_range[max_gap_index]
+            self.goal_marker["range"] = limited_ranges[max_gap_index]
             self.goal_marker["bearing"] = goal_bearing
 
         return ackermann
@@ -194,14 +221,14 @@ class GapFinderNode(Node):
         ### ROS2 PARAMETERS ###
         self.hz = 50.0 # [Hz]
         self.timeout = 1.0 # [s]
-        self.visualise = False
+        self.visualise = True
         scan_topic = "scan"
-        drive_topic = "/nav/drive"
-        # drive_topic = "drive"
+        # drive_topic = "/nav/drive"
+        drive_topic = "drive"
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 3.0 # [m/s]
+        self.max_speed = 10.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
@@ -209,12 +236,12 @@ class GapFinderNode(Node):
         self.max_steering = 0.4 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 1.0, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.3, # [m] should be the width of the car
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
                                                      disparity_threshold = 0.5,
                                                      lookahead = 10, 
-                                                     speed_kp = 1.5,
+                                                     speed_kp = 4.0,
                                                      steering_kp = 1.5, 
                                                      wheel_base = 0.324, 
                                                      speed_max= self.max_speed,
