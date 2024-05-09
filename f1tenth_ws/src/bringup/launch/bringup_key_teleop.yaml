@@ -17,3 +17,8 @@ launch:
     pkg: "safety_node"
     exec: "safety_node.py"
     name: "safety_node"
+
+- node:
+    pkg: "key_map"
+    exec: "key_map"
+    name: "key_mapper"
