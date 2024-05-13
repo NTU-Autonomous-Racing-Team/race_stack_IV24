@@ -35,7 +35,11 @@ conda activate opt_raceline
 pip install -r requirements.txt
 python3 main.py
 ```
-
+### troubleshoot
+```
+pip install idna urllib3
+pip install --upgrade httpx requests
+```
 ### `simulator/`
 
 The F1tenth simulator. Docker image created from the official simulator. Please don't touch.
