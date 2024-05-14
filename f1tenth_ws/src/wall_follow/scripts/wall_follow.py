@@ -35,9 +35,9 @@ class WallFollow(Node):
         #     "lookahead_distance_gain"
         # ).value
 
-        self.Kp = 0.25
-        self.Ki = 0.012
-        self.Kd = 0.001
+        self.Kp = 0.40
+        self.Ki = 0.030
+        self.Kd = 0.002
 
         self.integral = 0.0
         self.prev_error_1 = 0.0
@@ -45,8 +45,7 @@ class WallFollow(Node):
         self.prev_nsecs = 0.0
 
         self.longitudinal_vel = 0
-        self.front_dist = 0
-        self.coeffiecient_of_friction = 2.0
+        self.coeffiecient_of_friction = 0.30
         self.wheel_base = 0.33
 
     def getRange(self, scan_data, angle):
@@ -71,17 +70,19 @@ class WallFollow(Node):
         # 90 Degrees to the car
         distance_b = self.getRange(scan_data, angle_b)  # ranges[901]
         # ~ 35 Degrees to the first scan
-        distance_a = self.getRange(scan_data, angle_a)  # ranges[760]
+        distance_a = (
+            self.getRange(scan_data, angle_a)
+        ) / 2  # ranges[760]
 
         alpha = -1 * np.arctan2(
             (distance_a * np.cos(theta) - distance_b), (distance_a * np.sin(theta))
         )
 
         actual_distance = distance_b * np.cos(alpha)
-        desired_distance = 1.4  # Metres
+        desired_distance = 1.0  # Metres
 
         error = desired_distance - actual_distance
-        lookahead_distance = self.longitudinal_vel * 0.45
+        lookahead_distance = self.longitudinal_vel * 0.15
 
         error_1 = error + lookahead_distance * np.sin(alpha)
 
@@ -106,12 +107,13 @@ class WallFollow(Node):
             )
 
             if steering_angle < -0.4:
-                self.drive_msg.drive.steering_angle = -0.4
+                steering_angle = -0.4
             elif steering_angle > 0.4:
-                self.drive_msg.drive.steering_angle = -0.4
-            else:
-                self.drive_msg.drive.steering_angle = steering_angle
+                steering_angle = 0.4
+            self.drive_msg.drive.steering_angle = steering_angle
 
+            # steering_angle = 0.3
+            # self.drive_msg.drive.steering_angle = -0.3
             steering_angle_degrees = abs(steering_angle * (180 / np.pi))
 
             self.prev_error_1 = error_1
@@ -123,7 +125,7 @@ class WallFollow(Node):
             # )
 
             self.drive_msg.drive.speed = min(
-                12.0,
+                5.0,
                 np.sqrt(
                     (10 * self.coeffiecient_of_friction * self.wheel_base)
                     / np.abs(np.tan(steering_angle))
