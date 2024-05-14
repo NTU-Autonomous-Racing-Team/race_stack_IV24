@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>wall_follow</name>
+  <name>overtake</name>
   <version>0.0.0</version>
-  <description>Wall Following Node</description>
+  <description>Opponent Detection Node</description>
   <maintainer email="lukettl15@gmail.com">luthov</maintainer>
   <license>GNU General Public License</license>
 
