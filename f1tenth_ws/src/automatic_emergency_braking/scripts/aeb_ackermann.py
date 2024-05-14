@@ -15,9 +15,9 @@ from std_msgs.msg import Int32
 class AEB_Ackerman():
     def __init__(self, SAFETY_BUBBLE_DIAMETER = 0.3, 
                  frictional_coefficient = 0.5, 
-                 max_steering_angle = 0.35,
+                 max_steering_angle = 0.4,
                  wheelbase = 0.33,
-                 view_angle = None):
+                 view_angle = 3.142/2.0):
         # CONSTANTS
         self.G = 9.81
         # TUNABLE PARAMETERS
@@ -28,16 +28,17 @@ class AEB_Ackerman():
         self.VIEW_ANGLE = view_angle
 
     def limit_field_of_view(self, ranges, angle_increment):
-        view_angle_count = self.view_angle//angle_increment
+        view_angle_count = self.VIEW_ANGLE//angle_increment
         lower_bound = int((len(ranges)- view_angle_count)/2)
         upper_bound = int(lower_bound + view_angle_count)
         ranges = ranges[lower_bound:upper_bound]
+        return ranges
 
     def update(self, scan_msg, odom_msg):
         ranges = scan_msg.ranges
         angle_increment = scan_msg.angle_increment
         speed = odom_msg.twist.twist.linear.x
-        if self.view_angle is not None:
+        if self.VIEW_ANGLE is not None:
             ranges = self.limit_field_of_view(ranges, angle_increment)
 
         # Calculate Nearest Point Coordinates
@@ -66,8 +67,10 @@ class AEB_Ackerman():
 
         # Check Collision
         if abs(distance - instantaneous_rotation_radius) < self.SAFETY_BUBBLE_DIAMETER/2:
+            # Collision
             return 1
         else:
+            # No Collision
             return 0
 
 
