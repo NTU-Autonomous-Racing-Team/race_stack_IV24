@@ -5,29 +5,35 @@ launch:
 
 - node:
     pkg: "automatic_emergency_braking"
-    exec: "aeb_ackermann"
+    exec: "aeb_ackermann.py"
+    name: "aeb"
 
 - node:
     pkg: "demux"
-    exec: "demux"
+    exec: "demux.py"
+    name: "demux"
 
 - node:
     pkg: "gap_finder"
-    exec: "gap_finder_base"
+    exec: "gap_finder_base.py"
+    name: "gap_finder"
 
 - node:
     pkg: "pure_pursuit"
-    exec: "pure_pursuit"
+    exec: "pure_pursuit.py"
+    name: "pure_pursuit"
 
 - node:
     pkg: "safety_node"
-    exec: "safety_node"
+    exec: "safety_node.py"
+    name: "safety_node"
       
 - node:
     pkg: "time_to_collision"
-    exec: "ttc_base"
+    exec: "ttc_base.py"
+    name: "ttc"
 
 - node:
     pkg: "wall_follow"
-    exec: "wall_follow"
-
+    exec: "wall_follow.py"
+    name: "wall_follow"
