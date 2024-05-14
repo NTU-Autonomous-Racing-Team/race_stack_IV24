@@ -82,10 +82,10 @@ class GapFinderNode(Node):
     def __init__(self, hz=50):
         super().__init__("gap_finder")
         # Scan Subscriber
-        self.scan_subscriber = self.create_subscription(LaserScan, "/gap_scan", self.scan_callback, 10)
+        self.scan_subscriber = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
         self.scan_subscriber  # prevent unused variable warning
         # Odom Subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, "/gap_odom", self.odom_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, "/odom", self.odom_callback, 10)
         self.odom_subscriber
         # Drive Publisher
         self.drive_publisher = self.create_publisher(AckermannDriveStamped, "/nav/drive", 10)
