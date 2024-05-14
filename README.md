@@ -1,5 +1,10 @@
 # F1Tenth ICRA 2024
 
+## Navigation
+[ROS Workspace](./f1tenth_ws/)    |    [Simulator](./simulator)    |    [Hardware](./hardware/)
+
+## System Overview
+
 ![CleanShot 2024-03-14 at 16 42 18@2x](https://github.com/NTU-Autonomous-Racing-Team/f1tenth_icra2024/assets/65676392/44360186-bb67-4fd0-8ce3-2cb304b6a80f)
 
 ## Requirements
@@ -10,26 +15,31 @@ ROS 2 Foxy, Ubuntu 20.04, Docker.
 2. [Setup GitHub crediential](https://cli.github.com/manual/)
 3. [Install docker](https://docs.docker.com/engine/install/ubuntu/)
 4. [Add Docker into sudo group ](https://docs.docker.com/engine/install/linux-postinstall/)
+5. [Install rosdep](http://wiki.ros.org/rosdep)
 
 ## Run
 
-### Simulation
-```
-cd simulator
-sudo docker network create f1tenth_network
-sudo docker build -f f1tenth_gym_ros.Dockerfile -t f1tenth:gym_ros_foxy .
-./run_gym_ros.sh
-```
-To change map:
-1. edit the `f1tenth_gym_ros.Dockerfile` where #change map is.
-2. rebuild docker image
-
 ### Control Car
-To control the car by keyboard, run ```source /opt/ros/foxy/setup.bash
-ros2 run demo_nodes_cpp talker```.
+To control the car by keyboard, run 
+```sh
+bringup_key_teleop
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
 
 ## Documentation
-
+### Waypoint Generation and Trajectory Optimizaiton
+```
+cd util/trajectory_optimization
+conda create --name opt_raceline python=3.8
+conda activate opt_raceline
+pip install -r requirements.txt
+python3 main.py <map_name>
+```
+### troubleshoot
+```
+pip install idna urllib3
+pip install --upgrade httpx requests
+```
 ### `simulator/`
 
 The F1tenth simulator. Docker image created from the official simulator. Please don't touch.
@@ -42,8 +52,14 @@ Sometimes after running the container, the `topics` dont show up with `ros2 topi
 ` 
 `
 ``
-
 ### hardware
 1. VESC Setup
   1. Refer to [f1tenth build](https://f1tenth.org/build.html)
   2. Upload Motor Configuration and App Configuration
+
+## Misc.
+Use this to prioritise a network adapter
+```sh
+nmcli connection modify <connection-name> ipv4.route-metric 1
+nmcli connection up <connection-name>
+```

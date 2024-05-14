@@ -1,0 +1,19 @@
+launch:
+
+- include:
+    file: "$(find-pkg-share f1tenth_stack)/launch/bringup_launch.py"
+
+- node:
+    pkg: "automatic_emergency_braking"
+    exec: "aeb_ackermann.py"
+    name: "aeb"
+
+- node:
+    pkg: "time_to_collision"
+    exec: "ttc_base.py"
+    name: "ttc"
+
+- node:
+    pkg: "safety_node"
+    exec: "safety_node.py"
+    name: "safety_node"

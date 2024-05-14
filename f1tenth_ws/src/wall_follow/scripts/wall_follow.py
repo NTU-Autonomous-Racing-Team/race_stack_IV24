@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
+import math
 import rclpy
-
 from rclpy.node import Node
-
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry
 from ackermann_msgs.msg import AckermannDriveStamped
@@ -140,13 +139,9 @@ class WallFollow(Node):
 
 
 def main(args=None):
-
     rclpy.init(args=args)
-
     wall_follow = WallFollow()
-
     rclpy.spin(wall_follow)
-
     wall_follow.destroy_node()
     rclpy.shutdown()
 
