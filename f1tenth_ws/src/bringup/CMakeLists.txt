@@ -28,6 +28,6 @@ ament_python_install_package(${PROJECT_NAME})
 # Install launch files
 install(DIRECTORY
   launch
-  DESTINATION lib/${PROJECT_NAME}
+  DESTINATION share/${PROJECT_NAME}
 )
 ament_package()
