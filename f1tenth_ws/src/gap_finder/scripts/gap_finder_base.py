@@ -21,13 +21,16 @@ class GapFinderAlgorithm:
     This class implements the gap finder algorithm. The algorithm takes in a list of ranges from a LiDAR scan and
     returns a twist dictionary that will move the car to the deepest gap in the scan after drawing safety bubbles.
     params:
-        - safety_bubble_radius: the radius of the safety bubble to draw around obstacles
+        - safety_bubble_diameter: the diameter of the safety bubble
         - view_angle: the angle of the field of view of the LiDAR as a cone in front of the car
         - coeffiecient_of_friction: the coeffiecient of friction of the car used for speed calculation
+        - disparity_threshold: the threshold for marking a disparity in the scan i.e. an edge
+        - lookahead : the maximum distance to look ahead in the scan i.e ranges more than this are set to this value
+        - speed_kp: the proportional gain for the speed PID controller
+        - steering_kp: the proportional gain for the steering PID controller
         - wheel_base: the distance between the front and rear axles of the car
-        - lookahead: the maximum distance to look ahead in the scan
-        - speed_pid: a PID controller for the linear velocity
-        - steering_pid: a PID controller for the angular velocity
+        - speed_max: the maximum speed of the car
+        - visualise: a boolean to generate visualisation markers
     """
     def __init__(self,  safety_bubble_diameter = 0.4, 
                         view_angle = 3.142, 
