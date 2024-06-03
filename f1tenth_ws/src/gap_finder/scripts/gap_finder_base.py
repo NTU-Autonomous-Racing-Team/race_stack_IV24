@@ -226,8 +226,8 @@ class GapFinderNode(Node):
         self.timeout = 1.0 # [s]
         self.visualise = True
         scan_topic = "scan"
-        # drive_topic = "/nav/drive"
-        drive_topic = "drive"
+        drive_topic = "/nav/drive"
+        # drive_topic = "drive"
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
