@@ -166,6 +166,8 @@ class GapFinderAlgorithm:
                 # mean = np.mean(ranges[r_index-radius_count:r_index+radius_count+1])
                 limited_ranges[i] = mean
 
+        
+
         ### PRIORITISE CENTER OF SCAN ###
         limited_ranges *= self.center_priority_mask
 
@@ -179,10 +181,8 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        # init_speed = mean_range/self.lookahead * front_clearance/self.lookahead * min(init_speed, self.speed_max)
+        init_speed = front_clearance/self.lookahead * min(init_speed, self.speed_max)
         # init_speed = mean_range/self.lookahead * min(init_speed, self.speed_max)
-        init_speed = np.median(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
-        print(f"mean: {round(np.mean(limited_ranges), 2)}, median: {round(np.median(limited_ranges), 2)}")
         # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
