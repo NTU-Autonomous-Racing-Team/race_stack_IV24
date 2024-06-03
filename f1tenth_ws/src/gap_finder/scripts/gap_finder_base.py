@@ -55,6 +55,9 @@ class GapFinderAlgorithm:
         self.speed_pid.set_point = 0.0
         self.steering_pid = PID(Kp=-steering_kp)
         self.steering_pid.set_point = 0.0
+        # Feature Activation
+        self.do_mark_sides = True
+        self.do_mean_filter = True
         # Visualisation
         self.visualise = visualise
         self.safety_markers = {"range":[0.0], "bearing":[0.0]}
@@ -93,11 +96,11 @@ class GapFinderAlgorithm:
         modified_ranges = ranges.copy()
 
         ### FIND FRONT CLEARANCE ###
-        front_clearance = ranges[self.middle_index]
-        # if front_clearance != 0.0:
-        #     arc = angle_increment * ranges[self.middle_index]
-        #     radius_count = int(self.safety_bubble_diameter/arc/2)
-        #     front_clearance = np.mean(ranges[self.mid_index-radius_count:self.mid_index+radius_count])
+        front_clearance = ranges[self.middle_index] # single laser scan
+        if front_clearance != 0.0: # mean of safety bubble of front scan
+            arc = angle_increment * ranges[self.middle_index]
+            radius_count = int(self.safety_bubble_diameter/arc/2)
+            front_clearance = np.mean(ranges[self.middle_index-radius_count:self.middle_index+radius_count])
 
         ### FIND MEAN RANGE ###
         mean_range = np.mean(ranges)
@@ -115,8 +118,9 @@ class GapFinderAlgorithm:
         marked_indexes.append([np.argmin(ranges), np.min(ranges)])
 
         ### MARK LEFT AND RIGHT ###
-        marked_indexes.append([0, ranges[0]]) # right most
-        marked_indexes.append([ranges.shape[0]-1, ranges[ranges.shape[0]-1]]) # left most
+        if (self.do_mark_sides):
+            marked_indexes.append([0, ranges[0]]) # right most
+            marked_indexes.append([ranges.shape[0]-1, ranges[ranges.shape[0]-1]]) # left most
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
         # # split ranges into left and right
@@ -142,19 +146,20 @@ class GapFinderAlgorithm:
         limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
 
         ### MEAN FILTER ###
-        for i, r in enumerate(limited_ranges):
-            arc = angle_increment * r
-            radius_count = int(self.safety_bubble_diameter/arc/2)
-            if i < radius_count:
-                mean = np.mean(limited_ranges[:i+radius_count+1])
-            elif i > ranges.shape[0] - radius_count:
-                mean = np.mean(limited_ranges[i-radius_count:])
-            else:
-                mean = np.mean(limited_ranges[i-radius_count:i+radius_count+1])
-            # ranges[i] = mean
-            # r_index = i + self.fov_bounds[0]
-            # mean = np.mean(ranges[r_index-radius_count:r_index+radius_count+1])
-            limited_ranges[i] = mean
+        if (self.do_mean_filter):
+            for i, r in enumerate(limited_ranges):
+                arc = angle_increment * r
+                radius_count = int(self.safety_bubble_diameter/arc/2)
+                if i < radius_count:
+                    mean = np.mean(limited_ranges[:i+radius_count+1])
+                elif i > ranges.shape[0] - radius_count:
+                    mean = np.mean(limited_ranges[i-radius_count:])
+                else:
+                    mean = np.mean(limited_ranges[i-radius_count:i+radius_count+1])
+                # ranges[i] = mean
+                # r_index = i + self.fov_bounds[0]
+                # mean = np.mean(ranges[r_index-radius_count:r_index+radius_count+1])
+                limited_ranges[i] = mean
 
         ### PRIORITISE CENTER OF SCAN ###
         limited_ranges *= self.center_priority_mask
@@ -244,7 +249,7 @@ class GapFinderNode(Node):
                                                      coeffiecient_of_friction = 0.71, 
                                                      disparity_threshold = 0.5,
                                                      lookahead = 10, 
-                                                     speed_kp = 4.0,
+                                                     speed_kp = 1.0,
                                                      steering_kp = 1.5, 
                                                      wheel_base = 0.324, 
                                                      speed_max= self.max_speed,
