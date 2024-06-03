@@ -154,14 +154,15 @@ class GapFinderAlgorithm:
             if i_range[1] == 0.0:
                 continue
             arc = angle_increment * i_range[1]
+            print(arc)
             radius_count = int(self.safety_bubble_diameter/arc/2)
-            modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = 0.0
-
-        ### LIMIT FIELD OF VIEW ###
-        modified_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+            modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
 
         ### PRIORITISE CENTER OF SCAN ###
         modified_ranges *= self.center_priority_mask
+
+        ### LIMIT FIELD OF VIEW ###
+        modified_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
 
         ### FIND DEEPEST GAP ###
         max_gap_index = np.argmax(modified_ranges)
@@ -190,7 +191,7 @@ class GapFinderAlgorithm:
                 self.safety_markers["range"].append(i_range[1])
                 self.safety_markers["bearing"].append(bearing)
             # Visualise Goal
-            self.goal_marker["range"] = limited_ranges[max_gap_index]
+            self.goal_marker["range"] = modified_ranges[max_gap_index]
             self.goal_marker["bearing"] = goal_bearing
 
         return ackermann
