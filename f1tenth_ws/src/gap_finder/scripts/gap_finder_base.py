@@ -58,6 +58,7 @@ class GapFinderAlgorithm:
         # Feature Activation
         self.do_mark_sides = True
         self.do_mean_filter = True
+        self.do_limit_lookahead = True
         # Visualisation
         self.visualise = visualise
         self.safety_markers = {"range":[0.0], "bearing":[0.0]}
@@ -92,8 +93,12 @@ class GapFinderAlgorithm:
             self.initialise = False
  
         ### LIMIT LOOKAHEAD ##
-        ranges[ranges > self.lookahead] = self.lookahead
-        modified_ranges = ranges.copy()
+        if (self.do_limit_lookahead):
+            ranges[ranges > self.lookahead] = self.lookahead
+            modified_ranges = ranges.copy()
+        else :
+            modified_ranges = ranges.copy()
+            self.lookahead = scan_msg.range_max
 
         ### FIND FRONT CLEARANCE ###
         front_clearance = ranges[self.middle_index] # single laser scan
@@ -174,7 +179,7 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
+        init_speed = front_clearance/self.lookahead * min(init_speed, self.speed_max)
         # init_speed = mean_range/range_max * min(init_speed, self.speed_max)
         # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
