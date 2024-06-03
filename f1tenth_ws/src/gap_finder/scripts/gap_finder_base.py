@@ -174,9 +174,9 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        # init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
+        init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
         # init_speed = mean_range/range_max * min(init_speed, self.speed_max)
-        init_speed = mean_range/self.lookahead * min(init_speed, self.speed_max)
+        # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
         ackermann = {"speed": speed, "steering": steering}
@@ -248,8 +248,8 @@ class GapFinderNode(Node):
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
                                                      disparity_threshold = 0.5,
-                                                     lookahead = 10, 
-                                                     speed_kp = 1.0,
+                                                     lookahead = 3, 
+                                                     speed_kp = 4.0,
                                                      steering_kp = 1.5, 
                                                      wheel_base = 0.324, 
                                                      speed_max= self.max_speed,
