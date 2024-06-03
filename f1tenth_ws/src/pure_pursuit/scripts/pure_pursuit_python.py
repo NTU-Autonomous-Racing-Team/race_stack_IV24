@@ -49,7 +49,7 @@ class PurePursuit(Node):
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.drive_data = AckermannDriveStamped()
 
-        self.lookahead_distance = 1.0
+        self.lookahead_distance = 0.75
         self.Kp = 0.25
         self.output_select_data = "None"
 
