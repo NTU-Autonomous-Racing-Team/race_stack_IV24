@@ -249,12 +249,12 @@ class GapFinderNode(Node):
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
         # Steering limits
-        self.max_steering = 0.4 # [rad]
+        self.max_steering = 0.5 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.4, # [m] should be the width of the car
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.5, # [m] should be the width of the car
                                                      view_angle = 3.142, 
-                                                     coeffiecient_of_friction = 1.0, 
+                                                     coeffiecient_of_friction = 1.5, 
                                                      disparity_threshold = 0.5,
                                                      lookahead = 3, 
                                                      speed_kp = 0.75,
