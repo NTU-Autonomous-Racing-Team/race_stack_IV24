@@ -105,10 +105,7 @@ class GapFinderAlgorithm:
         if front_clearance != 0.0: # mean of safety bubble of front scan
             arc = angle_increment * ranges[self.middle_index]
             radius_count = int(self.safety_bubble_diameter/arc/2)
-            front_clearance = np.mean(ranges[self.middle_index-radius_count:self.middle_index+radius_count])
-
-        ### FIND MEAN RANGE ###
-        mean_range = np.mean(ranges)
+            front_clearance = np.min(ranges[self.middle_index-radius_count:self.middle_index+radius_count])
 
         ### MARK LARGE DISPARITY###
         marked_indexes = []
@@ -148,34 +145,28 @@ class GapFinderAlgorithm:
         #     modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
 
         ### LIMIT FIELD OF VIEW ###
-        limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
-        temp_ranges = limited_ranges.copy()
+        modified_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+        modified_ranges_copy = modified_ranges.copy()
 
         ### MEAN FILTER ###
         if (self.do_mean_filter):
-            for i, r in enumerate(temp_ranges):
+            for i, r in enumerate(modified_ranges):
                 arc = angle_increment * r
                 radius_count = int(self.safety_bubble_diameter/arc/2)
                 if i < radius_count:
-                    the_min = np.min(temp_ranges[:i+radius_count+1])
+                    the_min = np.min(modified_ranges_copy[:i+radius_count+1])
                 elif i > ranges.shape[0] - radius_count:
-                    the_min = np.min(temp_ranges[i-radius_count:])
+                    the_min = np.min(modified_ranges_copy[i-radius_count:])
                 else:
-                    the_min = np.min(temp_ranges[i-radius_count:i+radius_count+1])
-                # ranges[i] = mean
-                # r_index = i + self.fov_bounds[0]
-                # mean = np.mean(ranges[r_index-radius_count:r_index+radius_count+1])
-                limited_ranges[i] = the_min
-
-        
+                    the_min = np.min(modified_ranges_copy[i-radius_count:i+radius_count+1])
+                modified_ranges[i] = the_min
 
         ### PRIORITISE CENTER OF SCAN ###
-        limited_ranges *= self.center_priority_mask
+        modified_ranges *= self.center_priority_mask
 
         ### FIND DEEPEST GAP ###
-        # limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
-        max_gap_index = np.argmax(limited_ranges)
-        goal_bearing = angle_increment * (max_gap_index - limited_ranges.shape[0] // 2)
+        max_gap_index = np.argmax(modified_ranges)
+        goal_bearing = angle_increment * (max_gap_index - modified_ranges.shape[0] // 2)
 
         ### FIND TWIST ###
         init_steering = np.arctan(goal_bearing * self.wheel_base) # using ackermann steering model
@@ -183,8 +174,6 @@ class GapFinderAlgorithm:
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
         init_speed = front_clearance/self.lookahead * min(init_speed, self.speed_max)
-        # init_speed = mean_range/self.lookahead * min(init_speed, self.speed_max)
-        # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
         ackermann = {"speed": speed, "steering": steering}
@@ -252,7 +241,7 @@ class GapFinderNode(Node):
         self.max_steering = 0.4 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.4, # [m] should be the width of the car
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.5, # [m] should be the width of the car
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 1.0, 
                                                      disparity_threshold = 0.5,
