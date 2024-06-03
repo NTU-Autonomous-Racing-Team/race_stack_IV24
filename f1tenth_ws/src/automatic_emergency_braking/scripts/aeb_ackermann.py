@@ -14,8 +14,8 @@ from std_msgs.msg import Int32
 
 class AEB_Ackerman():
     def __init__(self, SAFETY_BUBBLE_DIAMETER = 0.3, 
-                 frictional_coefficient = 0.5, 
-                 max_steering_angle = 0.5,
+                 frictional_coefficient = 2.0, 
+                 max_steering_angle = 0.6,
                  wheelbase = 0.33,
                  view_angle = 3.142/2.0):
         # CONSTANTS
