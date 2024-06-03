@@ -58,6 +58,7 @@ class GapFinderAlgorithm:
         # Feature Activation
         self.do_mark_sides = True
         self.do_mean_filter = True
+        self.do_limit_lookahead = True
         # Visualisation
         self.visualise = visualise
         self.safety_markers = {"range":[0.0], "bearing":[0.0]}
@@ -92,8 +93,12 @@ class GapFinderAlgorithm:
             self.initialise = False
  
         ### LIMIT LOOKAHEAD ##
-        ranges[ranges > self.lookahead] = self.lookahead
-        modified_ranges = ranges.copy()
+        if (self.do_limit_lookahead):
+            ranges[ranges > self.lookahead] = self.lookahead
+            modified_ranges = ranges.copy()
+        else :
+            modified_ranges = ranges.copy()
+            self.lookahead = scan_msg.range_max
 
         ### FIND FRONT CLEARANCE ###
         front_clearance = ranges[self.middle_index] # single laser scan
