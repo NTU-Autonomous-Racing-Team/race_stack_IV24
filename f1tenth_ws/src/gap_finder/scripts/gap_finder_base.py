@@ -158,15 +158,15 @@ class GapFinderAlgorithm:
             radius_count = int(self.safety_bubble_diameter/arc/2)
             modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
 
-        ### PRIORITISE CENTER OF SCAN ###
-        modified_ranges *= self.center_priority_mask
-
         ### LIMIT FIELD OF VIEW ###
-        modified_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+        limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+
+        ### PRIORITISE CENTER OF SCAN ###
+        limited_ranges *= self.center_priority_mask
 
         ### FIND DEEPEST GAP ###
-        max_gap_index = np.argmax(modified_ranges)
-        goal_bearing = angle_increment * (max_gap_index - modified_ranges.shape[0] // 2)
+        max_gap_index = np.argmax(limited_ranges)
+        goal_bearing = angle_increment * (max_gap_index - limited_ranges.shape[0] // 2)
 
         ### FIND TWIST ###
         init_steering = np.arctan(goal_bearing * self.wheel_base) # using ackermann steering model
