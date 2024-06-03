@@ -107,18 +107,68 @@ class GapFinderAlgorithm:
             radius_count = int(self.safety_bubble_diameter/arc/2)
             front_clearance = np.mean(ranges[self.middle_index-radius_count:self.middle_index+radius_count])
 
+        ### FIND MEAN RANGE ###
+        mean_range = np.mean(ranges)
+
+        ### MARK LARGE DISPARITY###
+        marked_indexes = []
+        for i in range(1, ranges.shape[0]):
+            if abs(ranges[i] - ranges[i-1]) > self.disparity_threshold:
+                if ranges[i] < ranges[i-1]:
+                    marked_indexes.append([i, ranges[i]])
+                else:
+                    marked_indexes.append([i-1, ranges[i-1]])
+
+        ### MARK MINIMUM ###
+        marked_indexes.append([np.argmin(ranges), np.min(ranges)])
+
+        ### MARK LEFT AND RIGHT ###
+        if (self.do_mark_sides):
+            marked_indexes.append([0, ranges[0]]) # right most
+            marked_indexes.append([ranges.shape[0]-1, ranges[ranges.shape[0]-1]]) # left most
+
+        ### MARK MINIMUM ON LEFT AND RIGHT ###
+        # # split ranges into left and right
+        # ranges_right = ranges[:mid_index]
+        # ranges_left = ranges[mid_index:]
+        # # find minimums on left and right
+        # min_range_index = np.argmin(ranges_left)
+        # marked_indexes.append(ranges.shape[0]//2 + min_range_index)
+        # min_range_index = np.argmin(ranges_right)
+        # marked_indexes.append(min_range_index)
+        # # recombine left and right
+        # ranges = np.concatenate((ranges_right, ranges_left))
+
+        ### APPLY SAFETY BUBBLE ###
+        # for i_range in marked_indexes:
+        #     if i_range[1] == 0.0:
+        #         continue
+        #     arc = angle_increment * i_range[1]
+        #     radius_count = int(self.safety_bubble_diameter/arc/2)
+        #     modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
+
         ### LIMIT FIELD OF VIEW ###
         limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+        temp_ranges = limited_ranges.copy()
 
-        ### MIN FILTER ###
+        ### MEAN FILTER ###
         if (self.do_mean_filter):
-            for i, r in enumerate(limited_ranges):
+            for i, r in enumerate(temp_ranges):
                 arc = angle_increment * r
                 radius_count = int(self.safety_bubble_diameter/arc/2)
-                interested_array = limited_ranges[i-radius_count:i+radius_count+1]
-                the_min = np.min(interested_array)
+                if i < radius_count:
+                    the_min = np.min(temp_ranges[:i+radius_count+1])
+                elif i > ranges.shape[0] - radius_count:
+                    the_min = np.min(temp_ranges[i-radius_count:])
+                else:
+                    the_min = np.min(temp_ranges[i-radius_count:i+radius_count+1])
+                # ranges[i] = mean
+                # r_index = i + self.fov_bounds[0]
+                # mean = np.mean(ranges[r_index-radius_count:r_index+radius_count+1])
                 limited_ranges[i] = the_min
+
         
+
         ### PRIORITISE CENTER OF SCAN ###
         limited_ranges *= self.center_priority_mask
 
@@ -132,10 +182,8 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        # init_speed = mean_range/self.lookahead * front_clearance/self.lookahead * min(init_speed, self.speed_max)
+        init_speed = front_clearance/self.lookahead * min(init_speed, self.speed_max)
         # init_speed = mean_range/self.lookahead * min(init_speed, self.speed_max)
-        init_speed = np.median(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
-        print(f"mean: {round(np.mean(limited_ranges), 2)}, median: {round(np.median(limited_ranges), 2)}")
         # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
@@ -146,6 +194,13 @@ class GapFinderAlgorithm:
             # Visualise Modified Ranges
             self.safety_scan_msg = scan_msg
             scan_msg.ranges = modified_ranges.tolist()
+            # Visualise Marked Ranges
+            self.safety_markers["range"].clear()
+            self.safety_markers["bearing"].clear()
+            for i_range in marked_indexes:
+                bearing = angle_increment * (i_range[0] - ranges.shape[0]//2)
+                self.safety_markers["range"].append(i_range[1])
+                self.safety_markers["bearing"].append(bearing)
             # Visualise Goal
             self.goal_marker["range"] = limited_ranges[max_gap_index]
             self.goal_marker["bearing"] = goal_bearing
