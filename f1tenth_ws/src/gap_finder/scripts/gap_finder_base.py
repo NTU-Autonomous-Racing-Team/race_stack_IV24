@@ -107,6 +107,19 @@ class GapFinderAlgorithm:
             radius_count = int(self.safety_bubble_diameter/arc/2)
             front_clearance = np.min(ranges[self.middle_index-radius_count:self.middle_index+radius_count])
 
+        ### MIN FILTER ###
+        if (self.do_mean_filter):
+            for i, r in enumerate(ranges):
+                arc = angle_increment * r
+                radius_count = int(self.safety_bubble_diameter/arc/2)
+                if i < radius_count:
+                    the_min = np.min(ranges[:i+radius_count+1])
+                elif i > ranges.shape[0] - radius_count:
+                    the_min = np.min(ranges[i-radius_count:])
+                else:
+                    the_min = np.min(ranges[i-radius_count:i+radius_count+1])
+                modified_ranges[i] = the_min
+
         ### MARK LARGE DISPARITY###
         marked_indexes = []
         for i in range(1, ranges.shape[0]):
@@ -120,9 +133,9 @@ class GapFinderAlgorithm:
         marked_indexes.append([np.argmin(ranges), np.min(ranges)])
 
         ### MARK LEFT AND RIGHT ###
-        if (self.do_mark_sides):
-            marked_indexes.append([0, ranges[0]]) # right most
-            marked_indexes.append([ranges.shape[0]-1, ranges[ranges.shape[0]-1]]) # left most
+        # if (self.do_mark_sides):
+        #     marked_indexes.append([0, ranges[0]]) # right most
+        #     marked_indexes.append([ranges.shape[0]-1, ranges[ranges.shape[0]-1]]) # left most
 
         ### MARK MINIMUM ON LEFT AND RIGHT ###
         # # split ranges into left and right
@@ -136,30 +149,16 @@ class GapFinderAlgorithm:
         # # recombine left and right
         # ranges = np.concatenate((ranges_right, ranges_left))
 
-        ### APPLY SAFETY BUBBLE ###
-        # for i_range in marked_indexes:
-        #     if i_range[1] == 0.0:
-        #         continue
-        #     arc = angle_increment * i_range[1]
-        #     radius_count = int(self.safety_bubble_diameter/arc/2)
-        #     modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = i_range[1]
+        ## APPLY SAFETY BUBBLE ###
+        for i_range in marked_indexes:
+            if i_range[1] == 0.0:
+                continue
+            arc = angle_increment * i_range[1]
+            radius_count = int(self.safety_bubble_diameter/arc/2)
+            modified_ranges[i_range[0]-radius_count:i_range[0]+radius_count+1] = 0.0
 
         ### LIMIT FIELD OF VIEW ###
         modified_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
-        modified_ranges_copy = modified_ranges.copy()
-
-        ### MEAN FILTER ###
-        if (self.do_mean_filter):
-            for i, r in enumerate(modified_ranges):
-                arc = angle_increment * r
-                radius_count = int(self.safety_bubble_diameter/arc/2)
-                if i < radius_count:
-                    the_min = np.min(modified_ranges_copy[:i+radius_count+1])
-                elif i > ranges.shape[0] - radius_count:
-                    the_min = np.min(modified_ranges_copy[i-radius_count:])
-                else:
-                    the_min = np.min(modified_ranges_copy[i-radius_count:i+radius_count+1])
-                modified_ranges[i] = the_min
 
         ### PRIORITISE CENTER OF SCAN ###
         modified_ranges *= self.center_priority_mask
