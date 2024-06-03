@@ -174,7 +174,7 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        init_speed = front_clearance/range_max * min(init_speed, self.speed_max)
+        init_speed = front_clearance/self.lookahead * min(init_speed, self.speed_max)
         # init_speed = mean_range/range_max * min(init_speed, self.speed_max)
         # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
