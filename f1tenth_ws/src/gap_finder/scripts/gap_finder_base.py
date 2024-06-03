@@ -179,8 +179,10 @@ class GapFinderAlgorithm:
         steering = self.steering_pid.update(init_steering)
 
         init_speed = np.sqrt(10 * self.coeffiecient_of_friction * self.wheel_base / np.abs(max(np.tan(abs(steering)),1e-16)))
-        init_speed = front_clearance/self.lookahead * min(init_speed, self.speed_max)
-        # init_speed = mean_range/range_max * min(init_speed, self.speed_max)
+        # init_speed = mean_range/self.lookahead * front_clearance/self.lookahead * min(init_speed, self.speed_max)
+        # init_speed = mean_range/self.lookahead * min(init_speed, self.speed_max)
+        init_speed = np.median(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
+        print(f"mean: {round(np.mean(limited_ranges), 2)}, median: {round(np.median(limited_ranges), 2)}")
         # init_speed = np.max(limited_ranges)/self.lookahead * min(init_speed, self.speed_max)
         speed = self.speed_pid.update(init_speed)
 
@@ -249,13 +251,13 @@ class GapFinderNode(Node):
         self.max_steering = 0.4 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.35, # [m] should be the width of the car
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.4, # [m] should be the width of the car
                                                      view_angle = 3.142, 
-                                                     coeffiecient_of_friction = 0.71, 
+                                                     coeffiecient_of_friction = 1.0, 
                                                      disparity_threshold = 0.5,
                                                      lookahead = 3, 
-                                                     speed_kp = 4.0,
-                                                     steering_kp = 1.5, 
+                                                     speed_kp = 1.0,
+                                                     steering_kp = 2.0, 
                                                      wheel_base = 0.324, 
                                                      speed_max= self.max_speed,
                                                      visualise=self.visualise)
@@ -386,7 +388,8 @@ class GapFinderNode(Node):
 
         ### TIMEOUT ###
         if ((self.get_time() - self.last_scan_time) > self.timeout):
-            self.scan_ready = False
+            # self.scan_ready = False
+            pass
 
 def main(args=None):
     rclpy.init(args=args)
