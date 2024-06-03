@@ -1,0 +1,3 @@
+pure_pursuit:
+  ros__parameters:
+    waypoint_file_name: "/home/luthov15/F1Tenth/f1tenth_icra2024/f1tenth_ws/src/pure_pursuit/waypoint_files/waypoint_data.csv"

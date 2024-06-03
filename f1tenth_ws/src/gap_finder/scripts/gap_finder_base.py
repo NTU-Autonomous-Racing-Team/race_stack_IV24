@@ -231,7 +231,7 @@ class GapFinderNode(Node):
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 10.0 # [m/s]
+        self.max_speed = 6.0 # [m/s]
         self.min_speed = 1.0 # [m/s]
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
@@ -272,7 +272,7 @@ class GapFinderNode(Node):
         # Safety Viz Publisher
         self.bubble_viz_publisher = self.create_publisher(MarkerArray, "/safety_bubble", 1)
         self.bubble_viz_msg = Marker()
-        self.bubble_viz_msg.header.frame_id = "ego_racecar/base_link"
+        self.bubble_viz_msg.header.frame_id = "/base_link"
         self.bubble_viz_msg.color.a = 1.0
         self.bubble_viz_msg.color.r = 1.0
         self.bubble_viz_msg.scale.x = self.gapFinderAlgorithm.safety_bubble_diameter
@@ -283,7 +283,7 @@ class GapFinderNode(Node):
         # Goal Viz Publisher
         self.gap_viz_publisher = self.create_publisher(Marker, "/goal_point", 1)
         self.goal_viz_msg = Marker()
-        self.goal_viz_msg.header.frame_id = "ego_racecar/base_link"
+        self.goal_viz_msg.header.frame_id = "/base_link"
         self.goal_viz_msg.color.a = 1.0
         self.goal_viz_msg.color.g = 1.0
         self.goal_viz_msg.scale.x = 0.3
@@ -321,7 +321,7 @@ class GapFinderNode(Node):
 
         for i, coord in enumerate(bubble_coord):
             self.bubble_viz_msg = Marker()
-            self.bubble_viz_msg.header.frame_id = "ego_racecar/base_link"
+            self.bubble_viz_msg.header.frame_id = "/base_link"
             self.bubble_viz_msg.color.a = 1.0
             self.bubble_viz_msg.color.r = 1.0
             self.bubble_viz_msg.scale.x = self.gapFinderAlgorithm.safety_bubble_diameter

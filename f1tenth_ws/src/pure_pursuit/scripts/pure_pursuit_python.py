@@ -15,6 +15,7 @@ from pyquaternion import Quaternion
 import numpy as np
 import csv
 import math
+import sys
 
 
 class PurePursuit(Node):
@@ -22,12 +23,10 @@ class PurePursuit(Node):
     def __init__(self):
         super().__init__("pure_pursuit_node")
 
-        self.declare_parameter("waypoint_file_name", None)
-        waypoint_file_name = self.get_parameter("waypoint_file_name").value
-
+        waypoint_file_name = sys.argv[1]
         # Load waypoints from csv file
         self.waypoints = np.zeros((0, 3))
-        with open("waypoint_file_name", newline="") as f_in:
+        with open(waypoint_file_name, newline="") as f_in:
             reader = csv.reader(f_in)
             for row in reader:
                 self.waypoints = np.vstack(
@@ -35,10 +34,10 @@ class PurePursuit(Node):
                 )
 
         self.sub_odom = self.create_subscription(
-            Odometry, "odom", self.pose_callback, 1
+            Odometry, "pf/pose/odom", self.pose_callback, 1
         )
 
-        self.pub_drive = self.create_publisher(AckermannDriveStamped, "nav/drive", 1)
+        self.pub_drive = self.create_publisher(AckermannDriveStamped, "drive", 1)
 
         self.pub_marker = self.create_publisher(Marker, "goal_point", 1)
 
@@ -51,15 +50,15 @@ class PurePursuit(Node):
         self.drive_data = AckermannDriveStamped()
 
         self.lookahead_distance = 2.0
-        self.Kp = 1.0
+        self.Kp = 0.25
         self.output_select_data = "None"
 
     def visualize_goal_point(self, goal_point):
 
         # Visualizing goal point wrt car frame
-        scale = 0.5
+        scale = 0.5 
         self.goal_point_marker = Marker()
-        self.goal_point_marker.header.frame_id = "base_link"
+        self.goal_point_marker.header.frame_id = "laser"
         self.goal_point_marker.ns = "goal_point"
         self.goal_point_marker.id = 1
         self.goal_point_marker.type = Marker.SPHERE
@@ -140,12 +139,13 @@ class PurePursuit(Node):
                         break
 
             # Getting the transform from the vehicle frame to the map frame
-            vehicle_frame = "base_link"
             map_frame = "map"
+            vehicle_frame = "laser"
             try:
                 t = self.tf_buffer.lookup_transform(
                     vehicle_frame, map_frame, rclpy.time.Time()
                 )
+                print(t)
             except TransformException as ex:
                 self.get_logger().info(
                     f"Could not transform {vehicle_frame} to {map_frame}: {ex}"
@@ -177,7 +177,7 @@ class PurePursuit(Node):
                 steering_angle = -0.36
 
             self.drive_data.drive.steering_angle = steering_angle
-            self.drive_data.drive.speed = goal_point_speed
+            self.drive_data.drive.speed = 0.75 * goal_point_speed
             # self.drive_data.drive.speed = 0.5 * (1 / 1.2) ** (steering_angle - 15)
 
             self.pub_drive.publish(self.drive_data)

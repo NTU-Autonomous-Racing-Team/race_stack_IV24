@@ -2,7 +2,6 @@
 
 import csv
 import numpy as np
-import sys
 
 import rclpy
 from rclpy.node import Node
@@ -16,11 +15,13 @@ class WaypointVisualizer(Node):
     def __init__(self):
         super().__init__("waypoint_visualizer")
 
+        self.declare_parameter("waypoint_file_name", None)
+        waypoint_file_name = self.get_parameter("waypoint_file_name").value
+
         self.waypoint_publisher = self.create_publisher(
             Marker, "visualization_marker", 10
         )
 
-        waypoint_file_name = sys.argv[1]
         coordinate_arr = np.zeros((0, 2))
         with open(waypoint_file_name, newline="") as f_in:
             reader = csv.reader(f_in)
