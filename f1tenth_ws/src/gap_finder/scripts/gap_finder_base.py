@@ -93,7 +93,7 @@ class GapFinderAlgorithm:
         modified_ranges = ranges.copy()
 
         ### FIND FRONT CLEARANCE ###
-        # front_clearance = ranges[self.middle_index]
+        front_clearance = ranges[self.middle_index]
         # if front_clearance != 0.0:
         #     arc = angle_increment * ranges[self.middle_index]
         #     radius_count = int(self.safety_bubble_diameter/arc/2)
@@ -160,7 +160,7 @@ class GapFinderAlgorithm:
         limited_ranges *= self.center_priority_mask
 
         ### FIND DEEPEST GAP ###
-        limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
+        # limited_ranges = modified_ranges[self.fov_bounds[0]:self.fov_bounds[1]]
         max_gap_index = np.argmax(limited_ranges)
         goal_bearing = angle_increment * (max_gap_index - limited_ranges.shape[0] // 2)
 
@@ -239,7 +239,7 @@ class GapFinderNode(Node):
         self.max_steering = 0.4 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.3, # [m] should be the width of the car
+        self.gapFinderAlgorithm = GapFinderAlgorithm(safety_bubble_diameter = 0.35, # [m] should be the width of the car
                                                      view_angle = 3.142, 
                                                      coeffiecient_of_friction = 0.71, 
                                                      disparity_threshold = 0.5,
