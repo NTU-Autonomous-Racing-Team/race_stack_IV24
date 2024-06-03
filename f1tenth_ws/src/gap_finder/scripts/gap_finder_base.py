@@ -257,7 +257,7 @@ class GapFinderNode(Node):
                                                      coeffiecient_of_friction = 1.0, 
                                                      disparity_threshold = 0.5,
                                                      lookahead = 3, 
-                                                     speed_kp = 1.0,
+                                                     speed_kp = 0.75,
                                                      steering_kp = 2.0, 
                                                      wheel_base = 0.324, 
                                                      speed_max= self.max_speed,

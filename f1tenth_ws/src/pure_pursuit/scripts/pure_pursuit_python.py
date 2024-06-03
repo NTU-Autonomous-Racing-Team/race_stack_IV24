@@ -49,7 +49,7 @@ class PurePursuit(Node):
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.drive_data = AckermannDriveStamped()
 
-        self.lookahead_distance = 2.0
+        self.lookahead_distance = 1.0
         self.Kp = 0.25
         self.output_select_data = "None"
 
@@ -177,7 +177,7 @@ class PurePursuit(Node):
                 steering_angle = -0.36
 
             self.drive_data.drive.steering_angle = steering_angle
-            self.drive_data.drive.speed = 0.75 * goal_point_speed
+            self.drive_data.drive.speed = 0.5 * goal_point_speed
             # self.drive_data.drive.speed = 0.5 * (1 / 1.2) ** (steering_angle - 15)
 
             self.pub_drive.publish(self.drive_data)
