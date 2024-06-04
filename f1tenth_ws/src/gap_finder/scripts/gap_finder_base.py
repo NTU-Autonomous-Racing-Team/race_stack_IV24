@@ -277,19 +277,22 @@ class GapFinderNode(Node):
         self.max_steering = 0.5 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(   disparity_bubble_diameter = 0.4, # [m] should be the width of the car
-                                                        safety_bubble_diameter = 0.4, # [m] should be the width of the car
-                                                        front_bubble_diameter = 0.33, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(   disparity_bubble_diameter = 0.4, 
+                                                        safety_bubble_diameter = 0.4,
+                                                        front_bubble_diameter = 0.33,
+                                                        minimum_bubble_diameter = 0.33,
                                                         view_angle = 3.142, 
                                                         coeffiecient_of_friction = 0.71, 
                                                         disparity_threshold = 0.6,
                                                         lookahead = None, 
                                                         speed_kp = 1.0,
-                                                        steering_kp = 1.2, 
+                                                        steering_kp = 1.2,
                                                         wheel_base = 0.324, 
-                                                        speed_max= self.max_speed,
-                                                        speed_min = self.min_speed, 
-                                                        visualise=self.visualise, 
+                                                        speed_max = 10.0,
+                                                        speed_min = 1.0, 
+                                                        speed_low_pass_filter = 0.8,
+                                                        steering_low_pass_filter = 0.8,
+                                                        visualise = False, 
                                                         bin_number = 7)
 
         ### ROS2 NODE ###
