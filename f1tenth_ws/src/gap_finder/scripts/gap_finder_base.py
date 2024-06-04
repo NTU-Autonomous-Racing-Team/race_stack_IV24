@@ -246,8 +246,8 @@ class GapFinderNode(Node):
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 5.0 # [m/s]
-        self.min_speed = 1.0 # [m/s]
+        self.max_speed = 7.0 # [m/s]
+        self.min_speed = 1.5 # [m/s]
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
         # Steering limits
@@ -265,7 +265,7 @@ class GapFinderNode(Node):
                                                      speed_max= self.max_speed,
                                                      visualise=self.visualise, 
                                                      front_fov = 0.6, 
-                                                     speed_min = 1.0, 
+                                                     speed_min = self.min_speed, 
                                                      bin_number = 13)
 
         ### ROS2 NODE ###
