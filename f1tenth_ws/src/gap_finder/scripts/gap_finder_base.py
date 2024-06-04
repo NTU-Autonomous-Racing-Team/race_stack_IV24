@@ -269,28 +269,28 @@ class GapFinderNode(Node):
 
         ### SPEED AND STEERING LIMITS ###
         # Speed limits
-        self.max_speed = 7.0 # [m/s]
-        self.min_speed = 1.5 # [m/s]
+        self.max_speed = 10.0 # [m/s]
+        self.min_speed = 1.0 # [m/s]        
         # Acceleration limits
         self.max_acceleration = None # [m/s^2]
         # Steering limits
         self.max_steering = 0.5 # [rad]
 
         ### GAP FINDER ALGORITHM ###
-        self.gapFinderAlgorithm = GapFinderAlgorithm(   disparity_bubble_diameter = 0.35, # [m] should be the width of the car
-                                                        safety_bubble_diameter = 0.65, # [m] should be the width of the car
-                                                        front_bubble_diameter = 0.3, 
+        self.gapFinderAlgorithm = GapFinderAlgorithm(   disparity_bubble_diameter = 0.4, # [m] should be the width of the car
+                                                        safety_bubble_diameter = 0.4, # [m] should be the width of the car
+                                                        front_bubble_diameter = 0.33, 
                                                         view_angle = 3.142, 
-                                                        coeffiecient_of_friction = 0.70, 
-                                                        disparity_threshold = 0.35,
-                                                        lookahead = 3.5, 
-                                                        speed_kp = 0.6,
-                                                        steering_kp = 2.0, 
+                                                        coeffiecient_of_friction = 0.71, 
+                                                        disparity_threshold = 0.6,
+                                                        lookahead = None, 
+                                                        speed_kp = 1.0,
+                                                        steering_kp = 1.2, 
                                                         wheel_base = 0.324, 
                                                         speed_max= self.max_speed,
                                                         speed_min = self.min_speed, 
                                                         visualise=self.visualise, 
-                                                        bin_number = 13)
+                                                        bin_number = 7)
 
         ### ROS2 NODE ###
         super().__init__("gap_finder")
