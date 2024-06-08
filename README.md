@@ -82,7 +82,10 @@ After running the desired planner, hold the deadman's switch to let the planner 
 
 ## Software Stack
 
-- Intended system architecture
-![CleanShot 2024-03-14 at 16 42 18@2x](https://github.com/NTU-Autonomous-Racing-Team/f1tenth_icra2024/assets/65676392/44360186-bb67-4fd0-8ce3-2cb304b6a80f)
+
+![Intended Software Architecture](images/intended_software_architecture.png)
+
+[Link to edit drawio page](https://drive.google.com/file/d/1SHr5BJUqlb9zOSQUsWWrj2T6O2SN5gvV/view?usp=sharing)
+
 - Architecture we ended up using
 
